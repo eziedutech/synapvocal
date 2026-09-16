@@ -26,6 +26,42 @@ body {
   background: var(--accent-8);
 }
 
+.sv-nav-link {
+  color: var(--gray-11);
+  text-decoration: none;
+  padding: var(--space-1) 0;
+  box-shadow: inset 0 -2px 0 transparent;
+}
+
+.sv-nav-link[aria-current="page"] {
+  color: var(--gray-12);
+  box-shadow: inset 0 -2px 0 var(--accent-9);
+}
+
+.sv-level {
+  height: 8px;
+  background: var(--gray-a3);
+  overflow: hidden;
+}
+
+.sv-level-fill {
+  height: 100%;
+  background: var(--accent-9);
+  transition: width 80ms linear;
+}
+
+.sv-turns {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Separated by a top rule and a soft fill, never a left border. */
+.sv-turn {
+  padding: var(--space-3) var(--space-4);
+  background: var(--gray-a2);
+}
+
 .sv-infotip-content {
   max-width: 280px;
   white-space: normal;

@@ -1,13 +1,13 @@
 import { Badge, Card, Code, DataList, Flex, Heading } from "@radix-ui/themes";
 
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/status";
 import { InfoTip } from "~/components/InfoTip";
 import { Notice } from "~/components/Notice";
 import { getBackpyHealth } from "~/lib/backpy.server";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "SynapVocal" },
+    { title: "Status - SynapVocal" },
     { name: "description", content: "Realtime Voice Accessibility Bridge" },
   ];
 }

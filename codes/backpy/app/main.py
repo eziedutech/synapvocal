@@ -4,11 +4,13 @@ from typing import Literal
 from fastapi import Depends, FastAPI
 from pydantic import BaseModel
 
+from app import stt
 from app.settings import Settings, get_settings
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
 
 app = FastAPI(title="SynapVocal backpy", docs_url="/api/docs", openapi_url="/api/openapi.json")
+app.include_router(stt.router)
 
 
 class Configured(BaseModel):

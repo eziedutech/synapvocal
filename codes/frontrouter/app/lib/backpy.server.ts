@@ -11,7 +11,10 @@ export type BackpyHealth = {
   configured: { assemblyai: boolean; deepgram: boolean };
 };
 
-export class BackpyError extends Error {}
+export class BackpyError extends Error {
+  // Human-readable reason from backpy's `detail`, when it gave one.
+  detail?: string;
+}
 
 function baseUrl(): string {
   const url = process.env.BACKPY_INTERNAL_URL;
@@ -29,8 +32,11 @@ export async function backpyFetch(path: string, init?: RequestInit): Promise<Res
     throw new BackpyError(`backpy unreachable at ${path}`, { cause });
   }
   if (!response.ok) {
-    console.error(`[backpy] ${path} returned ${response.status}`);
-    throw new BackpyError(`backpy ${path} returned ${response.status}`);
+    const body = await response.json().catch(() => null);
+    console.error(`[backpy] ${path} returned ${response.status}`, body);
+    const error = new BackpyError(`backpy ${path} returned ${response.status}`);
+    error.detail = typeof body?.detail === "string" ? body.detail : undefined;
+    throw error;
   }
   return response;
 }
