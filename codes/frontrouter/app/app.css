@@ -1,0 +1,33 @@
+/* Soft, flat palette. No left borders, no thick borders, no radius (radius comes from Theme). */
+
+.radix-themes {
+  --default-font-family: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --sv-page-bg: #f6f8f6;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--sv-page-bg);
+}
+
+.sv-page {
+  min-height: 100vh;
+  background: var(--sv-page-bg);
+}
+
+.sv-header {
+  background: var(--color-panel-solid);
+  box-shadow: 0 1px 0 var(--gray-a3);
+}
+
+.sv-band {
+  height: 3px;
+  background: var(--accent-8);
+}
+
+.sv-infotip-content {
+  max-width: 280px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}

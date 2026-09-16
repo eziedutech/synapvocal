@@ -1,0 +1,39 @@
+# Local mirror of production: frontrouter is the only published port,
+# backpy is reachable only on the compose network, like the Dokploy internal host.
+#
+#   GIT_SHA=$(git rev-parse --short HEAD) docker compose up --build
+#   then open http://localhost:3310
+
+services:
+  backpy:
+    build:
+      context: ./codes/backpy
+      args:
+        GIT_SHA: ${GIT_SHA:-dev}
+    environment:
+      APP_ENV: local
+    env_file:
+      - path: .env
+        required: false
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  frontrouter:
+    build:
+      context: ./codes/frontrouter
+      args:
+        GIT_SHA: ${GIT_SHA:-dev}
+    environment:
+      APP_ENV: local
+      BACKPY_INTERNAL_URL: http://backpy:8000
+    ports:
+      # 3000 is often taken by other local projects on this machine.
+      - "${FRONT_PORT:-3310}:3000"
+    depends_on:
+      backpy:
+        condition: service_healthy

@@ -1,0 +1,30 @@
+# Secrets
+credentials/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Datasets (TORGO is academic use only, never committed)
+scripts/**/data/
+*.wav
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Node
+node_modules/
+build/
+.react-router/
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
