@@ -1,8 +1,8 @@
 """Temporary AssemblyAI streaming tokens for the browser.
 
 The browser streams audio straight to AssemblyAI (one network hop fewer), so it
-needs a token. The permanent key stays here. The connection settings live here
-too, so the product and the benchmark scripts use the same configuration.
+needs a token. The permanent key stays here. Connection settings live in
+stt_config.py, shared with the benchmark scripts.
 """
 
 import logging
@@ -13,29 +13,15 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.settings import Settings, get_settings
+from app.stt_config import STREAM_PARAMS, WS_URL
 
 log = logging.getLogger("synapvocal.stt")
 
 router = APIRouter(prefix="/api/stt")
 
 TOKEN_URL = "https://streaming.assemblyai.com/v3/token"
-WS_URL = "wss://streaming.assemblyai.com/v3/ws"
 TOKEN_TTL_SECONDS = 60
 MAX_SESSION_SECONDS = 1800
-
-# Dysarthric speech has longer pauses inside a sentence than typical speech, so
-# turn detection starts from the "patient" end of AssemblyAI's presets and goes
-# further. These numbers are a starting assumption, not a measured optimum. The
-# Speaker can also end a turn explicitly (ForceEndpoint), so a long silence
-# window costs waiting time, not correctness.
-STREAM_PARAMS = {
-    "speech_model": "universal-3-5-pro",
-    "sample_rate": 16000,
-    "encoding": "pcm_s16le",
-    "min_turn_silence": 400,
-    "max_turn_silence": 3000,
-    "inactivity_timeout": 120,
-}
 
 
 class SttToken(BaseModel):
