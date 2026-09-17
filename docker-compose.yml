@@ -12,9 +12,13 @@ services:
         GIT_SHA: ${GIT_SHA:-dev}
     environment:
       APP_ENV: local
+      GOOGLE_APPLICATION_CREDENTIALS: /run/secrets/gcp-synapvocal-backpy.json
     env_file:
       - path: .env
         required: false
+    volumes:
+      # Service account key for Vertex AI, mounted read-only, never baked into the image.
+      - ./credentials/gcp-synapvocal-backpy.json:/run/secrets/gcp-synapvocal-backpy.json:ro
     expose:
       - "8000"
     healthcheck:
