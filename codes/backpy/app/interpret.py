@@ -82,7 +82,7 @@ class Interpretation(ModelReading):
     latency_ms: int
 
 
-DASHES = re.compile(r"\s*[‒–—―]\s*")
+DASHES = re.compile(r"\s*[\u2012\u2013\u2014\u2015]\s*")
 
 
 def clean(text: str) -> str:

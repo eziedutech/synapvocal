@@ -39,8 +39,8 @@ def test_dashes_removed_and_duplicate_alternatives_dropped(tmp_path, monkeypatch
     _fake_model(
         monkeypatch,
         ModelReading(
-            interpretation="I want to go home — now.",
-            alternatives=["i want to go home, now", "I want a phone – now.", "I want a phone, now."],
+            interpretation="I want to go home \u2014 now.",
+            alternatives=["i want to go home, now", "I want a phone \u2013 now.", "I want a phone, now."],
             confidence=0.7,
         ),
         seen,
@@ -52,7 +52,7 @@ def test_dashes_removed_and_duplicate_alternatives_dropped(tmp_path, monkeypatch
 
     assert response.status_code == 200
     body = response.json()
-    assert "—" not in response.text and "–" not in response.text
+    assert "\u2014" not in response.text and "\u2013" not in response.text
     assert body["interpretation"] == "I want to go home, now."
     # The rephrasing of the interpretation is dropped, the dash variant is cleaned and deduplicated.
     assert body["alternatives"] == ["I want a phone, now."]
@@ -67,7 +67,7 @@ def test_clean_transcript_is_marked_unchanged(tmp_path, monkeypatch):
 
 
 def test_clean_trailing_dash_before_stop():
-    assert clean("Wait —.") == "Wait."
+    assert clean("Wait \u2014.") == "Wait."
 
 
 class _FakeModels:

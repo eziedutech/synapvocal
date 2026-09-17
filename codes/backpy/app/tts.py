@@ -32,7 +32,7 @@ VOICES = {
     "aura-2-aries-en": "Aries, masculine, warm",
 }
 DEFAULT_VOICE = "aura-2-thalia-en"
-DASHES = re.compile(r"\s*[‒–—―]\s*")
+DASHES = re.compile(r"\s*[\u2012\u2013\u2014\u2015]\s*")
 
 
 class SpeakRequest(BaseModel):
