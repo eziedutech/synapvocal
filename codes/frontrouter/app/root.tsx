@@ -17,7 +17,8 @@ import { AppShell } from "./components/AppShell";
 import { Notice } from "./components/Notice";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+  { rel: "icon", href: "/favicon.png", type: "image/png", sizes: "128x128" },
+  { rel: "apple-touch-icon", href: "/logo-synap.png" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -32,7 +33,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <Theme
           appearance="light"
-          accentColor="jade"
+          accentColor="teal"
           grayColor="sage"
           radius="none"
           panelBackground="solid"

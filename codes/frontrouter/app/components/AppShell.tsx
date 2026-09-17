@@ -14,16 +14,20 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <header>
           <Container size="3">
             <Flex align="center" justify="between" gap="4" wrap="wrap">
-              <Flex direction="column">
-                <Text asChild size="4" weight="bold">
-                  <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-                    SynapVocal
-                  </Link>
-                </Text>
-                <Text size="1" color="gray">
-                  Realtime Voice Accessibility Bridge
-                </Text>
-              </Flex>
+              <Link to="/" className="sv-brand">
+                <Flex align="center" gap="3">
+                  {/* Decorative: the product name sits right beside it. */}
+                  <img src="/logo-synap.png" alt="" width={40} height={40} className="sv-brand-logo" />
+                  <Flex direction="column">
+                    <Text size="4" weight="bold">
+                      SynapVocal
+                    </Text>
+                    <Text size="1" color="gray">
+                      Realtime Voice Accessibility Bridge
+                    </Text>
+                  </Flex>
+                </Flex>
+              </Link>
               <Flex asChild gap="5">
                 <nav aria-label="Main">
                   {NAV.map((item) => (

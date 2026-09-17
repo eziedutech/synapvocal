@@ -22,11 +22,11 @@ function baseUrl(): string {
   return url.replace(/\/+$/, "");
 }
 
-export async function backpyFetch(path: string, init?: RequestInit): Promise<Response> {
+export async function backpyFetch(path: string, init?: RequestInit, timeoutMs = TIMEOUT_MS): Promise<Response> {
   const url = `${baseUrl()}${path}`;
   let response: Response;
   try {
-    response = await fetch(url, { ...init, signal: AbortSignal.timeout(TIMEOUT_MS) });
+    response = await fetch(url, { ...init, signal: AbortSignal.timeout(timeoutMs) });
   } catch (cause) {
     console.error(`[backpy] request failed: ${path}`, cause);
     throw new BackpyError(`backpy unreachable at ${path}`, { cause });

@@ -42,7 +42,10 @@ async function fetchToken(): Promise<TokenResponse> {
 export function useRealtimeTranscription() {
   const [status, setStatus] = useState<SttStatus>("idle");
   const [turns, setTurns] = useState<Turn[]>([]);
-  const [level, setLevel] = useState(0);
+  // Increments on every Begin; turn_order restarts at 0 in each session.
+  const [sessionId, setSessionId] = useState(0);
+  // Live analyser for visualisation. Set once per session, read per animation frame.
+  const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
   const [error, setError] = useState<string | null>(null);
   const session = useRef<Session | null>(null);
 
@@ -56,7 +59,7 @@ export function useRealtimeTranscription() {
     if (current.ws.readyState === WebSocket.OPEN || current.ws.readyState === WebSocket.CONNECTING) {
       current.ws.close();
     }
-    setLevel(0);
+    setAnalyser(null);
   }, []);
 
   const fail = useCallback(
@@ -95,13 +98,18 @@ export function useRealtimeTranscription() {
       mute.gain.value = 0;
       source.connect(capture).connect(mute).connect(audio.destination);
 
+      const spectrum = audio.createAnalyser();
+      spectrum.fftSize = 1024;
+      spectrum.smoothingTimeConstant = 0.78;
+      source.connect(spectrum).connect(mute);
+
       const ws = new WebSocket(`${token.ws_url}&token=${encodeURIComponent(token.token)}`);
       ws.binaryType = "arraybuffer";
       const current: Session = { ws, stream, audio, startedAt: performance.now(), began: false };
       session.current = current;
+      setAnalyser(spectrum);
 
-      capture.port.onmessage = (event: MessageEvent<{ pcm: ArrayBuffer; level: number }>) => {
-        setLevel(event.data.level);
+      capture.port.onmessage = (event: MessageEvent<{ pcm: ArrayBuffer }>) => {
         if (current.began && ws.readyState === WebSocket.OPEN) ws.send(event.data.pcm);
       };
 
@@ -110,6 +118,7 @@ export function useRealtimeTranscription() {
         if (message.type === "Begin") {
           current.began = true;
           setTurns([]);
+          setSessionId((id) => id + 1);
           setStatus("listening");
         } else if (message.type === "Turn") {
           const turn: Turn = {
@@ -172,5 +181,5 @@ export function useRealtimeTranscription() {
 
   useEffect(() => release, [release]);
 
-  return { status, turns, level, error, start, stop, endTurn };
+  return { status, turns, sessionId, analyser, error, start, stop, endTurn };
 }

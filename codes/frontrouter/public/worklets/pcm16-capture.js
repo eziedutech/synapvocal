@@ -1,5 +1,5 @@
 // Captures microphone audio, downsamples to the target rate, and posts
-// 100 ms chunks of little-endian 16-bit PCM plus an input level.
+// 100 ms chunks of little-endian 16-bit PCM.
 // Downsampling happens here rather than through AudioContext({ sampleRate })
 // because some browsers refuse to connect a microphone to a context whose rate
 // differs from the device.
@@ -13,8 +13,6 @@ class Pcm16Capture extends AudioWorkletProcessor {
     this.out = new Int16Array(this.chunkSize);
     this.outIndex = 0;
     this.position = 0;
-    this.levelSum = 0;
-    this.levelCount = 0;
   }
 
   process(inputs) {
@@ -30,16 +28,11 @@ class Pcm16Capture extends AudioWorkletProcessor {
       const clamped = Math.max(-1, Math.min(1, value));
 
       this.out[this.outIndex++] = clamped < 0 ? clamped * 0x8000 : clamped * 0x7fff;
-      this.levelSum += clamped * clamped;
-      this.levelCount++;
 
       if (this.outIndex === this.chunkSize) {
-        const level = Math.sqrt(this.levelSum / this.levelCount);
-        this.port.postMessage({ pcm: this.out.buffer, level }, [this.out.buffer]);
+        this.port.postMessage({ pcm: this.out.buffer }, [this.out.buffer]);
         this.out = new Int16Array(this.chunkSize);
         this.outIndex = 0;
-        this.levelSum = 0;
-        this.levelCount = 0;
       }
       this.position += this.ratio;
     }
