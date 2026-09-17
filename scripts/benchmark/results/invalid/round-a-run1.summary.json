@@ -1,0 +1,2824 @@
+{
+ "file": "round-a-run1.jsonl",
+ "meta": {
+  "round": "A",
+  "run": 1,
+  "params": {
+   "speech_model": "universal-3-5-pro",
+   "sample_rate": 16000,
+   "encoding": "pcm_s16le",
+   "min_turn_silence": 400,
+   "max_turn_silence": 3000,
+   "inactivity_timeout": 120
+  },
+  "started_at": "2026-09-17T02:03:54+0800"
+ },
+ "attempted": 695,
+ "failed": 673,
+ "failures": [
+  {
+   "id": "F01_1_headMic_0010.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0006.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0008.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0020.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0014.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0022.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0028.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0030.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0032.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0033.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0036.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0042.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0035.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0043.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0069.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0107.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0111.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0114.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0116.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0118.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0122.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0126.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0130.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F01_1_headMic_0132.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0011.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0025.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0028.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0030.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0037.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0056.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0071.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0075.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0081.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0094.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0095.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0108.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0115.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0131.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0152.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0157.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0167.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0168.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0172.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0174.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0179.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0184.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0185.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0189.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0195.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_1_headMic_0196.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0018.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0020.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0033.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0055.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0072.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0084.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0087.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0092.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0101.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0118.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0133.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0142.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0143.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0145.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0147.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_2_headMic_0151.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0007.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0047.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0056.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0090.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0101.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0107.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0112.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0117.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0126.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0127.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0134.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0173.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F03_3_headMic_0188.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0002.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0004.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0013.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0014.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0019.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0032.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0033.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0034.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0036.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0055.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0057.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0058.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0069.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0062.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0072.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0079.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0082.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0085.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0088.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0093.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0096.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0101.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0105.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0108.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0109.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0115.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0116.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0125.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0128.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0135.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0140.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0148.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0157.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0167.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0170.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0176.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0183.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0190.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0193.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0200.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0206.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0207.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0208.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0210.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0214.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0215.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0217.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0218.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0219.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0220.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0231.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0227.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0243.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0244.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "F04_2_headMic_0248.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0005.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0006.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0015.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0018.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0020.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0026.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0029.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0033.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0036.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0038.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0040.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0046.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0047.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0061.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0054.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0069.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0072.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0075.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0085.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0082.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0090.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0102.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0108.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0111.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0109.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0113.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0114.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0129.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0133.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0130.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0139.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0136.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0140.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0150.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0142.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0157.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0151.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0159.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0016.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC01_1_headMic_0161.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0026.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0048.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0060.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0107.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0095.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0182.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0222.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0234.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0275.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0281.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0303.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0359.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0410.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0429.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0450.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0453.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0472.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0484.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0504.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0540.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0572.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0583.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0586.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0601.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0622.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0641.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0665.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0714.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0722.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0737.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0757.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0763.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0769.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0779.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0873.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0877.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0912.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0916.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC02_3_headMic_0962.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_1_headMic_0063.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_1_headMic_0089.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_1_headMic_0091.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_1_headMic_0112.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_1_headMic_0136.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_1_headMic_0157.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_1_headMic_0179.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_1_headMic_0247.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_1_headMic_0314.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_1_headMic_0363.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0002.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0014.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0055.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0062.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0077.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0114.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0139.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0183.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0184.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0212.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0226.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0242.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0265.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0269.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0312.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0354.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_2_headMic_0375.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_3_headMic_0019.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_3_headMic_0022.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_3_headMic_0055.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_3_headMic_0166.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_3_headMic_0134.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_3_headMic_0170.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_3_headMic_0171.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "FC03_3_headMic_0198.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0011.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0013.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0014.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0015.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0018.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0019.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0027.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0044.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0046.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0051.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0052.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0056.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0072.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0090.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_1_headMic_0096.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0001.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0027.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0042.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0043.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0056.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0066.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0094.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0095.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0102.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0105.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0111.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0117.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0121.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0127.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0125.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0129.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0133.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0138.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0145.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0146.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0160.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0165.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0167.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0173.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0174.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0181.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0179.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0185.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0188.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0191.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0202.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0208.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0209.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0227.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0232.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0239.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0243.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0249.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0257.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M01_3_headMic_0259.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0023.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0034.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0042.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0044.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0063.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0067.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0092.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0101.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0106.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0115.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0122.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0126.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0134.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0142.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0152.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0154.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0166.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0169.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0173.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0174.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0196.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0215.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0218.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0219.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0222.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0226.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0236.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_1_headMic_0238.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0078.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0088.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0090.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0096.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0098.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0103.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0108.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0117.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0121.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0131.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0133.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0134.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0139.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0151.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0159.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0160.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0163.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0178.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0190.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0191.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0204.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0209.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0212.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0215.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0218.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0232.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M02_2_headMic_0237.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0045.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0057.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0059.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0062.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0070.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0077.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0100.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0102.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0115.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0117.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0118.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0119.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0135.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0138.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0144.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0150.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0155.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0156.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0161.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0162.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0166.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0184.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0168.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0187.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0185.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0199.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0209.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0213.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0218.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0219.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0222.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0224.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0244.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0249.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0256.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0260.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0272.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0287.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0307.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0300.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0312.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0318.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0326.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0361.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0329.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0381.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0388.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0391.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0392.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0400.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0401.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0406.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0415.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0416.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M03_2_headMic_0421.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0007.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0010.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0014.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0033.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0029.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0038.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0042.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0045.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0052.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0056.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0060.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0083.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0093.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0140.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0147.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0153.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0160.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0168.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0172.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0174.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0179.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0187.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0189.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0191.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0202.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0206.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0208.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0207.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0216.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0217.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0219.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0226.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0230.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0231.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0236.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0240.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0242.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0248.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0255.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0253.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0271.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0274.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0283.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0281.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0285.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0290.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0291.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0294.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0295.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M04_2_headMic_0298.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0006.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0015.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0027.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0053.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0056.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0057.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0063.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0077.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0103.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0101.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0104.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_1_headMic_0112.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0022.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0026.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0043.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0062.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0066.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0083.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0087.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0088.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0091.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0107.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0121.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0124.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0131.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0135.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0147.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0152.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0155.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0163.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0174.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0192.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0207.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0213.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0220.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0236.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0239.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0243.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0247.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0254.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0256.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0274.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0276.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0282.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0286.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0292.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0317.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0320.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0321.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0368.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0370.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0382.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0384.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0385.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "M05_2_headMic_0389.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_1_headMic_0008.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_1_headMic_0107.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_1_headMic_0180.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_1_headMic_0201.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_1_headMic_0253.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_1_headMic_0259.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_1_headMic_0275.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_1_headMic_0288.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_1_headMic_0312.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_1_headMic_0321.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_1_headMic_0329.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0031.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0057.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0066.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0149.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0161.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0167.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0192.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0222.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0235.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0295.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0299.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0326.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0351.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0012.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_2_headMic_0359.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0044.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0090.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0137.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0233.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0262.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0272.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0275.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0283.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0301.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0304.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0315.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0336.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0394.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC01_3_headMic_0382.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0030.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0032.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0063.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0084.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0087.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0088.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0122.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0170.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0172.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0179.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0180.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0196.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0202.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0219.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0225.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0233.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0235.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0239.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0252.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0264.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0267.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0280.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0299.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0303.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0304.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0339.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0348.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0377.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0379.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0380.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0384.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_1_headMic_0385.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_2_headMic_0007.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_2_headMic_0009.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_2_headMic_0018.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_2_headMic_0024.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_2_headMic_0048.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_2_headMic_0051.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_2_headMic_0059.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC02_2_headMic_0076.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0013.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0045.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0082.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0096.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0157.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0167.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0187.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0200.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0207.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0210.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0280.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0301.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0333.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0429.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0434.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0458.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0476.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0506.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0522.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0572.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0575.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0588.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_1_headMic_0593.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0059.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0070.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0097.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0104.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0116.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0125.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0148.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0167.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0170.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0186.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0217.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC03_2_headMic_0218.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0075.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0012.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0098.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0105.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0129.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0135.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0145.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0148.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0170.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0225.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0244.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0245.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0257.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0272.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0284.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0304.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0326.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0327.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0333.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0346.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0357.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0358.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0374.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0403.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0415.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0429.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0405.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0434.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0436.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0453.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0467.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0461.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0471.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0517.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0530.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0549.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0570.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0580.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0590.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  },
+  {
+   "id": "MC04_1_headMic_0649.wav",
+   "error": "RuntimeError: expected Begin, got {'type': 'Error', 'error_code': 1008, 'error': 'Unauthorized Connection: Too many concurrent sessions'}"
+  }
+ ],
+ "groups": {
+  "all": {
+   "utterances": 22,
+   "reference_words": 89,
+   "wer": 0.382,
+   "substitutions": 29,
+   "deletions": 3,
+   "insertions": 2,
+   "exact_match_rate": 0.3636,
+   "empty_hypotheses": 0
+  },
+  "dysarthria": {
+   "utterances": 12,
+   "reference_words": 38,
+   "wer": 0.8158,
+   "substitutions": 27,
+   "deletions": 2,
+   "insertions": 2,
+   "exact_match_rate": 0.0,
+   "empty_hypotheses": 0
+  },
+  "dysarthria/sentence": {
+   "utterances": 3,
+   "reference_words": 29,
+   "wer": 0.7586,
+   "substitutions": 18,
+   "deletions": 2,
+   "insertions": 2,
+   "exact_match_rate": 0.0,
+   "empty_hypotheses": 0
+  },
+  "dysarthria/word": {
+   "utterances": 9,
+   "reference_words": 9,
+   "wer": 1.0,
+   "substitutions": 9,
+   "deletions": 0,
+   "insertions": 0,
+   "exact_match_rate": 0.0,
+   "empty_hypotheses": 0
+  },
+  "healthy": {
+   "utterances": 10,
+   "reference_words": 51,
+   "wer": 0.0588,
+   "substitutions": 2,
+   "deletions": 1,
+   "insertions": 0,
+   "exact_match_rate": 0.8,
+   "empty_hypotheses": 0
+  },
+  "healthy/sentence": {
+   "utterances": 7,
+   "reference_words": 48,
+   "wer": 0.0417,
+   "substitutions": 1,
+   "deletions": 1,
+   "insertions": 0,
+   "exact_match_rate": 0.8571,
+   "empty_hypotheses": 0
+  },
+  "healthy/word": {
+   "utterances": 3,
+   "reference_words": 3,
+   "wer": 0.3333,
+   "substitutions": 1,
+   "deletions": 0,
+   "insertions": 0,
+   "exact_match_rate": 0.6667,
+   "empty_hypotheses": 0
+  },
+  "speaker/F01": {
+   "utterances": 7,
+   "reference_words": 21,
+   "wer": 0.7619,
+   "substitutions": 15,
+   "deletions": 1,
+   "insertions": 0,
+   "exact_match_rate": 0.0,
+   "empty_hypotheses": 0
+  },
+  "speaker/FC03": {
+   "utterances": 5,
+   "reference_words": 28,
+   "wer": 0.0,
+   "substitutions": 0,
+   "deletions": 0,
+   "insertions": 0,
+   "exact_match_rate": 1.0,
+   "empty_hypotheses": 0
+  },
+  "speaker/M04": {
+   "utterances": 5,
+   "reference_words": 17,
+   "wer": 0.8824,
+   "substitutions": 12,
+   "deletions": 1,
+   "insertions": 2,
+   "exact_match_rate": 0.0,
+   "empty_hypotheses": 0
+  },
+  "speaker/MC03": {
+   "utterances": 5,
+   "reference_words": 23,
+   "wer": 0.1304,
+   "substitutions": 2,
+   "deletions": 1,
+   "insertions": 0,
+   "exact_match_rate": 0.6,
+   "empty_hypotheses": 0
+  }
+ }
+}

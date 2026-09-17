@@ -1,0 +1,244 @@
+{
+ "file": "round-a-run5.jsonl",
+ "meta": {
+  "round": "A",
+  "run": 5,
+  "params": {
+   "speech_model": "universal-3-5-pro",
+   "language_codes": "en",
+   "sample_rate": 16000,
+   "encoding": "pcm_s16le",
+   "min_turn_silence": 400,
+   "max_turn_silence": 3000,
+   "inactivity_timeout": 120
+  },
+  "sessions_per_minute": 4.0,
+  "workers": 3,
+  "started_at": "2026-09-17T02:24:19+0800"
+ },
+ "attempted": 695,
+ "failed": 0,
+ "failures": [],
+ "groups": {
+  "all": {
+   "utterances": 695,
+   "reference_words": 3638,
+   "wer": 0.2779,
+   "substitutions": 733,
+   "deletions": 70,
+   "insertions": 208,
+   "exact_match_rate": 0.5813,
+   "empty_hypotheses": 1
+  },
+  "dysarthria": {
+   "utterances": 416,
+   "reference_words": 2275,
+   "wer": 0.4229,
+   "substitutions": 697,
+   "deletions": 58,
+   "insertions": 207,
+   "exact_match_rate": 0.3918,
+   "empty_hypotheses": 0
+  },
+  "dysarthria/sentence": {
+   "utterances": 296,
+   "reference_words": 2155,
+   "wer": 0.4,
+   "substitutions": 616,
+   "deletions": 58,
+   "insertions": 188,
+   "exact_match_rate": 0.4189,
+   "empty_hypotheses": 0
+  },
+  "dysarthria/word": {
+   "utterances": 120,
+   "reference_words": 120,
+   "wer": 0.8333,
+   "substitutions": 81,
+   "deletions": 0,
+   "insertions": 19,
+   "exact_match_rate": 0.325,
+   "empty_hypotheses": 0
+  },
+  "healthy": {
+   "utterances": 279,
+   "reference_words": 1363,
+   "wer": 0.036,
+   "substitutions": 36,
+   "deletions": 12,
+   "insertions": 1,
+   "exact_match_rate": 0.8638,
+   "empty_hypotheses": 1
+  },
+  "healthy/sentence": {
+   "utterances": 174,
+   "reference_words": 1258,
+   "wer": 0.0215,
+   "substitutions": 14,
+   "deletions": 12,
+   "insertions": 1,
+   "exact_match_rate": 0.908,
+   "empty_hypotheses": 1
+  },
+  "healthy/word": {
+   "utterances": 105,
+   "reference_words": 105,
+   "wer": 0.2095,
+   "substitutions": 22,
+   "deletions": 0,
+   "insertions": 0,
+   "exact_match_rate": 0.7905,
+   "empty_hypotheses": 0
+  },
+  "speaker/F01": {
+   "utterances": 31,
+   "reference_words": 168,
+   "wer": 0.6429,
+   "substitutions": 80,
+   "deletions": 15,
+   "insertions": 13,
+   "exact_match_rate": 0.0323,
+   "empty_hypotheses": 0
+  },
+  "speaker/F03": {
+   "utterances": 55,
+   "reference_words": 318,
+   "wer": 0.1101,
+   "substitutions": 27,
+   "deletions": 3,
+   "insertions": 5,
+   "exact_match_rate": 0.5455,
+   "empty_hypotheses": 0
+  },
+  "speaker/F04": {
+   "utterances": 55,
+   "reference_words": 278,
+   "wer": 0.0432,
+   "substitutions": 9,
+   "deletions": 1,
+   "insertions": 2,
+   "exact_match_rate": 0.8182,
+   "empty_hypotheses": 0
+  },
+  "speaker/FC01": {
+   "utterances": 39,
+   "reference_words": 220,
+   "wer": 0.0273,
+   "substitutions": 6,
+   "deletions": 0,
+   "insertions": 0,
+   "exact_match_rate": 0.8462,
+   "empty_hypotheses": 0
+  },
+  "speaker/FC02": {
+   "utterances": 40,
+   "reference_words": 193,
+   "wer": 0.0155,
+   "substitutions": 3,
+   "deletions": 0,
+   "insertions": 0,
+   "exact_match_rate": 0.925,
+   "empty_hypotheses": 0
+  },
+  "speaker/FC03": {
+   "utterances": 40,
+   "reference_words": 190,
+   "wer": 0.0211,
+   "substitutions": 2,
+   "deletions": 2,
+   "insertions": 0,
+   "exact_match_rate": 0.9,
+   "empty_hypotheses": 0
+  },
+  "speaker/M01": {
+   "utterances": 55,
+   "reference_words": 318,
+   "wer": 0.8428,
+   "substitutions": 203,
+   "deletions": 7,
+   "insertions": 58,
+   "exact_match_rate": 0.0909,
+   "empty_hypotheses": 0
+  },
+  "speaker/M02": {
+   "utterances": 55,
+   "reference_words": 296,
+   "wer": 0.6081,
+   "substitutions": 122,
+   "deletions": 4,
+   "insertions": 54,
+   "exact_match_rate": 0.2364,
+   "empty_hypotheses": 0
+  },
+  "speaker/M03": {
+   "utterances": 55,
+   "reference_words": 294,
+   "wer": 0.0136,
+   "substitutions": 4,
+   "deletions": 0,
+   "insertions": 0,
+   "exact_match_rate": 0.9273,
+   "empty_hypotheses": 0
+  },
+  "speaker/M04": {
+   "utterances": 55,
+   "reference_words": 319,
+   "wer": 0.7962,
+   "substitutions": 179,
+   "deletions": 19,
+   "insertions": 56,
+   "exact_match_rate": 0.0182,
+   "empty_hypotheses": 0
+  },
+  "speaker/M05": {
+   "utterances": 55,
+   "reference_words": 284,
+   "wer": 0.3556,
+   "substitutions": 73,
+   "deletions": 9,
+   "insertions": 19,
+   "exact_match_rate": 0.3091,
+   "empty_hypotheses": 0
+  },
+  "speaker/MC01": {
+   "utterances": 40,
+   "reference_words": 184,
+   "wer": 0.038,
+   "substitutions": 6,
+   "deletions": 0,
+   "insertions": 1,
+   "exact_match_rate": 0.85,
+   "empty_hypotheses": 0
+  },
+  "speaker/MC02": {
+   "utterances": 40,
+   "reference_words": 192,
+   "wer": 0.0938,
+   "substitutions": 12,
+   "deletions": 6,
+   "insertions": 0,
+   "exact_match_rate": 0.7,
+   "empty_hypotheses": 1
+  },
+  "speaker/MC03": {
+   "utterances": 40,
+   "reference_words": 197,
+   "wer": 0.0508,
+   "substitutions": 6,
+   "deletions": 4,
+   "insertions": 0,
+   "exact_match_rate": 0.85,
+   "empty_hypotheses": 0
+  },
+  "speaker/MC04": {
+   "utterances": 40,
+   "reference_words": 187,
+   "wer": 0.0053,
+   "substitutions": 1,
+   "deletions": 0,
+   "insertions": 0,
+   "exact_match_rate": 0.975,
+   "empty_hypotheses": 0
+  }
+ }
+}

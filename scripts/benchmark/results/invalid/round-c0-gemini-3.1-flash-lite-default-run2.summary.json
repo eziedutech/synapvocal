@@ -1,0 +1,1133 @@
+{
+ "file": "round-c0-gemini-3.1-flash-lite-default-run2.jsonl",
+ "model": "gemini-3.1-flash-lite",
+ "thinking": "default",
+ "attempted": 296,
+ "failed": 273,
+ "failures": [
+  {
+   "id": "F03_1_headMic_0115.wav",
+   "error": "ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}"
+  },
+  {
+   "id": "F03_1_headMic_0152.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_1_headMic_0157.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_1_headMic_0167.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_1_headMic_0168.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_1_headMic_0174.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_1_headMic_0179.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_1_headMic_0184.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_1_headMic_0185.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_1_headMic_0195.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_1_headMic_0196.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0020.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0033.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0055.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0072.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0087.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0092.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0101.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0118.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0133.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0142.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0143.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_2_headMic_0147.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_3_headMic_0007.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_3_headMic_0047.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_3_headMic_0056.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_3_headMic_0090.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_3_headMic_0101.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_3_headMic_0107.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_3_headMic_0117.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_3_headMic_0127.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_3_headMic_0134.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F03_3_headMic_0188.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0002.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0004.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0013.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0014.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0019.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0032.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0036.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0055.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0057.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0058.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0062.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0072.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0079.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0085.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0088.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0096.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0101.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0108.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0109.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0115.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0128.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0140.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0148.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0157.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0170.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0176.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0183.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0193.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0200.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0206.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0207.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0208.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0214.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0215.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0217.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0220.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0227.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0243.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0244.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "F04_2_headMic_0248.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_1_headMic_0011.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_1_headMic_0013.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_1_headMic_0018.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_1_headMic_0019.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_1_headMic_0027.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_1_headMic_0044.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_1_headMic_0056.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_1_headMic_0072.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0042.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0043.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0056.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0066.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0094.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0095.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0105.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0111.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0117.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0121.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0125.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0127.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0129.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0145.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0146.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0160.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0165.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0167.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0173.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0174.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0179.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0181.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0185.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0188.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0191.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0202.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0208.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0209.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0227.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0232.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0239.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M01_3_headMic_0249.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0023.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0034.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0044.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0067.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0092.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0106.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0115.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0126.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0152.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0154.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0169.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0173.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0174.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0196.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0215.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0222.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0226.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0236.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_1_headMic_0238.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0078.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0088.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0090.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0096.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0098.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0117.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0121.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0131.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0133.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0134.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0139.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0160.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0163.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0178.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0190.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0191.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0204.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0209.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0212.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0232.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M02_2_headMic_0237.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0045.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0057.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0100.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0102.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0115.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0117.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0118.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0119.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0135.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0138.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0144.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0155.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0162.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0166.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0168.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0184.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0185.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0187.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0199.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0209.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0213.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0218.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0219.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0222.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0244.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0249.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0256.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0260.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0287.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0300.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0312.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0318.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0329.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0361.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0381.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0388.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0391.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0400.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0415.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M03_2_headMic_0421.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0007.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0014.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0029.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0033.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0038.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0045.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0052.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0060.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0083.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0093.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0100.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0147.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0153.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0160.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0168.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0172.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0174.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0187.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0189.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0191.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0202.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0206.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0208.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0216.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0217.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0219.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0226.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0231.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0236.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0242.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0248.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0253.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0255.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0274.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0281.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0283.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0285.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0291.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0295.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M04_2_headMic_0298.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_1_headMic_0015.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_1_headMic_0027.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_1_headMic_0056.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_1_headMic_0057.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_1_headMic_0077.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_1_headMic_0101.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_1_headMic_0104.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0026.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0043.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0066.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0087.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0088.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0091.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0107.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0124.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0131.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0135.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0147.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0152.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0155.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0163.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0192.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0207.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0213.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0236.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0239.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0243.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0256.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0274.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0276.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0282.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0286.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0292.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0320.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0321.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0368.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0370.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0382.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0385.wav",
+   "error": "not attempted: run aborted after a refusal"
+  },
+  {
+   "id": "M05_2_headMic_0389.wav",
+   "error": "not attempted: run aborted after a refusal"
+  }
+ ],
+ "all": {
+  "n": 23,
+  "wer_raw": 0.4113,
+  "wer_interpretation": 0.4372,
+  "improved": 1,
+  "worsened": 5,
+  "no_change_in_wer": 17
+ },
+ "speakers": {
+  "F01": {
+   "n": 16,
+   "wer_raw": 0.6078,
+   "wer_interpretation": 0.6471,
+   "improved": 0,
+   "worsened": 4,
+   "no_change_in_wer": 12
+  },
+  "F03": {
+   "n": 7,
+   "wer_raw": 0.0256,
+   "wer_interpretation": 0.0256,
+   "improved": 1,
+   "worsened": 1,
+   "no_change_in_wer": 5
+  }
+ },
+ "latency_ms": {
+  "p50": 1123,
+  "p90": 1403,
+  "max": 5411
+ },
+ "limit": "TORGO sentences are read, often well-known prompts; a model can restore them from fragments. Treat lower WER as an upper bound."
+}

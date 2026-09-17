@@ -1,0 +1,28 @@
+{
+ "shared": 60,
+ "excluded_failed": [],
+ "stable": true,
+ "groups": {
+  "all": {
+   "n": 60,
+   "wer_a": 0.2661,
+   "wer_b": 0.2717,
+   "delta": 0.0056,
+   "changed_transcripts": 1
+  },
+  "dysarthria": {
+   "n": 32,
+   "wer_a": 0.4326,
+   "wer_b": 0.4419,
+   "delta": 0.0093,
+   "changed_transcripts": 1
+  },
+  "healthy": {
+   "n": 28,
+   "wer_a": 0.0141,
+   "wer_b": 0.0141,
+   "delta": 0.0,
+   "changed_transcripts": 0
+  }
+ }
+}

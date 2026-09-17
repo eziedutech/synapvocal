@@ -1,0 +1,88 @@
+{
+ "file": "round-c0-gemini-3.8-flash-low-run2.jsonl",
+ "model": "gemini-3.8-flash",
+ "thinking": "low",
+ "attempted": 296,
+ "failed": 0,
+ "failures": [],
+ "all": {
+  "n": 296,
+  "wer_raw": 0.4,
+  "wer_interpretation": 0.4014,
+  "improved": 40,
+  "worsened": 45,
+  "no_change_in_wer": 211
+ },
+ "speakers": {
+  "F01": {
+   "n": 16,
+   "wer_raw": 0.6078,
+   "wer_interpretation": 0.6013,
+   "improved": 3,
+   "worsened": 2,
+   "no_change_in_wer": 11
+  },
+  "F03": {
+   "n": 40,
+   "wer_raw": 0.0825,
+   "wer_interpretation": 0.099,
+   "improved": 4,
+   "worsened": 6,
+   "no_change_in_wer": 30
+  },
+  "F04": {
+   "n": 40,
+   "wer_raw": 0.0228,
+   "wer_interpretation": 0.0266,
+   "improved": 2,
+   "worsened": 2,
+   "no_change_in_wer": 36
+  },
+  "M01": {
+   "n": 40,
+   "wer_raw": 0.8383,
+   "wer_interpretation": 0.8383,
+   "improved": 9,
+   "worsened": 12,
+   "no_change_in_wer": 19
+  },
+  "M02": {
+   "n": 40,
+   "wer_raw": 0.5765,
+   "wer_interpretation": 0.573,
+   "improved": 7,
+   "worsened": 7,
+   "no_change_in_wer": 26
+  },
+  "M03": {
+   "n": 40,
+   "wer_raw": 0.0036,
+   "wer_interpretation": 0.0179,
+   "improved": 0,
+   "worsened": 2,
+   "no_change_in_wer": 38
+  },
+  "M04": {
+   "n": 40,
+   "wer_raw": 0.7697,
+   "wer_interpretation": 0.7566,
+   "improved": 10,
+   "worsened": 7,
+   "no_change_in_wer": 23
+  },
+  "M05": {
+   "n": 40,
+   "wer_raw": 0.3234,
+   "wer_interpretation": 0.3197,
+   "improved": 5,
+   "worsened": 7,
+   "no_change_in_wer": 28
+  }
+ },
+ "latency_ms": {
+  "p50": 2263.5,
+  "p90": 8358,
+  "max": 112346
+ },
+ "limit": "TORGO sentences are read, often well-known prompts; a model can restore them from fragments. Treat lower WER as an upper bound."
+}

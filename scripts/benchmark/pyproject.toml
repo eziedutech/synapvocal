@@ -1,0 +1,19 @@
+[project]
+name = "synapvocal-benchmark"
+version = "0.1.0"
+requires-python = "==3.14.*"
+dependencies = [
+    "pyarrow==25.0.1",
+    "jiwer==4.0.0",
+    "websockets==16.1.1",
+    "httpx==0.28.1",
+    # Same versions as codes/backpy, because run_interpret.py imports backpy's interpret module.
+    "google-genai==2.23.0",
+    "fastapi==0.141.1",
+    "pydantic==2.13.5",
+    "pydantic-settings==2.15.0",
+]
+# websockets pins to 16.1.1 once google-genai is added: google-genai 2.23.0 requires websockets<17.
+
+[tool.uv]
+package = false

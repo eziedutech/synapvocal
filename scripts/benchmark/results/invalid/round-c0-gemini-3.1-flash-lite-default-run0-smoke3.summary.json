@@ -1,0 +1,32 @@
+{
+ "file": "round-c0-gemini-3.1-flash-lite-default-run0-smoke3.jsonl",
+ "model": "gemini-3.1-flash-lite",
+ "thinking": "default",
+ "attempted": 3,
+ "failed": 0,
+ "failures": [],
+ "all": {
+  "n": 3,
+  "wer_raw": 0.7857,
+  "wer_interpretation": 0.8571,
+  "improved": 0,
+  "worsened": 1,
+  "no_change_in_wer": 2
+ },
+ "speakers": {
+  "F01": {
+   "n": 3,
+   "wer_raw": 0.7857,
+   "wer_interpretation": 0.8571,
+   "improved": 0,
+   "worsened": 1,
+   "no_change_in_wer": 2
+  }
+ },
+ "latency_ms": {
+  "p50": 1107,
+  "p90": 1107,
+  "max": 2307
+ },
+ "limit": "TORGO sentences are read, often well-known prompts; a model can restore them from fragments. Treat lower WER as an upper bound."
+}
