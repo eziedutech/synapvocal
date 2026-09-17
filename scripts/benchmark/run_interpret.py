@@ -4,7 +4,7 @@ Uses backpy's own prompt, schema and cleaning (codes/backpy/app/interpret.py), s
 what is measured is what the product would do. Only the model and its thinking
 setting vary per run. No speech recognition calls are made.
 
-Guard rails (global rules 20, 21, 31; agents/ATURAN-MAIN.md):
+Guard rails (retry only what is transient, log every wait, spare shared quota):
   * Calls are paced at --calls-per-minute (default 10). The GCP project is shared
     with CineMeridian.
   * One model per run. Nothing is chained.

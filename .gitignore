@@ -8,6 +8,15 @@ credentials/
 id_rsa*
 id_ed25519*
 
+# Internal working notes, plans and owner material: kept on disk, never published.
+# Only code and hackathon material go to the public repository.
+agents/
+docs/
+resources/
+read_folder.md
+project-global-rule.md
+CLAUDE.md
+
 # Datasets (TORGO is academic use only, never committed)
 scripts/**/data/
 *.wav

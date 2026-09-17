@@ -30,7 +30,7 @@ router = APIRouter(prefix="/api/bridge")
 CALL_TIMEOUT_MS = 12000
 # Gemini on Vertex answers 429 when shared per-minute capacity is busy; it is transient.
 # Solved in CineMeridian with exponential backoff and jitter. Done here in our own loop
-# rather than the SDK's so every wait is logged (global rule 21). Kept short in the
+# rather than the SDK's so every wait is logged, never hidden. Kept short in the
 # product because a person is waiting; the transcript is always shown meanwhile.
 TRANSIENT_STATUS = {429, 500, 502, 503, 504}
 PRODUCT_BACKOFF = (1.0, 2.0)  # two retries, about 3 s of waiting at most
@@ -86,7 +86,7 @@ DASHES = re.compile(r"\s*[\u2012\u2013\u2014\u2015]\s*")
 
 
 def clean(text: str) -> str:
-    """Global rule 38: no em or en dashes reach a person, even from a model."""
+    """No em or en dash reaches a person, even when a model writes one (house style)."""
     text = DASHES.sub(", ", text).strip().strip('"').strip()
     return re.sub(r",\s*([.!?])$", r"\1", text)
 

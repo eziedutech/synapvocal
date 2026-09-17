@@ -1,4 +1,4 @@
-// Global rule 38: no em or en dashes reach a person, including text produced by
+// House style: no em or en dash reaches a person, including text produced by
 // speech recognition or a model. The backend cleans model output; this covers the
 // raw transcript, which reaches the browser straight from AssemblyAI.
 const DASHES = /\s*[\u2012\u2013\u2014\u2015]\s*/g;

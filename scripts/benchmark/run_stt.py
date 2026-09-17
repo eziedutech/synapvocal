@@ -18,7 +18,7 @@ Guard rails (added after run 1 made ~700 connection attempts in 3.4 minutes):
     of truth for the account balance.
 
 Each utterance becomes one JSON line, including failures and utterances left
-unattempted after an abort, each with its reason (global rule 18).
+unattempted after an abort, each with its reason. Nothing is silently dropped.
 
     uv run python run_stt.py --round A --run 4 --limit 10       # rate smoke test
     uv run python run_stt.py --round A --run 5                  # full subset
