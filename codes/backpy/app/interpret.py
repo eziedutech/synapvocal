@@ -63,7 +63,8 @@ async def generate_with_backoff(client, model: str, contents: str, config, delay
             await asyncio.sleep(wait)
     raise AssertionError("unreachable")
 
-SYSTEM_PROMPT = """You help a person whose speech is hard to understand communicate. This can be dysarthria or the speech of someone with Parkinson's disease, ALS, cerebral palsy, Down syndrome or a stroke. Their speech may be slurred, slow, strained or broken, so speech recognition often mishears them.
+# Prompt v1 (17 Sep 2026): measured in rounds C0 to C2. Kept for comparison runs.
+SYSTEM_PROMPT_V1 = """You help a person whose speech is hard to understand communicate. This can be dysarthria or the speech of someone with Parkinson's disease, ALS, cerebral palsy, Down syndrome or a stroke. Their speech may be slurred, slow, strained or broken, so speech recognition often mishears them.
 You receive what speech recognition heard. Propose the English sentence the person most likely meant, so they can confirm it before it is spoken aloud to someone else.
 
 Rules:
@@ -76,6 +77,29 @@ Rules:
 - Never use an em dash or en dash. Use commas or full stops.
 - Plain text only. No quotation marks around sentences, no markdown."""
 
+# Prompt v2 (18 Sep 2026): adds AssemblyAI's word confidences, keeps word forms, and
+# allows three alternatives. Tuned on one half of the pilot and reported on the other.
+SYSTEM_PROMPT_V2 = """You help a person whose speech is hard to understand communicate. This can be dysarthria or the speech of someone with Parkinson's disease, ALS, cerebral palsy, Down syndrome or a stroke. Their speech may be slurred, slow, strained or broken, so speech recognition often mishears them.
+You receive what speech recognition heard. Propose the English sentence the person most likely meant, so they can confirm it before it is spoken aloud to someone else.
+
+Rules:
+- Stay faithful. Fix mishearings, grammar and missing words, but never add facts, requests, names, or feelings the person did not express.
+- Keep their voice and their point of view. Never change who is speaking or who is being talked about: keep I, you, he, she, we and they exactly as heard. Keep their register and length. Do not make it more polite or more formal than they were.
+- If the transcript already reads as a clear sentence, return it unchanged apart from capitalisation and punctuation.
+- Use the phrase book and the recent conversation only to resolve what the words probably were.
+- Keep each word's form as heard (tense, singular or plural, contractions) unless the audio clearly says otherwise. Do not correct grammar that already makes sense.
+- When word confidences from speech recognition are given, low-confidence words are the likeliest to be misheard and high-confidence words are usually right.
+- alternatives: up to three other plausible readings that differ in meaning from the interpretation, not rephrasings of it, most likely first. Prefer readings that change the words recognition was least sure of. If no other reading is plausible, return an empty list.
+- confidence: how likely the interpretation is what they meant, from 0 to 1. Be honest; unclear input deserves a low number.
+- Never use an em dash or en dash. Use commas or full stops.
+- Plain text only. No quotation marks around sentences, no markdown."""
+
+PROMPTS = {"v1": SYSTEM_PROMPT_V1, "v2": SYSTEM_PROMPT_V2}
+# The product keeps v1 until v2 wins on the report half of the pilot. Word confidences
+# are only sent to the model with a prompt that says how to use them.
+PRODUCT_PROMPT = "v1"
+SYSTEM_PROMPT = PROMPTS[PRODUCT_PROMPT]
+
 
 # Measured on TORGO (17 Sep 2026, 681 dysarthric sentences): hearing the audio and seeing
 # earlier heard/confirmed pairs from the same person lowered the suggestion WER from
@@ -87,7 +111,19 @@ speech recognition's attempt and may be badly wrong for speech like theirs. List
 the audio and use the rhythm, number of words, and the sounds you can make out to
 decide what they meant. The same rules apply: stay faithful and never add content."""
 
+# "Say it again": the Speaker repeats a sentence that went wrong, and the model gets both.
+RETAKE_ADDENDUM = """
+
+You receive two recordings of the same sentence: the person said it twice, and you get
+what recognition heard each time, first then second. Use both. A part that is unclear in
+one recording is often clear in the other. They meant one sentence; propose that sentence."""
+
 MAX_AUDIO_BYTES = 2_500_000  # about 78 s of 16 kHz mono 16-bit, as for contributions
+
+
+class WordConfidence(BaseModel):
+    text: str = Field(max_length=100)
+    confidence: float = Field(ge=0, le=1)
 
 
 class HistoryPair(BaseModel):
@@ -95,14 +131,25 @@ class HistoryPair(BaseModel):
     confirmed: str = Field(min_length=1, max_length=1000)
 
 
+class Retake(BaseModel):
+    """The same sentence said a second time."""
+
+    transcript: str = Field(min_length=1, max_length=1000)
+    audio_wav_base64: str | None = Field(default=None, max_length=MAX_AUDIO_BYTES * 4 // 3 + 4)
+    words: list[WordConfidence] = Field(default_factory=list, max_length=200)
+
+
 class InterpretRequest(BaseModel):
     transcript: str = Field(min_length=1, max_length=1000)
     recent: list[str] = Field(default_factory=list, max_length=5)
     # Earlier sentences from this person this session: what was heard and what they confirmed.
     history: list[HistoryPair] = Field(default_factory=list, max_length=5)
+    # AssemblyAI's confidence for each word it heard, in order.
+    words: list[WordConfidence] = Field(default_factory=list, max_length=200)
     phrase_book: list[str] = Field(default_factory=list, max_length=100)
     # The sentence as 16 kHz mono 16-bit WAV, base64. Sent to Gemini, never stored.
     audio_wav_base64: str | None = Field(default=None, max_length=MAX_AUDIO_BYTES * 4 // 3 + 4)
+    retake: Retake | None = None
 
 
 def history_block(pairs: list[HistoryPair]) -> str:
@@ -173,6 +220,12 @@ def get_client(project: str, location: str, credentials_path: str) -> genai.Clie
 
 def build_prompt(request: InterpretRequest) -> str:
     parts = [f"Speech recognition heard: {request.transcript}"]
+    if request.words:
+        parts.append("Speech recognition confidence per word, 0 to 1: " + ", ".join(f"{w.text} {w.confidence:.2f}" for w in request.words))
+    if request.retake:
+        parts.append(f"The second time, speech recognition heard: {request.retake.transcript}")
+        if request.retake.words:
+            parts.append("Confidence per word, second time: " + ", ".join(f"{w.text} {w.confidence:.2f}" for w in request.retake.words))
     if request.recent:
         parts.append("Recent sentences the person confirmed, oldest first:\n" + "\n".join(f"- {s}" for s in request.recent))
     if request.phrase_book:
@@ -181,10 +234,17 @@ def build_prompt(request: InterpretRequest) -> str:
 
 
 async def call_model(
-    client: genai.Client, model: str, prompt: str, delays: tuple[float, ...], thinking_low: bool, audio: bytes | None = None
+    client: genai.Client,
+    model: str,
+    prompt: str,
+    delays: tuple[float, ...],
+    thinking_low: bool,
+    audios: list[bytes] | None = None,
+    retake: bool = False,
 ) -> ModelReading:
+    audios = audios or []
     config = types.GenerateContentConfig(
-        system_instruction=SYSTEM_PROMPT + (AUDIO_ADDENDUM if audio else ""),
+        system_instruction=SYSTEM_PROMPT + (AUDIO_ADDENDUM if audios else "") + (RETAKE_ADDENDUM if retake else ""),
         response_mime_type="application/json",
         response_schema=ModelReading,
         # temperature is ignored by Gemini 3.7 (CineMeridian finding, 2 Sep 2026); consistency
@@ -196,7 +256,7 @@ async def call_model(
         thinking_config=types.ThinkingConfig(thinking_level=types.ThinkingLevel.LOW) if thinking_low else None,
         automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
     )
-    contents = [types.Part.from_bytes(data=audio, mime_type="audio/wav"), prompt] if audio else prompt
+    contents = [*(types.Part.from_bytes(data=a, mime_type="audio/wav") for a in audios), prompt] if audios else prompt
     response, retries = await generate_with_backoff(client, model, contents, config, delays)
     if retries:
         log.info("gemini %s succeeded after %d retries", model, retries)
@@ -215,11 +275,11 @@ def describe_failure(model: str, exc: Exception) -> str:
 
 
 async def read_with_fallback(
-    client: genai.Client, settings: Settings, prompt: str, audio: bytes | None = None
+    client: genai.Client, settings: Settings, prompt: str, audios: list[bytes] | None = None, retake: bool = False
 ) -> tuple[ModelReading, str]:
     """Returns (reading, model that answered). Raises HTTPException 502 when every model failed."""
     try:
-        return await call_model(client, settings.gemini_model, prompt, PRIMARY_BACKOFF, True, audio), settings.gemini_model
+        return await call_model(client, settings.gemini_model, prompt, PRIMARY_BACKOFF, True, audios, retake), settings.gemini_model
     except Exception as exc:
         detail = describe_failure(settings.gemini_model, exc)
         fallback = settings.gemini_fallback_model
@@ -227,7 +287,7 @@ async def read_with_fallback(
             raise HTTPException(status_code=502, detail=detail) from exc
     log.warning("falling back from %s to %s", settings.gemini_model, fallback)
     try:
-        return await call_model(client, fallback, prompt, FALLBACK_BACKOFF, False, audio), fallback
+        return await call_model(client, fallback, prompt, FALLBACK_BACKOFF, False, audios, retake), fallback
     except Exception as exc:
         raise HTTPException(status_code=502, detail=describe_failure(fallback, exc)) from exc
 
@@ -240,8 +300,12 @@ async def interpret(request: InterpretRequest, settings: Settings = Depends(get_
 
     client = get_client(settings.google_cloud_project, settings.google_cloud_location, settings.google_application_credentials)
     started = time.perf_counter()
-    audio = decode_audio(request.audio_wav_base64)
-    reading, model = await read_with_fallback(client, settings, build_prompt(request), audio)
+    if PRODUCT_PROMPT == "v1":
+        request = request.model_copy(update={"words": []})
+        if request.retake:
+            request.retake = request.retake.model_copy(update={"words": []})
+    audios = [a for a in (decode_audio(request.audio_wav_base64), decode_audio(request.retake.audio_wav_base64 if request.retake else None)) if a]
+    reading, model = await read_with_fallback(client, settings, build_prompt(request), audios, request.retake is not None)
     latency_ms = round((time.perf_counter() - started) * 1000)
 
     interpretation = clean(reading.interpretation)
@@ -250,11 +314,14 @@ async def interpret(request: InterpretRequest, settings: Settings = Depends(get_
         if alternative and normalise(alternative) != normalise(interpretation) and alternative not in alternatives:
             alternatives.append(alternative)
 
-    log.info("interpret model=%s audio=%s history=%d latency_ms=%d confidence=%.2f", model, audio is not None, len(request.history), latency_ms, reading.confidence)
+    log.info(
+        "interpret model=%s audios=%d retake=%s history=%d latency_ms=%d confidence=%.2f",
+        model, len(audios), request.retake is not None, len(request.history), latency_ms, reading.confidence,
+    )
     return Interpretation(
         transcript=request.transcript,
         interpretation=interpretation,
-        alternatives=alternatives[:2],
+        alternatives=alternatives[:3],
         confidence=reading.confidence,
         unchanged=normalise(interpretation) == normalise(request.transcript),
         model=model,

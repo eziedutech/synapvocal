@@ -426,5 +426,59 @@
    },
    "retries": 94
   }
+ },
+ "retake": {
+  "one": {
+   "n": 51,
+   "wer_raw": 0.506,
+   "wer_suggestion": 0.358,
+   "wer_best": 0.317,
+   "exact_raw": 15,
+   "exact_suggestion": 20,
+   "exact_best": 21,
+   "close_best": 27
+  },
+  "second": {
+   "n": 51,
+   "wer_raw": 0.506,
+   "wer_suggestion": 0.4,
+   "wer_best": 0.298,
+   "exact_raw": 15,
+   "exact_suggestion": 21,
+   "exact_best": 27,
+   "close_best": 29
+  },
+  "both": {
+   "n": 51,
+   "wer_raw": 0.506,
+   "wer_suggestion": 0.269,
+   "wer_best": 0.211,
+   "exact_raw": 15,
+   "exact_suggestion": 26,
+   "exact_best": 28,
+   "close_best": 35
+  }
+ },
+ "prompt_v2": {
+  "v1": {
+   "n": 349,
+   "wer_raw": 0.317,
+   "wer_suggestion": 0.232,
+   "wer_best": 0.196,
+   "exact_raw": 163,
+   "exact_suggestion": 189,
+   "exact_best": 204,
+   "close_best": 243
+  },
+  "v2": {
+   "n": 349,
+   "wer_raw": 0.317,
+   "wer_suggestion": 0.244,
+   "wer_best": 0.214,
+   "exact_raw": 163,
+   "exact_suggestion": 178,
+   "exact_best": 196,
+   "close_best": 235
+  }
  }
 }

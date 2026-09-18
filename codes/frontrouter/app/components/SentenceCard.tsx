@@ -1,14 +1,15 @@
-import { CheckIcon, Pencil1Icon, ReloadIcon, SpeakerLoudIcon } from "@radix-ui/react-icons";
+import { CheckIcon, Cross2Icon, Pencil1Icon, ReloadIcon, SpeakerLoudIcon, UpdateIcon } from "@radix-ui/react-icons";
 import { Badge, Button, Flex, RadioCards, Spinner, Text, TextArea } from "@radix-ui/themes";
 import { useEffect, useMemo, useState } from "react";
 
 import { EarIcon } from "~/components/EarIcon";
 import { InfoTip } from "~/components/InfoTip";
+import { WordFixer } from "~/components/WordFixer";
 import type { LabelSource, Sentence } from "~/lib/bridge/useSentences";
 import type { SpeechState } from "~/lib/bridge/useSpeech";
 import { cleanForDisplay } from "~/lib/text";
 
-type Option = { value: string; text: string; label: string; source: Exclude<LabelSource, "edited">; heard?: boolean };
+type Option = { value: string; text: string; label: string; source: LabelSource; heard?: boolean };
 
 function confidenceLabel(confidence: number): { text: string; color: "jade" | "amber" | "gray" } {
   if (confidence >= 0.8) return { text: "Likely", color: "jade" };
@@ -35,7 +36,8 @@ function buildOptions(sentence: Sentence): Option[] {
     add(data.interpretation, "Suggested", "suggestion");
     data.alternatives.forEach((alternative) => add(alternative, "Or", "alternative"));
   }
-  add(sentence.heard, "As heard", "heard");
+  add(sentence.heard, sentence.retake ? "As heard, first try" : "As heard", "heard");
+  if (sentence.retake) add(sentence.retake.heard, "As heard, second try", "heard");
   return options;
 }
 
@@ -70,6 +72,8 @@ export function SentenceCard({
   onRetry,
   onSpeak,
   contribute,
+  awaitingRetake,
+  onSayAgain,
 }: {
   sentence: Sentence;
   // Speech state for this sentence only, or null.
@@ -79,14 +83,25 @@ export function SentenceCard({
   onSpeak: (text: string) => void;
   // Offered after confirming, only to signed-in contributors.
   contribute?: React.ReactNode;
+  // True while the next sentence the Speaker says will be this one's second try.
+  awaitingRetake: boolean;
+  onSayAgain: (on: boolean) => void;
 }) {
-  const options = useMemo(() => buildOptions(sentence), [sentence]);
+  const [fixed, setFixed] = useState<string | null>(null);
+  const options = useMemo(() => {
+    const offered = buildOptions(sentence);
+    // A word fixed by the Speaker becomes its own option, first and chosen.
+    return fixed ? [{ value: "fixed", text: fixed, label: "Your correction", source: "edited" as const }, ...offered] : offered;
+  }, [sentence, fixed]);
   const [choice, setChoice] = useState("0");
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState("");
 
   // When the interpretation arrives, the first option becomes the suggestion.
-  useEffect(() => setChoice("0"), [sentence.interpretation.status]);
+  useEffect(() => {
+    setFixed(null);
+    setChoice("0");
+  }, [sentence.interpretation.status]);
 
   const chosen = options.find((option) => option.value === choice) ?? options[0];
   const status = sentence.interpretation.status;
@@ -153,6 +168,15 @@ export function SentenceCard({
           </Flex>
         )}
 
+        {awaitingRetake && (
+          <Flex align="center" gap="3" wrap="wrap" className="sv-sentence-note" role="status">
+            <Text size="2">Say this sentence again now. Your second try will be combined with the first.</Text>
+            <Button size="2" variant="soft" color="gray" onClick={() => onSayAgain(false)}>
+              <Cross2Icon /> Cancel
+            </Button>
+          </Flex>
+        )}
+
         {editing ? (
           <TextArea
             size="3"
@@ -189,6 +213,17 @@ export function SentenceCard({
           </RadioCards.Root>
         )}
 
+        {!editing && chosen && status !== "loading" && (
+          <WordFixer
+            sentence={chosen.text}
+            others={options.filter((option) => option.value !== chosen.value).map((option) => option.text)}
+            onFix={(text) => {
+              setFixed(text);
+              setChoice("fixed");
+            }}
+          />
+        )}
+
         <Flex gap="3" wrap="wrap">
           <Button
             size="4"
@@ -214,6 +249,11 @@ export function SentenceCard({
               }}
             >
               <Pencil1Icon /> Edit
+            </Button>
+          )}
+          {!editing && !sentence.retake && !awaitingRetake && (
+            <Button size="4" variant="outline" color="gray" onClick={() => onSayAgain(true)}>
+              <UpdateIcon /> Say it again
             </Button>
           )}
         </Flex>

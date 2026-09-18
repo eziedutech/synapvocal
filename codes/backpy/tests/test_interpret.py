@@ -167,7 +167,7 @@ def test_falls_back_when_primary_model_fails(tmp_path, monkeypatch):
     monkeypatch.setattr(interpret, "get_client", lambda *args: object())
     called = []
 
-    async def fake_call(client, model, prompt, delays, thinking_low, audio=None):
+    async def fake_call(client, model, prompt, delays, thinking_low, audios=None, retake=False):
         called.append((model, thinking_low))
         if model == "gemini-3.7-flash":
             raise interpret.genai_errors.APIError(504, {"error": {"message": "Deadline expired"}})
@@ -182,7 +182,7 @@ def test_falls_back_when_primary_model_fails(tmp_path, monkeypatch):
 def test_502_when_primary_and_fallback_fail(tmp_path, monkeypatch):
     monkeypatch.setattr(interpret, "get_client", lambda *args: object())
 
-    async def fake_call(client, model, prompt, delays, thinking_low, audio=None):
+    async def fake_call(client, model, prompt, delays, thinking_low, audios=None, retake=False):
         raise interpret.genai_errors.APIError(429, {"error": {"message": "Resource exhausted"}})
 
     monkeypatch.setattr(interpret, "call_model", fake_call)
@@ -207,8 +207,8 @@ def test_audio_and_history_reach_the_model(tmp_path, monkeypatch):
     monkeypatch.setattr(interpret, "get_client", lambda *args: object())
     seen = {}
 
-    async def fake_call(client, model, prompt, delays, thinking_low, audio=None):
-        seen.update(prompt=prompt, audio=audio)
+    async def fake_call(client, model, prompt, delays, thinking_low, audios=None, retake=False):
+        seen.update(prompt=prompt, audio=(audios or [None])[0])
         return ModelReading(interpretation="Tear up that paper.", alternatives=[], confidence=0.7)
 
     monkeypatch.setattr(interpret, "call_model", fake_call)
@@ -226,3 +226,22 @@ def test_audio_in_the_wrong_format_is_refused(tmp_path, monkeypatch):
     _fake_model(monkeypatch, ModelReading(interpretation="x", alternatives=[], confidence=0.5))
     body = {"transcript": "hello", "audio_wav_base64": _wav_b64(rate=44100)}
     assert _client(tmp_path).post("/api/bridge/interpret", json=body).status_code == 422
+
+
+def test_retake_sends_both_recordings(tmp_path, monkeypatch):
+    monkeypatch.setattr(interpret, "get_client", lambda *args: object())
+    seen = {}
+
+    async def fake_call(client, model, prompt, delays, thinking_low, audios=None, retake=False):
+        seen.update(prompt=prompt, audios=audios, retake=retake)
+        return ModelReading(interpretation="Tear up that paper.", alternatives=[], confidence=0.7)
+
+    monkeypatch.setattr(interpret, "call_model", fake_call)
+    body = {
+        "transcript": "there up the",
+        "audio_wav_base64": _wav_b64(),
+        "retake": {"transcript": "tear up that pay", "audio_wav_base64": _wav_b64(800)},
+    }
+    assert _client(tmp_path).post("/api/bridge/interpret", json=body).status_code == 200
+    assert seen["retake"] is True and len(seen["audios"]) == 2
+    assert "The second time, speech recognition heard: tear up that pay" in seen["prompt"]

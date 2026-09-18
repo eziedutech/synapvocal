@@ -8,6 +8,8 @@ export type Turn = {
   final: boolean;
   // ms since the session started, for latency measurement later
   receivedAtMs: number;
+  // AssemblyAI's words with their confidence and timing (ms from the first audio sent).
+  words: TurnWord[];
 };
 
 type TokenResponse = { token: string; ws_url: string; sample_rate: number };
@@ -45,7 +47,7 @@ async function fetchToken(): Promise<TokenResponse> {
 }
 
 // Word timings in AssemblyAI Turn messages are ms from the first audio sent.
-type TurnWord = { start: number; end: number };
+export type TurnWord = { text: string; confidence: number; start: number; end: number };
 
 const SAMPLE_RATE = 16000;
 const KEEP_SECONDS = 180;
@@ -174,8 +176,9 @@ export function useRealtimeTranscription({ keepAudio = false }: { keepAudio?: bo
             text: message.transcript,
             final: Boolean(message.end_of_turn),
             receivedAtMs: Math.round(performance.now() - current.startedAt),
+            words: ((message.words ?? []) as TurnWord[]).map(({ text, confidence, start, end }) => ({ text, confidence, start, end })),
           };
-          const words = (message.words ?? []) as TurnWord[];
+          const words = turn.words;
           if (turn.final && keepAudioRef.current && words.length > 0 && current.id !== undefined) {
             const samples = sliceSamples(current, words[0].start - PAD_BEFORE_MS, words[words.length - 1].end + PAD_AFTER_MS);
             if (samples) {

@@ -56,7 +56,7 @@ export function BridgeView({ mode }: { mode: BridgeMode }) {
   const intro = INTRO[mode];
   const { status, turns, sessionId, analyser, error, start, stop, endTurn, getTurnAudio, forgetTurnAudio } =
     useRealtimeTranscription({ keepAudio: true });
-  const { sentences, confirm, retry, clear } = useSentences(turns, sessionId, getTurnAudio);
+  const { sentences, confirm, retry, clear, sayAgain, awaitingRetake } = useSentences(turns, sessionId, getTurnAudio);
   const speech = useSpeech();
   const active = status === "listening";
   const busy = status === "connecting" || status === "stopping";
@@ -275,6 +275,8 @@ export function BridgeView({ mode }: { mode: BridgeMode }) {
                         }}
                         onRetry={() => retry(sentence.key)}
                         onSpeak={(text) => speech.speak(sentence.key, text)}
+                        awaitingRetake={awaitingRetake === sentence.key}
+                        onSayAgain={(on) => sayAgain(on ? sentence.key : null)}
                         contribute={
                           contributing && (
                             <ContributePanel

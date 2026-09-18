@@ -70,7 +70,7 @@ be reported per condition once they are measured, not before.
 2. Press **Start** and allow the microphone. The ring shows it is hearing you.
 3. Speak an English sentence. Pause in the middle if you like, then press **End sentence** or wait.
 4. The sentence card shows what was heard (ear icon) at once, then suggestions a few seconds later.
-5. Pick the closest option or press **Edit**, then **Confirm and speak**.
+5. Pick the closest option, tap a single wrong word to swap it, or press **Edit**. If nothing is close, press **Say it again** and repeat the sentence. Then **Confirm and speak**.
 6. `/benchmark` shows the measured results; `/status` shows both service versions and which keys are configured, without revealing any.
 
 Optional: **Contribute** lets a signed-in person who agrees to it save recordings of sentences they choose, in a separate contribution session. The Bridge itself stores nothing.
@@ -202,6 +202,24 @@ AssemblyAI alone: WER **0.317**, 324 exactly right.
 - **The app uses the last setup:** each sentence's audio goes to Gemini with the transcript and the Speaker's earlier sentences in this session.
 - **Severe speech stays hard.** For the speakers with the most errors (M04, M01, F01) most sentences are still not exactly right. The ear-marked option and editing matter most for them.
 - The slow tail (p90 23 s) is Gemini's shared capacity being busy; the heard text is usable meanwhile.
+
+### Saying it again (round D)
+
+TORGO has 51 dysarthric sentences that a speaker really recorded twice (21 from M04,
+the hardest speaker). Same setup as the app, one try against both:
+
+| Input | First suggestion WER | Speaker picks best | Exactly right (best) | Close |
+|---|---|---|---|---|
+| One try (the app without Say it again) | 0.358 | 0.317 | 21 of 51 | 27 |
+| Second try alone | 0.400 | 0.298 | 27 of 51 | 29 |
+| **Both tries together (Say it again)** | **0.269** | **0.211** | **28 of 51** | **35** |
+
+Combining the tries is what helps, not only having a second one. The set is small, so
+this is a direction rather than a precise figure. It is why the app has **Say it again**.
+
+**Tried and not used.** A second prompt that adds AssemblyAI's per-word confidence and
+asks for three alternatives was tuned on one half of the pilot and lost there (best-choice
+WER 0.214 against 0.196), so it was never run on the other half and the app keeps the first.
 
 ### First round: a fixed subset of 695 utterances
 

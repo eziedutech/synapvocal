@@ -96,6 +96,17 @@ export default function Benchmark() {
   ];
   const used = pilot.audio_history;
 
+  const retake = data.retake;
+  const RETAKE_VARIANTS = [
+    { key: "one", label: "One try (the app today)" },
+    { key: "second", label: "Second try alone" },
+    { key: "both", label: "Both tries together (Say it again)" },
+  ] as const;
+  const retakeRows: BarRow[] = RETAKE_VARIANTS.flatMap((v) => [
+    { label: `${v.label}, first suggestion`, axisLabel: v.label.replace(/ \(.*\)$/, ""), value: retake[v.key].wer_suggestion, series: "suggestion", group: v.key },
+    { label: `${v.label}, Speaker picks best`, axisLabel: "", value: retake[v.key].wer_best, series: "choice", group: v.key },
+  ]);
+
   const latencyRows: BarRow[] = [
     { label: "3.7 Flash, typical (p50)", value: flash.latency_ms.p50, series: "g37", group: "p50" },
     { label: "3.8 Flash, typical (p50)", value: flash38.latency_ms.p50, series: "g38", group: "p50" },
@@ -244,6 +255,37 @@ export default function Benchmark() {
       />
 
       <ChartCard
+        title="Saying it again helps"
+        about={`Word error rate on the ${retake.both.n} dysarthric sentences that a speaker really recorded twice in TORGO (most from the speaker with the most errors). Gemini 3.7 Flash, audio and earlier sentences as in the app.`}
+        caption={`With both tries, ${retake.both.exact_best} of ${retake.both.n} sentences can be exactly right, against ${retake.one.exact_best} with one. The second try alone does not explain it: combining the two does. A small set, so read it as a direction, not a precise figure.`}
+        chart={
+          <BarChart
+            rows={retakeRows}
+            series={[
+              { key: "suggestion", label: "Gemini's first suggestion", color: ORANGE },
+              { key: "choice", label: "Speaker picks best option", color: TEAL },
+            ]}
+            max={0.5}
+            ticks={[0, 0.1, 0.2, 0.3, 0.4, 0.5]}
+            format={wer}
+            reference={{ value: retake.one.wer_raw, label: `AssemblyAI only, first try, ${wer(retake.one.wer_raw)}` }}
+          />
+        }
+        table={
+          <DataTable
+            columns={["Input", "First suggestion", "Speaker picks best", "Exactly right", "Close"]}
+            rows={RETAKE_VARIANTS.map((v) => [
+              v.label,
+              wer(retake[v.key].wer_suggestion),
+              wer(retake[v.key].wer_best),
+              `${retake[v.key].exact_best} of ${retake[v.key].n}`,
+              retake[v.key].close_best,
+            ])}
+          />
+        }
+      />
+
+      <ChartCard
         title="First round: text only"
         about="Word error rate on the first 296 dysarthric sentences, by what text ends up being used. Before audio was added."
         caption={`Neither a context prompt for AssemblyAI nor a Gemini suggestion on its own is more accurate than AssemblyAI alone. Letting the Speaker pick among the options is what lowers the error. Differences under ${dysarthriaSpread.toFixed(2)} are within run-to-run variation.`}
@@ -315,7 +357,9 @@ export default function Benchmark() {
         </Callout.Icon>
         <Callout.Text>
           <strong>Limits.</strong> TORGO sentences are read aloud and many are well known, so free conversation will be
-          harder. The "Speaker chooses" figures assume the Speaker recognises their own sentence; they are an upper
+          harder. <strong>Tried and not used:</strong> a second prompt with AssemblyAI's word confidences and three
+          alternatives scored worse on half the pilot ({wer(data.prompt_v2.v2.wer_best)} against{" "}
+          {wer(data.prompt_v2.v1.wer_best)} best-choice WER), so the app keeps the first. The "Speaker chooses" figures assume the Speaker recognises their own sentence; they are an upper
           bound, not a user study. Word error rate is corpus-level after removing case and punctuation.
           {!b && " Round B (AssemblyAI with a context prompt) is not included yet."}
         </Callout.Text>

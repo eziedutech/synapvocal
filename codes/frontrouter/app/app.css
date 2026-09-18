@@ -396,3 +396,26 @@ body {
   width: min(320px, 100%);
   height: 36px;
 }
+
+/* Tappable words of the chosen sentence. Words the options disagree on are underlined. */
+.sv-word {
+  font: inherit;
+  font-size: var(--font-size-3);
+  padding: 2px 8px;
+  border: 1px solid var(--gray-a5);
+  background: var(--color-panel-solid);
+  color: var(--gray-12);
+  cursor: pointer;
+}
+
+.sv-word.is-uncertain {
+  border-color: var(--amber-8);
+  background: var(--amber-a2);
+  text-decoration: underline dotted var(--amber-10);
+  text-underline-offset: 3px;
+}
+
+.sv-word:focus-visible {
+  outline: 2px solid var(--accent-8);
+  outline-offset: 1px;
+}
