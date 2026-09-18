@@ -31,6 +31,14 @@ PILOT = {
     "audio": RESULTS / "round-c1-gemini-3.7-flash-low-run3.jsonl",
     "audio_history": RESULTS / "round-c2-gemini-3.7-flash-audio-h5-low-run2.jsonl",
 }
+# Round D, 18 Sep 2026: the 51 dysarthric sentences a speaker really recorded twice.
+RETAKE = {
+    "one": RESULTS / "round-c2-gemini-3.7-flash-audio-h5-low-run2.jsonl",
+    "second": RESULTS / "round-d-gemini-3.7-flash-second-run1.jsonl",
+    "both": RESULTS / "round-d-gemini-3.7-flash-both-run1.jsonl",
+}
+# Prompt v2 (word confidences, three alternatives), tune half only: it lost, so it is shown as tried.
+PROMPT_V2_TUNE = RESULTS / "round-c2-gemini-3.7-flash-audio-h5-low-v2-words-tune-run1.jsonl"
 C0 = {"gemini-3.7-flash": RESULTS / "round-c0-gemini-3.7-flash-low-run3.jsonl", "gemini-3.8-flash": RESULTS / "round-c0-gemini-3.8-flash-low-run2.jsonl"}
 
 
@@ -146,6 +154,23 @@ def tested_sets() -> dict:
     }
 
 
+def shared_summary(paths: dict[str, Path]) -> dict:
+    """Same sentences in every run; best choice counts both heard texts when there are two."""
+    from compare_suggestions import rows as keyed, summarise
+
+    runs = {name: keyed(path) for name, path in paths.items()}
+    ids = sorted(set.intersection(*(set(r) for r in runs.values())))
+    return {name: summarise([run[i] for i in ids]) for name, run in runs.items()}
+
+
+def retake() -> dict:
+    return shared_summary(RETAKE)
+
+
+def prompt_v2() -> dict:
+    return shared_summary({"v1": PILOT["audio_history"], "v2": PROMPT_V2_TUNE})
+
+
 def main() -> None:
     b_rows = rows(ROUND_B)
     b_complete = len(b_rows) == 695 and not any(r.get("error") for r in b_rows)
@@ -161,6 +186,8 @@ def main() -> None:
         "round_b": round_summary(ROUND_B) if b_complete else None,
         "round_c0": [interpretation(model, path) for model, path in C0.items()],
         "pilot": {variant: interpretation("gemini-3.7-flash", path) for variant, path in PILOT.items()},
+        "retake": retake(),
+        "prompt_v2": prompt_v2(),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, indent=1), encoding="utf-8")

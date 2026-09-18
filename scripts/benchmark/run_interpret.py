@@ -49,7 +49,8 @@ sys.path.insert(0, str(REPO / "codes" / "backpy"))
 from google.genai import types  # noqa: E402
 
 from app.interpret import (  # noqa: E402
-    SYSTEM_PROMPT,
+    PROMPTS,
+    WordConfidence,
     InterpretRequest,
     ModelReading,
     build_prompt,
@@ -112,16 +113,23 @@ async def main() -> None:
     parser.add_argument("--run", required=True, type=int)
     parser.add_argument("--calls-per-minute", type=float, default=10.0)
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--prompt", choices=["v1", "v2"], default="v1")
+    parser.add_argument("--words", action="store_true", help="send AssemblyAI's word confidences")
+    parser.add_argument("--split", choices=["all", "tune", "report"], default="all",
+                        help="tune: ids whose sha256 is even; report: odd. Tune changes on one, report the other.")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
     rows = [json.loads(line) for line in (ROOT / args.source).read_text(encoding="utf-8").splitlines()]
     pool = [r for r in rows if "meta" not in r and not r.get("error")]
     items = [r for r in pool if r["status"] == "dysarthria" and r["kind"] == "sentence"]
+    if args.split != "all":
+        parity = 0 if args.split == "tune" else 1
+        items = [r for r in items if int(hashlib.sha256(r["id"].encode()).hexdigest(), 16) % 2 == parity]
     if args.limit:
         items = items[: args.limit]
 
-    out_path = ROOT / "results" / f"round-{'c2' if args.history else 'c1' if args.with_audio else 'c0'}-{args.model}{'-audio' if args.with_audio and args.history else ''}{f'-h{args.history}' if args.history else ''}-{args.thinking}-run{args.run}{f'-smoke{args.limit}' if args.limit else ''}.jsonl"
+    out_path = ROOT / "results" / f"round-{'c2' if args.history else 'c1' if args.with_audio else 'c0'}-{args.model}{'-audio' if args.with_audio and args.history else ''}{f'-h{args.history}' if args.history else ''}-{args.thinking}{'-' + args.prompt if args.prompt != 'v1' else ''}{'-words' if args.words else ''}{'-' + args.split if args.split != 'all' else ''}-run{args.run}{f'-smoke{args.limit}' if args.limit else ''}.jsonl"
     if out_path.exists():
         raise SystemExit(f"{out_path.name} already exists; pick a new --run")
 
@@ -134,7 +142,7 @@ async def main() -> None:
     thinking = types.ThinkingConfig(thinking_level=getattr(types.ThinkingLevel, THINKING[args.thinking])) if args.thinking in THINKING else None
     audio = load_pcm({item["id"] for item in items}) if args.with_audio else {}
     config = types.GenerateContentConfig(
-        system_instruction=SYSTEM_PROMPT + (AUDIO_ADDENDUM if args.with_audio else ""),
+        system_instruction=PROMPTS[args.prompt] + (AUDIO_ADDENDUM if args.with_audio else ""),
         response_mime_type="application/json",
         response_schema=ModelReading,
         thinking_config=thinking,
@@ -145,7 +153,7 @@ async def main() -> None:
 
     aborted = None
     with out_path.open("w", encoding="utf-8") as out:
-        out.write(json.dumps({"meta": {"source": str(args.source), "model": args.model, "thinking": args.thinking, "with_audio": args.with_audio, "history": args.history, "calls_per_minute": args.calls_per_minute, "started_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}}) + "\n")
+        out.write(json.dumps({"meta": {"source": str(args.source), "model": args.model, "thinking": args.thinking, "with_audio": args.with_audio, "history": args.history, "prompt": args.prompt, "words": args.words, "split": args.split, "calls_per_minute": args.calls_per_minute, "started_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}}) + "\n")
         next_at = 0.0
         for n, item in enumerate(items, 1):
             record = {k: item[k] for k in ("id", "speaker", "status", "kind", "reference", "hypothesis")}
@@ -163,7 +171,8 @@ async def main() -> None:
                 continue
             started = time.perf_counter()
             try:
-                prompt = build_prompt(InterpretRequest(transcript=item["hypothesis"])) + history_block(history_for(item, pool, args.history))
+                words = [WordConfidence(text=w["text"], confidence=w["confidence"]) for w in item.get("words") or []] if args.words else []
+                prompt = build_prompt(InterpretRequest(transcript=item["hypothesis"], words=words)) + history_block(history_for(item, pool, args.history))
                 contents = (
                     [types.Part.from_bytes(data=wav_bytes(audio[item["id"]]), mime_type="audio/wav"), prompt]
                     if args.with_audio

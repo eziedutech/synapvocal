@@ -16,3 +16,4 @@ Round C1 gemini-3.7-flash LOW with audio run1 smoke (10:53): 3 of 3 ok. Smoke on
 Round C1 gemini-3.5-flash-lite with audio run1 smoke (11:57): 3 of 3 ok, 1.7 to 2.7 s. Smoke only.
 Round C2 gemini-3.7-flash LOW audio + history 5 run1 smoke on pilot (15:12): 3 of 3 ok. Smoke only.
 Round C2 gemini-3.7-flash LOW audio + history 5 run1 on pilot (15:13 to 15:14): aborted at item 6 by an httpx ReadError (dropped connection), which the backoff loop did not yet treat as transient. Fixed in interpret.py; rerun as run2. Never quote run1.
+Prompt v2 smoke (3 items, 18 Sep): checks the runner only. Never quote.
