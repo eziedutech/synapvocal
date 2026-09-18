@@ -16,6 +16,7 @@ from app.settings import Settings
 
 class Storage(Protocol):
     async def put(self, key: str, data: bytes, content_type: str) -> None: ...
+    async def get(self, key: str) -> bytes: ...
     async def delete(self, key: str) -> None: ...
 
 
@@ -38,6 +39,10 @@ class S3Storage:
             ServerSideEncryption="AES256",
         )
 
+    async def get(self, key: str) -> bytes:
+        response = await asyncio.to_thread(self.client.get_object, Bucket=self.bucket, Key=self.prefix + key)
+        return await asyncio.to_thread(response["Body"].read)
+
     async def delete(self, key: str) -> None:
         await asyncio.to_thread(self.client.delete_object, Bucket=self.bucket, Key=self.prefix + key)
 
@@ -50,6 +55,9 @@ class LocalStorage:
         path = self.root / key
         path.parent.mkdir(parents=True, exist_ok=True)
         await asyncio.to_thread(path.write_bytes, data)
+
+    async def get(self, key: str) -> bytes:
+        return await asyncio.to_thread((self.root / key).read_bytes)
 
     async def delete(self, key: str) -> None:
         (self.root / key).unlink(missing_ok=True)

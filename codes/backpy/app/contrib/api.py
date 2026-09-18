@@ -17,7 +17,7 @@ from collections.abc import AsyncIterator
 from datetime import datetime
 from typing import Annotated, Literal
 
-from fastapi import APIRouter, Depends, File, Form, Header, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, Form, Header, HTTPException, Response, UploadFile
 from pydantic import BaseModel, Field, ValidationError
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -277,6 +277,21 @@ async def list_contributions(user: User = Depends(current_user), db: AsyncSessio
         await db.execute(select(Contribution).where(Contribution.user_id == user.id).order_by(Contribution.created_at.desc()))
     ).scalars()
     return [ContributionView(id=r.id, created_at=r.created_at, confirmed_text=r.confirmed_text, exact=r.exact, duration_ms=r.duration_ms) for r in rows]
+
+
+@router.get("/contributions/{contribution_id}/audio")
+async def contribution_audio(
+    contribution_id: uuid.UUID,
+    user: User = Depends(current_user),
+    db: AsyncSession = Depends(get_db),
+    settings: Settings = Depends(require_internal),
+) -> Response:
+    """The recording, only for the person who contributed it, so they can hear what they gave."""
+    row = await db.get(Contribution, contribution_id)
+    if row is None or row.user_id != user.id:
+        raise HTTPException(status_code=404, detail="Contribution not found")
+    data = await get_storage(settings).get(row.audio_key)
+    return Response(content=data, media_type="audio/wav", headers={"Cache-Control": "private, no-store"})
 
 
 @router.delete("/contributions/{contribution_id}", status_code=204)

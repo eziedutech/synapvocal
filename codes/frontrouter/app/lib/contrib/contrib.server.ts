@@ -55,6 +55,8 @@ export const contrib = {
     ),
   deleteAccount: (userId: string) => backpyFetch("/api/me", { method: "DELETE", headers: headers(userId) }, 30_000),
   list: (userId: string) => json<ContributionView[]>("/api/contributions", { method: "GET" }, userId),
+  audio: (userId: string, id: string) =>
+    backpyFetch(`/api/contributions/${encodeURIComponent(id)}/audio`, { method: "GET", headers: headers(userId) }, 20_000),
   remove: (userId: string, id: string) =>
     backpyFetch(`/api/contributions/${encodeURIComponent(id)}`, { method: "DELETE", headers: headers(userId) }),
   upload: (userId: string, form: FormData) => json<ContributionView>("/api/contributions", { method: "POST", body: form }, userId, 20_000),

@@ -6,6 +6,7 @@ export default [
   route("contribute", "routes/contribute.tsx"),
   route("contribute/session", "routes/contribute.session.tsx"),
   route("contribute/upload", "routes/contribute.upload.ts"),
+  route("contribute/audio/:id", "routes/contribute.audio.ts"),
   route("auth/session", "routes/auth.session.ts"),
   route("status", "routes/status.tsx"),
   route("health", "routes/health.ts"),

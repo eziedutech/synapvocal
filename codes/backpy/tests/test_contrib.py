@@ -175,3 +175,14 @@ def test_delete_account_removes_everything(env):
     assert client.delete("/api/me", headers=user["headers"]).status_code == 204
     assert list(storage_dir.rglob("*.wav")) == []
     assert client.get("/api/me", headers=user["headers"]).status_code == 401
+
+
+def test_only_the_contributor_can_hear_a_recording(env):
+    client, _ = env
+    owner, other = sign_in(client, "owner"), sign_in(client, "other")
+    consent(client, owner["headers"])
+    audio = wav(1200)
+    contribution = upload(client, owner["headers"], audio).json()
+    heard = client.get(f"/api/contributions/{contribution['id']}/audio", headers=owner["headers"])
+    assert heard.status_code == 200 and heard.content == audio and heard.headers["content-type"] == "audio/wav"
+    assert client.get(f"/api/contributions/{contribution['id']}/audio", headers=other["headers"]).status_code == 404

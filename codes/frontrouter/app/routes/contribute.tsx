@@ -163,6 +163,14 @@ function Contributions({ items }: { items: ContributionView[] }) {
           <Flex align="center" justify="between" gap="3">
             <Flex direction="column" gap="1">
               <Text size="3">{item.confirmed_text}</Text>
+              {/* Loaded only when played: nothing is fetched until the contributor asks. */}
+              <audio
+                controls
+                preload="none"
+                src={`/contribute/audio/${item.id}`}
+                className="sv-contribution-audio"
+                aria-label={`Recording of "${item.confirmed_text}"`}
+              />
               <Flex gap="2" align="center">
                 <Text size="1" color="gray">
                   {new Date(item.created_at).toLocaleString()} · {(item.duration_ms / 1000).toFixed(1)} s
@@ -271,8 +279,8 @@ export default function Contribute({ loaderData, actionData }: Route.ComponentPr
       <Flex direction="column" gap="2">
         <Heading size="7">Contribute your voice</Heading>
         <Text size="3" color="gray">
-          Optional. If you choose to, you can give recordings of sentences you confirm on the Bridge, so speech
-          recognition can learn to understand voices like yours. The Bridge works the same whether or not you do.
+          Optional. If you choose to, you can give recordings of sentences you confirm in a contribution session, so
+          speech recognition can learn to understand voices like yours. The Bridge works the same whether or not you do.
         </Text>
       </Flex>
 
