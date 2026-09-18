@@ -1,7 +1,8 @@
 """Score a results file: corpus WER per group, per speaker, and the failures.
 
 Normalisation is applied identically to reference and hypothesis: lower case,
-punctuation removed, digits spelled out, whitespace collapsed. TORGO references
+punctuation removed, digits spelled out, British spellings mapped to American
+ones (only the pairs that occur in this data), whitespace collapsed. TORGO references
 have no punctuation, and the streaming model formats its output, so without this
 every comma would count as an error.
 
@@ -23,6 +24,10 @@ from pathlib import Path
 import jiwer
 
 DIGITS = "zero one two three four five six seven eight nine".split()
+# Spelling variants, not recognition errors. Limited on purpose to words found in the
+# references and outputs (17 Sep 2026): real word changes such as flowered/flower or
+# two/to are errors and stay errors.
+SPELLING = {"grey": "gray", "aluminium": "aluminum", "colour": "color", "honour": "honor", "humour": "humor"}
 
 
 def normalise(text: str) -> str:
@@ -30,7 +35,7 @@ def normalise(text: str) -> str:
     text = re.sub(r"\b(\d)\b", lambda m: DIGITS[int(m.group(1))], text)
     text = re.sub(r"[^a-z0-9' ]+", " ", text)
     text = text.replace("'", "")
-    return " ".join(text.split())
+    return " ".join(SPELLING.get(word, word) for word in text.split())
 
 
 def score(path: Path) -> dict:

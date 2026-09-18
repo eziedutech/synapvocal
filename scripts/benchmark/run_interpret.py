@@ -16,19 +16,32 @@ Guard rails (retry only what is transient, log every wait, spare shared quota):
   * Every utterance is written, including failures and those left unattempted.
 
     uv run python run_interpret.py --source results/round-a-run5.jsonl --model gemini-3.7-flash --thinking low --run 2
+
+Round C1 adds --with-audio: the model also hears the utterance audio (16 kHz WAV)
+alongside the transcript, with AUDIO_ADDENDUM appended to the product prompt. The
+addendum was fixed on 17 Sep 2026 before any C1 result existed.
+
+Round C2 adds --history K: K earlier pairs from the same speaker ("recognition heard
+X, the person confirmed Y") go into the prompt, the way a Speaker's confirmed history
+would. Leakage guard: examples come from the same speaker's other utterances in the
+source file, never the utterance under test and never one with the same reference
+text. Chosen with a fixed seed per utterance.
 """
 
 from __future__ import annotations
 
 import argparse
 import asyncio
+import hashlib
+import io
 import json
 import logging
+import wave
 import sys
 import time
 from pathlib import Path
 
-from torgo import ROOT
+from torgo import ROOT, load_pcm
 
 REPO = ROOT.parent.parent
 sys.path.insert(0, str(REPO / "codes" / "backpy"))
@@ -47,6 +60,44 @@ from app.interpret import (  # noqa: E402
 
 BENCHMARK_BACKOFF = (4.0, 8.0, 16.0, 32.0, 64.0)
 
+AUDIO_ADDENDUM = """
+
+You also receive the audio recording of what the person said. The transcript is only
+speech recognition's attempt and may be badly wrong for speech like theirs. Listen to
+the audio and use the rhythm, number of words, and the sounds you can make out to
+decide what they meant. The same rules apply: stay faithful and never add content."""
+
+THINKING = {"low": "LOW", "medium": "MEDIUM"}
+
+
+def wav_bytes(pcm: bytes) -> bytes:
+    buffer = io.BytesIO()
+    with wave.open(buffer, "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(16000)
+        wav.writeframes(pcm)
+    return buffer.getvalue()
+
+
+def history_for(item: dict, pool: list[dict], k: int) -> list[dict]:
+    reference = normalise(item["reference"])
+    candidates = [
+        r for r in pool
+        if r["speaker"] == item["speaker"] and r["id"] != item["id"] and normalise(r["reference"]) != reference and r["hypothesis"].strip()
+    ]
+    # Deterministic per utterance, independent of run order.
+    candidates.sort(key=lambda r: hashlib.sha256(f"{item['id']}|{r['id']}".encode()).hexdigest())
+    return candidates[:k]
+
+
+def history_block(examples: list[dict]) -> str:
+    if not examples:
+        return ""
+    lines = [f'- Recognition heard: "{e["hypothesis"]}" The person meant: "{e["reference"]}"' for e in examples]
+    header = "Earlier sentences from this same person, to learn how recognition mishears them:"
+    return "\n\n" + header + "\n" + "\n".join(lines)
+
 KEY = REPO / "credentials" / "gcp-synapvocal-backpy.json"
 log = logging.getLogger("round-c0")
 
@@ -55,7 +106,9 @@ async def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", required=True, type=Path)
     parser.add_argument("--model", required=True)
-    parser.add_argument("--thinking", choices=["default", "low"], default="default")
+    parser.add_argument("--thinking", choices=["default", "low", "medium"], default="default")
+    parser.add_argument("--with-audio", action="store_true", help="round C1: send the utterance audio too")
+    parser.add_argument("--history", type=int, default=0, help="round C2: this many earlier pairs from the same speaker")
     parser.add_argument("--run", required=True, type=int)
     parser.add_argument("--calls-per-minute", type=float, default=10.0)
     parser.add_argument("--limit", type=int)
@@ -63,11 +116,12 @@ async def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
     rows = [json.loads(line) for line in (ROOT / args.source).read_text(encoding="utf-8").splitlines()]
-    items = [r for r in rows if "meta" not in r and not r.get("error") and r["status"] == "dysarthria" and r["kind"] == "sentence"]
+    pool = [r for r in rows if "meta" not in r and not r.get("error")]
+    items = [r for r in pool if r["status"] == "dysarthria" and r["kind"] == "sentence"]
     if args.limit:
         items = items[: args.limit]
 
-    out_path = ROOT / "results" / f"round-c0-{args.model}-{args.thinking}-run{args.run}{f'-smoke{args.limit}' if args.limit else ''}.jsonl"
+    out_path = ROOT / "results" / f"round-{'c2' if args.history else 'c1' if args.with_audio else 'c0'}-{args.model}{'-audio' if args.with_audio and args.history else ''}{f'-h{args.history}' if args.history else ''}-{args.thinking}-run{args.run}{f'-smoke{args.limit}' if args.limit else ''}.jsonl"
     if out_path.exists():
         raise SystemExit(f"{out_path.name} already exists; pick a new --run")
 
@@ -77,9 +131,10 @@ async def main() -> None:
     credentials = service_account.Credentials.from_service_account_file(str(KEY), scopes=["https://www.googleapis.com/auth/cloud-platform"])
     client = genai.Client(vertexai=True, project="cinemeridian", location="global", credentials=credentials,
                           http_options=types.HttpOptions(timeout=120_000))
-    thinking = types.ThinkingConfig(thinking_level=types.ThinkingLevel.LOW) if args.thinking == "low" else None
+    thinking = types.ThinkingConfig(thinking_level=getattr(types.ThinkingLevel, THINKING[args.thinking])) if args.thinking in THINKING else None
+    audio = load_pcm({item["id"] for item in items}) if args.with_audio else {}
     config = types.GenerateContentConfig(
-        system_instruction=SYSTEM_PROMPT,
+        system_instruction=SYSTEM_PROMPT + (AUDIO_ADDENDUM if args.with_audio else ""),
         response_mime_type="application/json",
         response_schema=ModelReading,
         thinking_config=thinking,
@@ -90,7 +145,7 @@ async def main() -> None:
 
     aborted = None
     with out_path.open("w", encoding="utf-8") as out:
-        out.write(json.dumps({"meta": {"source": str(args.source), "model": args.model, "thinking": args.thinking, "calls_per_minute": args.calls_per_minute, "started_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}}) + "\n")
+        out.write(json.dumps({"meta": {"source": str(args.source), "model": args.model, "thinking": args.thinking, "with_audio": args.with_audio, "history": args.history, "calls_per_minute": args.calls_per_minute, "started_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}}) + "\n")
         next_at = 0.0
         for n, item in enumerate(items, 1):
             record = {k: item[k] for k in ("id", "speaker", "status", "kind", "reference", "hypothesis")}
@@ -108,9 +163,13 @@ async def main() -> None:
                 continue
             started = time.perf_counter()
             try:
-                response, retries = await generate_with_backoff(
-                    client, args.model, build_prompt(InterpretRequest(transcript=item["hypothesis"])), config, BENCHMARK_BACKOFF
+                prompt = build_prompt(InterpretRequest(transcript=item["hypothesis"])) + history_block(history_for(item, pool, args.history))
+                contents = (
+                    [types.Part.from_bytes(data=wav_bytes(audio[item["id"]]), mime_type="audio/wav"), prompt]
+                    if args.with_audio
+                    else prompt
                 )
+                response, retries = await generate_with_backoff(client, args.model, contents, config, BENCHMARK_BACKOFF)
                 reading = ModelReading.model_validate_json(response.text)
                 interpretation = clean(reading.interpretation)
                 record.update(

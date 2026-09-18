@@ -1,0 +1,71 @@
+{
+ "file": "round-a-run0-smoke3.jsonl",
+ "meta": {
+  "round": "A",
+  "run": 0,
+  "params": {
+   "speech_model": "universal-3-5-pro",
+   "sample_rate": 16000,
+   "encoding": "pcm_s16le",
+   "min_turn_silence": 400,
+   "max_turn_silence": 3000,
+   "inactivity_timeout": 120
+  },
+  "started_at": "2026-09-17T02:03:28+0800"
+ },
+ "attempted": 3,
+ "failed": 0,
+ "failures": [],
+ "groups": {
+  "all": {
+   "utterances": 3,
+   "reference_words": 14,
+   "wer": 0.9286,
+   "substitutions": 9,
+   "deletions": 3,
+   "insertions": 1,
+   "exact_match_rate": 0.0,
+   "empty_hypotheses": 0
+  },
+  "dysarthria": {
+   "utterances": 3,
+   "reference_words": 14,
+   "wer": 0.9286,
+   "substitutions": 9,
+   "deletions": 3,
+   "insertions": 1,
+   "exact_match_rate": 0.0,
+   "empty_hypotheses": 0
+  },
+  "dysarthria/sentence": {
+   "utterances": 1,
+   "reference_words": 12,
+   "wer": 0.9167,
+   "substitutions": 7,
+   "deletions": 3,
+   "insertions": 1,
+   "exact_match_rate": 0.0,
+   "empty_hypotheses": 0
+  },
+  "dysarthria/word": {
+   "utterances": 2,
+   "reference_words": 2,
+   "wer": 1.0,
+   "substitutions": 2,
+   "deletions": 0,
+   "insertions": 0,
+   "exact_match_rate": 0.0,
+   "empty_hypotheses": 0
+  },
+  "speaker/F01": {
+   "utterances": 3,
+   "reference_words": 14,
+   "wer": 0.9286,
+   "substitutions": 9,
+   "deletions": 3,
+   "insertions": 1,
+   "exact_match_rate": 0.0,
+   "empty_hypotheses": 0
+  }
+ }
+}

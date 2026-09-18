@@ -24,6 +24,7 @@ unattempted after an abort, each with its reason. Nothing is silently dropped.
     uv run python run_stt.py --round A --run 5                  # full subset
     uv run python run_stt.py --round A --run 6 --variance-only  # variance check
     uv run python run_stt.py --round B --run 1                  # with context prompt
+    uv run python run_stt.py --round B --run 2 --resume         # finish an interrupted run
 
 Round B differs from A only by ROUND_B_PROMPT, fixed on 17 Sep 2026 before any B
 result existed. It describes the product situation, not TORGO (no "reading aloud"),
@@ -236,10 +237,12 @@ async def main() -> None:
     parser.add_argument("--limit", type=int, help="smoke test: only the first N utterances")
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--sessions-per-minute", type=float, default=4.0)
+    parser.add_argument("--resume", action="store_true", help="continue an interrupted run in the same file")
+    parser.add_argument("--manifest", default="subset-v1", help="manifest name in manifest/, without .json")
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
-    manifest = json.loads((ROOT / "manifest" / "subset-v1.json").read_text(encoding="utf-8"))
+    manifest = json.loads((ROOT / "manifest" / f"{args.manifest}.json").read_text(encoding="utf-8"))
     utterances = manifest["utterances"]
     if args.variance_only:
         wanted = set(manifest["variance_ids"])
@@ -252,9 +255,32 @@ async def main() -> None:
         params["prompt"] = ROUND_B_PROMPT
     url = f"{ws_url}?{urlencode(params)}"
     suffix = ("-variance" if args.variance_only else "") + (f"-smoke{args.limit}" if args.limit else "")
-    out_path = ROOT / "results" / f"round-{args.round.lower()}-run{args.run}{suffix}.jsonl"
+    tag = "" if args.manifest == "subset-v1" else f"-{args.manifest.removeprefix('subset-')}"
+    out_path = ROOT / "results" / f"round-{args.round.lower()}{tag}-run{args.run}{suffix}.jsonl"
     out_path.parent.mkdir(exist_ok=True)
-    if out_path.exists() or (out_path.parent / "invalid" / out_path.name).exists():
+    kept_lines: list[str] = []
+    if args.resume:
+        # Keep every successful record, retry the rest, and refuse if the settings changed.
+        if not out_path.exists():
+            raise SystemExit(f"--resume needs an existing {out_path.name}")
+        lines = out_path.read_text(encoding="utf-8").splitlines()
+        original = json.loads(lines[0])["meta"]["params"]
+        if original != params:
+            raise SystemExit(f"refusing to resume: settings differ from the original run ({original} vs {params})")
+        done = set()
+        for line in lines:
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError:
+                log.warning("dropping a malformed line from the interrupted run")
+                continue
+            if "meta" in row or not row.get("error"):
+                kept_lines.append(line)
+                if "meta" not in row:
+                    done.add(row["id"])
+        utterances = [u for u in utterances if u["id"] not in done]
+        log.info("resuming %s: %d kept, %d left to run", out_path.name, len(done), len(utterances))
+    elif out_path.exists() or (out_path.parent / "invalid" / out_path.name).exists():
         raise SystemExit(f"{out_path.name} already exists; pick a new --run rather than overwrite a measurement")
 
     rate = USD_PER_HOUR + (PROMPT_USD_PER_HOUR if params.get("prompt") else 0)
@@ -280,6 +306,11 @@ async def main() -> None:
     with out_path.open("w", encoding="utf-8") as out:
         meta = {"round": args.round, "run": args.run, "params": params, "sessions_per_minute": args.sessions_per_minute,
                 "workers": args.workers, "started_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
+        if args.resume:
+            for line in kept_lines:
+                out.write(line + "\n")
+            # A second meta line marks where the resumed part begins.
+            meta["resume"] = True
         out.write(json.dumps({"meta": meta}) + "\n")
         tasks = [asyncio.create_task(worker(queue, url, key, pcm, out, counter, pacer, abort, budget)) for _ in range(args.workers)]
         await queue.join()

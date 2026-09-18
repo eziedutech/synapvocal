@@ -1,0 +1,93 @@
+{
+ "file": "round-c2-gemini-3.7-flash-audio-h5-low-run2.jsonl",
+ "model": "gemini-3.7-flash",
+ "thinking": "low",
+ "attempted": 681,
+ "failed": 1,
+ "failures": [
+  {
+   "id": "M04_2_headMic_0064.wav",
+   "error": "skipped: empty transcript"
+  }
+ ],
+ "all": {
+  "n": 680,
+  "wer_raw": 0.3165,
+  "wer_interpretation": 0.2304,
+  "improved": 176,
+  "worsened": 55,
+  "no_change_in_wer": 449
+ },
+ "speakers": {
+  "F01": {
+   "n": 16,
+   "wer_raw": 0.5817,
+   "wer_interpretation": 0.4706,
+   "improved": 8,
+   "worsened": 2,
+   "no_change_in_wer": 6
+  },
+  "F03": {
+   "n": 127,
+   "wer_raw": 0.0901,
+   "wer_interpretation": 0.069,
+   "improved": 18,
+   "worsened": 10,
+   "no_change_in_wer": 99
+  },
+  "F04": {
+   "n": 98,
+   "wer_raw": 0.0238,
+   "wer_interpretation": 0.0196,
+   "improved": 6,
+   "worsened": 3,
+   "no_change_in_wer": 89
+  },
+  "M01": {
+   "n": 85,
+   "wer_raw": 0.7415,
+   "wer_interpretation": 0.559,
+   "improved": 37,
+   "worsened": 15,
+   "no_change_in_wer": 33
+  },
+  "M02": {
+   "n": 90,
+   "wer_raw": 0.4575,
+   "wer_interpretation": 0.3292,
+   "improved": 33,
+   "worsened": 6,
+   "no_change_in_wer": 51
+  },
+  "M03": {
+   "n": 91,
+   "wer_raw": 0.0076,
+   "wer_interpretation": 0.0106,
+   "improved": 2,
+   "worsened": 2,
+   "no_change_in_wer": 87
+  },
+  "M04": {
+   "n": 63,
+   "wer_raw": 0.7978,
+   "wer_interpretation": 0.6581,
+   "improved": 29,
+   "worsened": 12,
+   "no_change_in_wer": 22
+  },
+  "M05": {
+   "n": 110,
+   "wer_raw": 0.3128,
+   "wer_interpretation": 0.15,
+   "improved": 43,
+   "worsened": 5,
+   "no_change_in_wer": 62
+  }
+ },
+ "latency_ms": {
+  "p50": 4389.0,
+  "p90": 22972,
+  "max": 284550
+ },
+ "limit": "TORGO sentences are read, often well-known prompts; a model can restore them from fragments. Treat lower WER as an upper bound."
+}
