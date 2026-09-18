@@ -6,7 +6,9 @@ import { useState } from "react";
 // ink (never the series colour), and each bar is its own focusable hover target.
 
 export type BarSeries = { key: string; label: string; color: string };
-export type BarRow = { label: string; value: number; series: string; detail?: string; group?: string };
+// axisLabel: what the axis shows, when shorter than label ("" to show nothing, e.g. the
+// second bar of a group). label stays the full name for tooltips and screen readers.
+export type BarRow = { label: string; value: number; series: string; detail?: string; group?: string; axisLabel?: string };
 
 const LABEL_W = 190;
 const VALUE_W = 64;
@@ -100,7 +102,7 @@ export function BarChart({
               >
                 <rect x={0} y={top} width={WIDTH} height={ROW_H} fill="transparent" />
                 <text x={LABEL_W - 12} y={top + ROW_H / 2} textAnchor="end" dominantBaseline="central" className="sv-chart-label">
-                  {row.label}
+                  {row.axisLabel ?? row.label}
                 </text>
                 <path d={barPath(LABEL_W, barY, width, BAR_H)} fill={colorOf(row.series)} opacity={dim ? 0.45 : 1} />
                 <text x={LABEL_W + width + 8} y={top + ROW_H / 2} dominantBaseline="central" className="sv-chart-value">

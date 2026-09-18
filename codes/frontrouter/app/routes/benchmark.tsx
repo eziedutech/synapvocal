@@ -83,15 +83,15 @@ export default function Benchmark() {
 
   const pilot = data.pilot;
   const PILOT_VARIANTS = [
-    { key: "text", label: "Transcript only" },
-    { key: "audio", label: "Transcript + audio" },
-    { key: "audio_history", label: "Transcript + audio + earlier sentences (used)" },
+    { key: "text", label: "Text", long: "Transcript only" },
+    { key: "audio", label: "Text + audio", long: "Transcript + audio" },
+    { key: "audio_history", label: "Text + audio + history", long: "Transcript + audio + earlier sentences (the app)" },
   ] as const;
   const pilotRows: BarRow[] = [
     { label: "AssemblyAI only", value: pilot.text.wer_raw, series: "raw", group: "raw" },
     ...PILOT_VARIANTS.flatMap((v) => [
-      { label: `${v.label}, first suggestion`, value: pilot[v.key].wer_suggestion, series: "suggestion", group: v.key },
-      { label: `${v.label}, Speaker picks best`, value: pilot[v.key].wer_best_choice, series: "choice", group: v.key },
+      { label: `${v.long}, first suggestion`, axisLabel: v.label, value: pilot[v.key].wer_suggestion, series: "suggestion", group: v.key },
+      { label: `${v.long}, Speaker picks best`, axisLabel: "", value: pilot[v.key].wer_best_choice, series: "choice", group: v.key },
     ]),
   ];
   const used = pilot.audio_history;
@@ -164,7 +164,7 @@ export default function Benchmark() {
       <ChartCard
         title="What helps the suggestions"
         about={`Word error rate on ${used.sentences} dysarthric sentences (every unique one in TORGO), Gemini 3.7 Flash with different inputs.`}
-        caption="From the transcript alone, Gemini's first suggestion is slightly worse than AssemblyAI. Hearing the audio makes it better, and earlier sentences from the same person help again. The app uses the last setup. Letting the Speaker choose lowers the error further."
+        caption="From the transcript alone, Gemini's first suggestion is slightly worse than AssemblyAI. Hearing the audio makes it better, and earlier sentences from the same person help again. The app uses text + audio + history: the transcript, the sentence audio and earlier sentences from the same person. Letting the Speaker choose lowers the error further."
         chart={
           <BarChart
             rows={pilotRows}
@@ -183,7 +183,7 @@ export default function Benchmark() {
           <DataTable
             columns={["Gemini input", "First suggestion", "Speaker picks best", "Exactly right", "Close", "Wait p50", "Wait p90"]}
             rows={PILOT_VARIANTS.map((v) => [
-              v.label,
+              v.long,
               wer(pilot[v.key].wer_suggestion),
               wer(pilot[v.key].wer_best_choice),
               `${pilot[v.key].exact_best_choice} of ${pilot[v.key].sentences}`,
