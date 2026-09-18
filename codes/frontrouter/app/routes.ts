@@ -2,6 +2,11 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
 export default [
   index("routes/bridge.tsx"),
+  route("benchmark", "routes/benchmark.tsx"),
+  route("contribute", "routes/contribute.tsx"),
+  route("contribute/session", "routes/contribute.session.tsx"),
+  route("contribute/upload", "routes/contribute.upload.ts"),
+  route("auth/session", "routes/auth.session.ts"),
   route("status", "routes/status.tsx"),
   route("health", "routes/health.ts"),
   route("stt/token", "routes/stt.token.ts"),

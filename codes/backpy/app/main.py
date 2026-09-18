@@ -5,6 +5,7 @@ from fastapi import Depends, FastAPI
 from pydantic import BaseModel
 
 from app import interpret, stt, tts
+from app.contrib import api as contrib
 from app.settings import Settings, get_settings
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
@@ -13,6 +14,7 @@ app = FastAPI(title="SynapVocal backpy", docs_url="/api/docs", openapi_url="/api
 app.include_router(stt.router)
 app.include_router(interpret.router)
 app.include_router(tts.router)
+app.include_router(contrib.router)
 
 
 class Configured(BaseModel):
@@ -20,6 +22,7 @@ class Configured(BaseModel):
     assemblyai: bool
     deepgram: bool
     gemini: bool
+    contributions: bool
 
 
 class Health(BaseModel):
@@ -39,5 +42,6 @@ def health(settings: Settings = Depends(get_settings)) -> Health:
             assemblyai=bool(settings.assemblyai_api_key),
             deepgram=bool(settings.deepgram_api_key),
             gemini=settings.gemini_configured,
+            contributions=settings.contributions_configured,
         ),
     )

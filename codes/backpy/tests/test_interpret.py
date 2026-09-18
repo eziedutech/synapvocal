@@ -17,7 +17,7 @@ def _client(tmp_path, configured=True) -> TestClient:
 def _fake_model(monkeypatch, reading: ModelReading, seen: dict | None = None):
     monkeypatch.setattr(interpret, "get_client", lambda *args: object())
 
-    async def fake_call(client, model, prompt):
+    async def fake_call(client, model, prompt, *args, **kwargs):
         if seen is not None:
             seen["prompt"] = prompt
         return reading
@@ -129,3 +129,100 @@ def test_backoff_gives_up_after_delays(monkeypatch):
     with pytest.raises(errors.APIError):
         asyncio.run(interpret.generate_with_backoff(client, "m", "p", None, (1.0, 1.0)))
     assert client.aio.models.calls == 3
+
+
+def test_backoff_retries_dropped_connection_but_not_timeout(monkeypatch):
+    import asyncio
+
+    import httpx
+    import pytest
+
+    async def no_sleep(_):
+        return None
+
+    monkeypatch.setattr(interpret.asyncio, "sleep", no_sleep)
+
+    class Models:
+        def __init__(self, failures):
+            self.failures = list(failures)
+            self.calls = 0
+
+        async def generate_content(self, **kwargs):
+            self.calls += 1
+            if self.failures:
+                raise self.failures.pop(0)
+            return "ok"
+
+    client = _FakeClient([])
+    client.aio.models = Models([httpx.ReadError("dropped")])
+    assert asyncio.run(interpret.generate_with_backoff(client, "m", "p", None, (1.0,))) == ("ok", 1)
+
+    client.aio.models = Models([httpx.ReadTimeout("slow")])
+    with pytest.raises(httpx.ReadTimeout):
+        asyncio.run(interpret.generate_with_backoff(client, "m", "p", None, (1.0,)))
+    assert client.aio.models.calls == 1
+
+
+def test_falls_back_when_primary_model_fails(tmp_path, monkeypatch):
+    monkeypatch.setattr(interpret, "get_client", lambda *args: object())
+    called = []
+
+    async def fake_call(client, model, prompt, delays, thinking_low, audio=None):
+        called.append((model, thinking_low))
+        if model == "gemini-3.7-flash":
+            raise interpret.genai_errors.APIError(504, {"error": {"message": "Deadline expired"}})
+        return ModelReading(interpretation="She is nearly 93.", alternatives=[], confidence=0.8)
+
+    monkeypatch.setattr(interpret, "call_model", fake_call)
+    body = _client(tmp_path).post("/api/bridge/interpret", json={"transcript": "she is nearly 93"}).json()
+    assert body["model"] == "gemini-3.5-flash-lite"
+    assert called == [("gemini-3.7-flash", True), ("gemini-3.5-flash-lite", False)]
+
+
+def test_502_when_primary_and_fallback_fail(tmp_path, monkeypatch):
+    monkeypatch.setattr(interpret, "get_client", lambda *args: object())
+
+    async def fake_call(client, model, prompt, delays, thinking_low, audio=None):
+        raise interpret.genai_errors.APIError(429, {"error": {"message": "Resource exhausted"}})
+
+    monkeypatch.setattr(interpret, "call_model", fake_call)
+    response = _client(tmp_path).post("/api/bridge/interpret", json={"transcript": "she is nearly 93"})
+    assert response.status_code == 502
+    assert "429" in response.json()["detail"]
+
+
+def _wav_b64(ms: int = 1000, rate: int = 16000) -> str:
+    import base64, io, wave
+
+    buffer = io.BytesIO()
+    with wave.open(buffer, "wb") as out:
+        out.setnchannels(1)
+        out.setsampwidth(2)
+        out.setframerate(rate)
+        out.writeframes(b"\x00\x00" * (rate * ms // 1000))
+    return base64.b64encode(buffer.getvalue()).decode()
+
+
+def test_audio_and_history_reach_the_model(tmp_path, monkeypatch):
+    monkeypatch.setattr(interpret, "get_client", lambda *args: object())
+    seen = {}
+
+    async def fake_call(client, model, prompt, delays, thinking_low, audio=None):
+        seen.update(prompt=prompt, audio=audio)
+        return ModelReading(interpretation="Tear up that paper.", alternatives=[], confidence=0.7)
+
+    monkeypatch.setattr(interpret, "call_model", fake_call)
+    body = {
+        "transcript": "there up the",
+        "history": [{"heard": "i wan wa", "confirmed": "I want water."}],
+        "audio_wav_base64": _wav_b64(),
+    }
+    assert _client(tmp_path).post("/api/bridge/interpret", json=body).status_code == 200
+    assert seen["audio"][:4] == b"RIFF"
+    assert 'Recognition heard: "i wan wa" The person meant: "I want water."' in seen["prompt"]
+
+
+def test_audio_in_the_wrong_format_is_refused(tmp_path, monkeypatch):
+    _fake_model(monkeypatch, ModelReading(interpretation="x", alternatives=[], confidence=0.5))
+    body = {"transcript": "hello", "audio_wav_base64": _wav_b64(rate=44100)}
+    assert _client(tmp_path).post("/api/bridge/interpret", json=body).status_code == 422

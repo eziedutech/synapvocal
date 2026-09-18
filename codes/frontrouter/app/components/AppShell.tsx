@@ -1,12 +1,16 @@
 import { Box, Container, Flex, Text } from "@radix-ui/themes";
 import { Link, NavLink } from "react-router";
 
+import { type ShellUser, UserMenu } from "~/components/UserMenu";
+
 const NAV = [
   { to: "/", label: "Bridge" },
+  { to: "/contribute", label: "Contribute" },
+  { to: "/benchmark", label: "Benchmark" },
   { to: "/status", label: "Status" },
 ];
 
-export function AppShell({ children }: { children: React.ReactNode }) {
+export function AppShell({ children, user = null }: { children: React.ReactNode; user?: ShellUser | null }) {
   return (
     <div className="sv-page">
       <div className="sv-band" />
@@ -14,7 +18,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <header>
           <Container size="3">
             <Flex align="center" justify="between" gap="4" wrap="wrap">
-              <Link to="/" className="sv-brand">
+              <Link to="/" state={{ fresh: true }} className="sv-brand">
                 <Flex align="center" gap="3">
                   {/* Decorative: the product name sits right beside it. */}
                   <img src="/logo-synap.png" alt="" width={40} height={40} className="sv-brand-logo" />
@@ -28,6 +32,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   </Flex>
                 </Flex>
               </Link>
+              <Flex align="center" gap="5" wrap="wrap">
               <Flex asChild gap="5">
                 <nav aria-label="Main">
                   {NAV.map((item) => (
@@ -38,6 +43,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     </Text>
                   ))}
                 </nav>
+              </Flex>
+              <UserMenu user={user} />
               </Flex>
             </Flex>
           </Container>

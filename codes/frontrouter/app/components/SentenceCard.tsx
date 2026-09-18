@@ -1,13 +1,14 @@
 import { CheckIcon, Pencil1Icon, ReloadIcon, SpeakerLoudIcon } from "@radix-ui/react-icons";
-import { Badge, Button, Flex, RadioCards, Skeleton, Text, TextArea } from "@radix-ui/themes";
+import { Badge, Button, Flex, RadioCards, Spinner, Text, TextArea } from "@radix-ui/themes";
 import { useEffect, useMemo, useState } from "react";
 
+import { EarIcon } from "~/components/EarIcon";
 import { InfoTip } from "~/components/InfoTip";
-import type { Sentence } from "~/lib/bridge/useSentences";
+import type { LabelSource, Sentence } from "~/lib/bridge/useSentences";
 import type { SpeechState } from "~/lib/bridge/useSpeech";
 import { cleanForDisplay } from "~/lib/text";
 
-type Option = { value: string; text: string; label: string };
+type Option = { value: string; text: string; label: string; source: Exclude<LabelSource, "edited">; heard?: boolean };
 
 function confidenceLabel(confidence: number): { text: string; color: "jade" | "amber" | "gray" } {
   if (confidence >= 0.8) return { text: "Likely", color: "jade" };
@@ -21,20 +22,45 @@ function confidenceLabel(confidence: number): { text: string; color: "jade" | "a
 function buildOptions(sentence: Sentence): Option[] {
   const options: Option[] = [];
   const seen = new Set<string>();
-  const add = (text: string, label: string) => {
+  const add = (text: string, label: string, source: Option["source"]) => {
+    const heard = source === "heard";
     const display = cleanForDisplay(text);
     const key = display.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
     if (!display || seen.has(key)) return;
     seen.add(key);
-    options.push({ value: String(options.length), text: display, label });
+    options.push({ value: String(options.length), text: display, label, source, heard });
   };
   if (sentence.interpretation.status === "ready") {
     const data = sentence.interpretation.data;
-    add(data.interpretation, "Suggested");
-    data.alternatives.forEach((alternative) => add(alternative, "Or"));
+    add(data.interpretation, "Suggested", "suggestion");
+    data.alternatives.forEach((alternative) => add(alternative, "Or", "alternative"));
   }
-  add(sentence.heard, "As heard");
+  add(sentence.heard, "As heard", "heard");
   return options;
+}
+
+// What the wait is, in words. Messages follow the measured wait: about 3 to 5 s usually,
+// sometimes over 20 s when Gemini is busy.
+const WAIT_MESSAGES = [
+  { after: 0, text: "Interpreting what was heard" },
+  { after: 6000, text: "Still interpreting, this can take a few more seconds" },
+  { after: 15000, text: "Taking longer than usual. You can use what was heard below" },
+];
+
+function FindingMeaning() {
+  const [step, setStep] = useState(0);
+  useEffect(() => {
+    const timers = WAIT_MESSAGES.slice(1).map((m, i) => setTimeout(() => setStep(i + 1), m.after));
+    return () => timers.forEach(clearTimeout);
+  }, []);
+  return (
+    <Flex align="center" gap="3" className="sv-finding" role="status" aria-live="polite">
+      <Spinner size="2" />
+      <Text size="3" color="gray">
+        {WAIT_MESSAGES[step].text}
+      </Text>
+    </Flex>
+  );
 }
 
 export function SentenceCard({
@@ -43,13 +69,16 @@ export function SentenceCard({
   onConfirm,
   onRetry,
   onSpeak,
+  contribute,
 }: {
   sentence: Sentence;
   // Speech state for this sentence only, or null.
   speech: SpeechState;
-  onConfirm: (text: string) => void;
+  onConfirm: (text: string, source: LabelSource) => void;
   onRetry: () => void;
   onSpeak: (text: string) => void;
+  // Offered after confirming, only to signed-in contributors.
+  contribute?: React.ReactNode;
 }) {
   const options = useMemo(() => buildOptions(sentence), [sentence]);
   const [choice, setChoice] = useState("0");
@@ -89,6 +118,7 @@ export function SentenceCard({
               </Text>
             )}
           </Flex>
+          {contribute}
         </Flex>
       </li>
     );
@@ -97,21 +127,7 @@ export function SentenceCard({
   return (
     <li className="sv-sentence">
       <Flex direction="column" gap="3">
-        <Flex align="center" gap="2" wrap="wrap">
-          <Text size="2" color="gray">
-            Heard
-          </Text>
-          <Text size="3" color="gray">
-            {cleanForDisplay(sentence.heard)}
-          </Text>
-        </Flex>
-
-        {status === "loading" && (
-          <Flex direction="column" gap="2" aria-busy="true" aria-label="Finding what you meant">
-            <Skeleton height="56px" />
-            <Skeleton height="56px" />
-          </Flex>
-        )}
+        {status === "loading" && <FindingMeaning />}
 
         {status === "failed" && (
           <Flex align="center" gap="3" wrap="wrap" className="sv-sentence-note">
@@ -156,9 +172,16 @@ export function SentenceCard({
             {options.map((option) => (
               <RadioCards.Item key={option.value} value={option.value}>
                 <Flex direction="column" gap="1" width="100%">
-                  <Text size="1" color="gray">
-                    {option.label}
-                  </Text>
+                  {option.heard ? (
+                    <Text size="1" color="gray" title="As heard by speech recognition" className="sv-option-icon">
+                      <EarIcon />
+                      <span className="sv-visually-hidden">{option.label}</span>
+                    </Text>
+                  ) : (
+                    <Text size="1" color="gray">
+                      {option.label}
+                    </Text>
+                  )}
                   <Text size="5">{option.text}</Text>
                 </Flex>
               </RadioCards.Item>
@@ -169,7 +192,10 @@ export function SentenceCard({
         <Flex gap="3" wrap="wrap">
           <Button
             size="4"
-            onClick={() => onConfirm(editing ? draft.trim() : chosen.text)}
+            onClick={() => {
+              const text = editing ? draft.trim() : chosen.text;
+              onConfirm(text, text === chosen?.text ? chosen.source : "edited");
+            }}
             disabled={editing ? !draft.trim() : !chosen}
           >
             <SpeakerLoudIcon /> Confirm and speak

@@ -7,6 +7,8 @@ Existing lines in .env that this script does not own are kept as they are.
 """
 
 from pathlib import Path
+import re
+import secrets
 import sys
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -17,6 +19,14 @@ SOURCES = {
     "ASSEMBLYAI_API_KEY": "assembly.txt",
     "DEEPGRAM_API_KEY": "deepgram.txt",
 }
+
+# Local secrets with no outside source: generated once, then kept on later runs.
+GENERATED = ("INTERNAL_API_TOKEN", "SESSION_SECRET")
+
+# Firebase web app config for contributor sign-in, as copied from the Firebase console.
+# These values are public by design (they are sent to the browser); no admin key is used.
+FIREBASE_FILE = "firebase-conf.txt"
+FIREBASE_KEYS = {"apiKey": "FIREBASE_API_KEY", "authDomain": "FIREBASE_AUTH_DOMAIN", "projectId": "FIREBASE_PROJECT_ID", "appId": "FIREBASE_APP_ID"}
 
 
 def main() -> int:
@@ -30,11 +40,27 @@ def main() -> int:
             continue
         values[name] = value
 
+    firebase = ROOT / "credentials" / FIREBASE_FILE
+    text = firebase.read_text(encoding="utf-8") if firebase.is_file() else ""
+    for key, name in FIREBASE_KEYS.items():
+        found = re.search(rf'{key}:\s*"([^"]+)"', text)
+        if found:
+            values[name] = found.group(1)
+        else:
+            missing.append(f"{name} (credentials/{FIREBASE_FILE} missing or has no {key}; sign-in stays off)")
+
+    existing = {}
     kept = []
+    owned = set(SOURCES) | set(GENERATED) | set(FIREBASE_KEYS.values()) | {"GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET"}
     if ENV_PATH.is_file():
         for line in ENV_PATH.read_text(encoding="utf-8").splitlines():
-            if line.split("=", 1)[0].strip() not in SOURCES:
+            name = line.split("=", 1)[0].strip()
+            if name in owned:
+                existing[name] = line.split("=", 1)[1] if "=" in line else ""
+            else:
                 kept.append(line)
+    for name in GENERATED:
+        values[name] = existing.get(name) or secrets.token_urlsafe(48)
 
     lines = kept + [f"{name}={value}" for name, value in values.items()]
     ENV_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")

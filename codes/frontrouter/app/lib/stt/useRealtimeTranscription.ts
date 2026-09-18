@@ -14,10 +14,15 @@ type TokenResponse = { token: string; ws_url: string; sample_rate: number };
 
 type Session = {
   ws: WebSocket;
+  // Audio sent since Begin, kept only for contributors (see keepAudio).
+  chunks: Int16Array[];
+  // Samples dropped from the front of `chunks` to cap memory.
+  droppedSamples: number;
   stream: MediaStream;
   audio: AudioContext;
   startedAt: number;
   began: boolean;
+  id?: number;
   stopTimer?: ReturnType<typeof setTimeout>;
 };
 
@@ -39,7 +44,35 @@ async function fetchToken(): Promise<TokenResponse> {
   return response.json();
 }
 
-export function useRealtimeTranscription() {
+// Word timings in AssemblyAI Turn messages are ms from the first audio sent.
+type TurnWord = { start: number; end: number };
+
+const SAMPLE_RATE = 16000;
+const KEEP_SECONDS = 180;
+const KEEP_SENTENCES = 20; // enough for the sentence being confirmed, never the whole conversation
+const PAD_BEFORE_MS = 250;
+const PAD_AFTER_MS = 400;
+
+function sliceSamples(current: Session, fromMs: number, toMs: number): Int16Array | null {
+  const total = current.chunks.reduce((n, c) => n + c.length, 0);
+  const from = Math.max(0, Math.floor((fromMs * SAMPLE_RATE) / 1000) - current.droppedSamples);
+  const to = Math.min(total, Math.ceil((toMs * SAMPLE_RATE) / 1000) - current.droppedSamples);
+  if (to <= from) return null;
+  const out = new Int16Array(to - from);
+  let offset = 0;
+  for (const chunk of current.chunks) {
+    const start = Math.max(0, from - offset);
+    const end = Math.min(chunk.length, to - offset);
+    if (end > start) out.set(chunk.subarray(start, end), offset + start - from);
+    offset += chunk.length;
+    if (offset >= to) break;
+  }
+  return out;
+}
+
+// keepAudio: hold each finished sentence's audio in this page's memory, for Gemini to hear
+// it and, in a contribution session, for the Speaker to choose to give it. Never stored.
+export function useRealtimeTranscription({ keepAudio = false }: { keepAudio?: boolean } = {}) {
   const [status, setStatus] = useState<SttStatus>("idle");
   const [turns, setTurns] = useState<Turn[]>([]);
   // Increments on every Begin; turn_order restarts at 0 in each session.
@@ -48,6 +81,10 @@ export function useRealtimeTranscription() {
   const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
   const [error, setError] = useState<string | null>(null);
   const session = useRef<Session | null>(null);
+  const turnAudio = useRef(new Map<string, Int16Array>());
+  const sessionCounter = useRef(0);
+  const keepAudioRef = useRef(keepAudio);
+  keepAudioRef.current = keepAudio;
 
   const release = useCallback(() => {
     const current = session.current;
@@ -105,12 +142,22 @@ export function useRealtimeTranscription() {
 
       const ws = new WebSocket(`${token.ws_url}&token=${encodeURIComponent(token.token)}`);
       ws.binaryType = "arraybuffer";
-      const current: Session = { ws, stream, audio, startedAt: performance.now(), began: false };
+      const current: Session = { ws, stream, audio, startedAt: performance.now(), began: false, chunks: [], droppedSamples: 0 };
       session.current = current;
       setAnalyser(spectrum);
 
       capture.port.onmessage = (event: MessageEvent<{ pcm: ArrayBuffer }>) => {
-        if (current.began && ws.readyState === WebSocket.OPEN) ws.send(event.data.pcm);
+        if (!current.began || ws.readyState !== WebSocket.OPEN) return;
+        if (keepAudioRef.current) {
+          current.chunks.push(new Int16Array(event.data.pcm.slice(0)));
+          let kept = current.chunks.reduce((n, c) => n + c.length, 0);
+          while (kept > KEEP_SECONDS * SAMPLE_RATE && current.chunks.length > 1) {
+            const dropped = current.chunks.shift()!;
+            current.droppedSamples += dropped.length;
+            kept -= dropped.length;
+          }
+        }
+        ws.send(event.data.pcm);
       };
 
       ws.onmessage = (event) => {
@@ -118,7 +165,8 @@ export function useRealtimeTranscription() {
         if (message.type === "Begin") {
           current.began = true;
           setTurns([]);
-          setSessionId((id) => id + 1);
+          current.id = ++sessionCounter.current;
+          setSessionId(current.id);
           setStatus("listening");
         } else if (message.type === "Turn") {
           const turn: Turn = {
@@ -127,6 +175,15 @@ export function useRealtimeTranscription() {
             final: Boolean(message.end_of_turn),
             receivedAtMs: Math.round(performance.now() - current.startedAt),
           };
+          const words = (message.words ?? []) as TurnWord[];
+          if (turn.final && keepAudioRef.current && words.length > 0 && current.id !== undefined) {
+            const samples = sliceSamples(current, words[0].start - PAD_BEFORE_MS, words[words.length - 1].end + PAD_AFTER_MS);
+            if (samples) {
+              turnAudio.current.set(`${current.id}-${turn.order}`, samples);
+              // Only recent sentences can still be retried or contributed; drop the rest.
+              while (turnAudio.current.size > KEEP_SENTENCES) turnAudio.current.delete(turnAudio.current.keys().next().value!);
+            }
+          }
           setTurns((previous) => {
             const others = previous.filter((t) => t.order !== turn.order);
             return [...others, turn].sort((a, b) => a.order - b.order);
@@ -181,5 +238,12 @@ export function useRealtimeTranscription() {
 
   useEffect(() => release, [release]);
 
-  return { status, turns, sessionId, analyser, error, start, stop, endTurn };
+  // Audio of a finished sentence, keyed like sentences (`${sessionId}-${turn order}`).
+  const getTurnAudio = useCallback((key: string) => turnAudio.current.get(key) ?? null, []);
+  const forgetTurnAudio = useCallback((key?: string) => {
+    if (key) turnAudio.current.delete(key);
+    else turnAudio.current.clear();
+  }, []);
+
+  return { status, turns, sessionId, analyser, error, start, stop, endTurn, getTurnAudio, forgetTurnAudio };
 }

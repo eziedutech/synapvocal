@@ -7,10 +7,16 @@ anything the Speaker did not say.
 """
 
 import asyncio
+import base64
+import binascii
+import io
 import logging
 import random
+
+import httpx
 import re
 import time
+import wave
 from functools import lru_cache
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -33,7 +39,13 @@ CALL_TIMEOUT_MS = 12000
 # rather than the SDK's so every wait is logged, never hidden. Kept short in the
 # product because a person is waiting; the transcript is always shown meanwhile.
 TRANSIENT_STATUS = {429, 500, 502, 503, 504}
-PRODUCT_BACKOFF = (1.0, 2.0)  # two retries, about 3 s of waiting at most
+# A dropped connection (for example httpx.ReadError mid-response) is transient too; it
+# stopped a benchmark run on 17 Sep 2026. Timeouts are not retried: they already cost
+# the full CALL_TIMEOUT_MS and a person is waiting.
+# The primary model gets one retry, then the fallback model gets one attempt. Worst case
+# is about 12 + 1.5 + 12 + 12 = 38 s, inside the 45 s the web server waits.
+PRIMARY_BACKOFF = (1.0,)
+FALLBACK_BACKOFF = ()
 
 
 async def generate_with_backoff(client, model: str, contents: str, config, delays: tuple[float, ...]):
@@ -41,15 +53,17 @@ async def generate_with_backoff(client, model: str, contents: str, config, delay
     for retries in range(len(delays) + 1):
         try:
             return await client.aio.models.generate_content(model=model, contents=contents, config=config), retries
-        except genai_errors.APIError as exc:
-            if exc.code not in TRANSIENT_STATUS or retries == len(delays):
+        except (genai_errors.APIError, httpx.NetworkError) as exc:
+            reason = exc.code if isinstance(exc, genai_errors.APIError) else type(exc).__name__
+            transient = isinstance(exc, httpx.NetworkError) or exc.code in TRANSIENT_STATUS
+            if not transient or retries == len(delays):
                 raise
             wait = delays[retries] * (1 + random.uniform(0, 0.5))
-            log.warning("gemini %s returned %s, retry %d of %d in %.1f s", model, exc.code, retries + 1, len(delays), wait)
+            log.warning("gemini %s failed with %s, retry %d of %d in %.1f s", model, reason, retries + 1, len(delays), wait)
             await asyncio.sleep(wait)
     raise AssertionError("unreachable")
 
-SYSTEM_PROMPT = """You help a person with dysarthria communicate. Their speech is slurred or slow, so speech recognition often mishears them.
+SYSTEM_PROMPT = """You help a person whose speech is hard to understand communicate. This can be dysarthria or the speech of someone with Parkinson's disease, ALS, cerebral palsy, Down syndrome or a stroke. Their speech may be slurred, slow, strained or broken, so speech recognition often mishears them.
 You receive what speech recognition heard. Propose the English sentence the person most likely meant, so they can confirm it before it is spoken aloud to someone else.
 
 Rules:
@@ -63,10 +77,56 @@ Rules:
 - Plain text only. No quotation marks around sentences, no markdown."""
 
 
+# Measured on TORGO (17 Sep 2026, 681 dysarthric sentences): hearing the audio and seeing
+# earlier heard/confirmed pairs from the same person lowered the suggestion WER from
+# 0.337 (text only) to 0.231. Both come from the benchmark (round C2) unchanged.
+AUDIO_ADDENDUM = """
+
+You also receive the audio recording of what the person said. The transcript is only
+speech recognition's attempt and may be badly wrong for speech like theirs. Listen to
+the audio and use the rhythm, number of words, and the sounds you can make out to
+decide what they meant. The same rules apply: stay faithful and never add content."""
+
+MAX_AUDIO_BYTES = 2_500_000  # about 78 s of 16 kHz mono 16-bit, as for contributions
+
+
+class HistoryPair(BaseModel):
+    heard: str = Field(min_length=1, max_length=1000)
+    confirmed: str = Field(min_length=1, max_length=1000)
+
+
 class InterpretRequest(BaseModel):
     transcript: str = Field(min_length=1, max_length=1000)
     recent: list[str] = Field(default_factory=list, max_length=5)
+    # Earlier sentences from this person this session: what was heard and what they confirmed.
+    history: list[HistoryPair] = Field(default_factory=list, max_length=5)
     phrase_book: list[str] = Field(default_factory=list, max_length=100)
+    # The sentence as 16 kHz mono 16-bit WAV, base64. Sent to Gemini, never stored.
+    audio_wav_base64: str | None = Field(default=None, max_length=MAX_AUDIO_BYTES * 4 // 3 + 4)
+
+
+def history_block(pairs: list[HistoryPair]) -> str:
+    if not pairs:
+        return ""
+    lines = [f'- Recognition heard: "{p.heard}" The person meant: "{p.confirmed}"' for p in pairs]
+    header = "Earlier sentences from this same person, to learn how recognition mishears them:"
+    return "\n\n" + header + "\n" + "\n".join(lines)
+
+
+def decode_audio(encoded: str | None) -> bytes | None:
+    """The WAV bytes, or None. Refuses anything but 16 kHz mono 16-bit up to 60 s."""
+    if not encoded:
+        return None
+    try:
+        data = base64.b64decode(encoded, validate=True)
+        with wave.open(io.BytesIO(data)) as wav:
+            shape = (wav.getframerate(), wav.getnchannels(), wav.getsampwidth())
+            seconds = wav.getnframes() / 16000
+    except (binascii.Error, wave.Error, EOFError) as exc:
+        raise HTTPException(status_code=422, detail="Sentence audio is not a WAV file") from exc
+    if shape != (16000, 1, 2) or not 0 < seconds <= 60:
+        raise HTTPException(status_code=422, detail="Sentence audio must be 16 kHz mono 16-bit, up to 60 s")
+    return data
 
 
 class ModelReading(BaseModel):
@@ -117,12 +177,14 @@ def build_prompt(request: InterpretRequest) -> str:
         parts.append("Recent sentences the person confirmed, oldest first:\n" + "\n".join(f"- {s}" for s in request.recent))
     if request.phrase_book:
         parts.append("Phrase book (names and words this person uses): " + ", ".join(request.phrase_book))
-    return "\n\n".join(parts)
+    return "\n\n".join(parts) + history_block(request.history)
 
 
-async def call_model(client: genai.Client, model: str, prompt: str) -> ModelReading:
+async def call_model(
+    client: genai.Client, model: str, prompt: str, delays: tuple[float, ...], thinking_low: bool, audio: bytes | None = None
+) -> ModelReading:
     config = types.GenerateContentConfig(
-        system_instruction=SYSTEM_PROMPT,
+        system_instruction=SYSTEM_PROMPT + (AUDIO_ADDENDUM if audio else ""),
         response_mime_type="application/json",
         response_schema=ModelReading,
         # temperature is ignored by Gemini 3.7 (CineMeridian finding, 2 Sep 2026); consistency
@@ -130,13 +192,44 @@ async def call_model(client: genai.Client, model: str, prompt: str) -> ModelRead
         # Gemini 3.7 Flash thinks by default (446 to 750 thought tokens, median 6.7 s in a
         # 3-call probe on 17 Sep 2026). LOW cut that to 264 to 351 tokens, median 4.2 s.
         # MINIMAL is refused for 3.7, and thinking_budget=0 is ignored (still ~300 tokens).
-        thinking_config=types.ThinkingConfig(thinking_level=types.ThinkingLevel.LOW),
+        # The fallback runs with its default, as measured in round C1.
+        thinking_config=types.ThinkingConfig(thinking_level=types.ThinkingLevel.LOW) if thinking_low else None,
         automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
     )
-    response, retries = await generate_with_backoff(client, model, prompt, config, PRODUCT_BACKOFF)
+    contents = [types.Part.from_bytes(data=audio, mime_type="audio/wav"), prompt] if audio else prompt
+    response, retries = await generate_with_backoff(client, model, contents, config, delays)
     if retries:
         log.info("gemini %s succeeded after %d retries", model, retries)
     return ModelReading.model_validate_json(response.text)
+
+
+def describe_failure(model: str, exc: Exception) -> str:
+    if isinstance(exc, genai_errors.APIError):
+        log.error("gemini %s failed with %s: %s", model, exc.code, str(exc)[:300])
+        return f"Interpretation service refused the request ({exc.code})"
+    if isinstance(exc, ValueError):
+        log.error("gemini %s returned unparseable output: %s", model, exc)
+        return "Interpretation service returned an unreadable answer"
+    log.error("gemini %s call failed: %r", model, exc)
+    return "Interpretation service unreachable"
+
+
+async def read_with_fallback(
+    client: genai.Client, settings: Settings, prompt: str, audio: bytes | None = None
+) -> tuple[ModelReading, str]:
+    """Returns (reading, model that answered). Raises HTTPException 502 when every model failed."""
+    try:
+        return await call_model(client, settings.gemini_model, prompt, PRIMARY_BACKOFF, True, audio), settings.gemini_model
+    except Exception as exc:
+        detail = describe_failure(settings.gemini_model, exc)
+        fallback = settings.gemini_fallback_model
+        if not fallback:
+            raise HTTPException(status_code=502, detail=detail) from exc
+    log.warning("falling back from %s to %s", settings.gemini_model, fallback)
+    try:
+        return await call_model(client, fallback, prompt, FALLBACK_BACKOFF, False, audio), fallback
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail=describe_failure(fallback, exc)) from exc
 
 
 @router.post("/interpret", response_model=Interpretation)
@@ -147,17 +240,8 @@ async def interpret(request: InterpretRequest, settings: Settings = Depends(get_
 
     client = get_client(settings.google_cloud_project, settings.google_cloud_location, settings.google_application_credentials)
     started = time.perf_counter()
-    try:
-        reading = await call_model(client, settings.gemini_model, build_prompt(request))
-    except genai_errors.APIError as exc:
-        log.error("gemini %s failed with %s: %s", settings.gemini_model, exc.code, str(exc)[:300])
-        raise HTTPException(status_code=502, detail=f"Interpretation service refused the request ({exc.code})") from exc
-    except ValueError as exc:
-        log.error("gemini %s returned unparseable output: %s", settings.gemini_model, exc)
-        raise HTTPException(status_code=502, detail="Interpretation service returned an unreadable answer") from exc
-    except Exception as exc:
-        log.error("gemini %s call failed: %r", settings.gemini_model, exc)
-        raise HTTPException(status_code=502, detail="Interpretation service unreachable") from exc
+    audio = decode_audio(request.audio_wav_base64)
+    reading, model = await read_with_fallback(client, settings, build_prompt(request), audio)
     latency_ms = round((time.perf_counter() - started) * 1000)
 
     interpretation = clean(reading.interpretation)
@@ -166,13 +250,13 @@ async def interpret(request: InterpretRequest, settings: Settings = Depends(get_
         if alternative and normalise(alternative) != normalise(interpretation) and alternative not in alternatives:
             alternatives.append(alternative)
 
-    log.info("interpret model=%s latency_ms=%d confidence=%.2f", settings.gemini_model, latency_ms, reading.confidence)
+    log.info("interpret model=%s audio=%s history=%d latency_ms=%d confidence=%.2f", model, audio is not None, len(request.history), latency_ms, reading.confidence)
     return Interpretation(
         transcript=request.transcript,
         interpretation=interpretation,
         alternatives=alternatives[:2],
         confidence=reading.confidence,
         unchanged=normalise(interpretation) == normalise(request.transcript),
-        model=settings.gemini_model,
+        model=model,
         latency_ms=latency_ms,
     )

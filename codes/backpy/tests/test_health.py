@@ -16,5 +16,5 @@ def test_health_reports_sha_and_hides_keys():
     assert response.status_code == 200
     body = response.json()
     assert body["git_sha"] == "abc1234"
-    assert body["configured"] == {"assemblyai": True, "deepgram": False, "gemini": False}
+    assert body["configured"] == {"assemblyai": True, "deepgram": False, "gemini": False, "contributions": False}
     assert "secret-value" not in response.text

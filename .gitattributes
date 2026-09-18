@@ -2,3 +2,5 @@
 *.png binary
 *.jpg binary
 *.wav binary
+# Shell scripts run inside Linux containers.
+*.sh text eol=lf

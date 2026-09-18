@@ -1,0 +1,430 @@
+{
+ "dataset": {
+  "name": "TORGO",
+  "subset": "695 head-microphone utterances, seed 20260917",
+  "speakers": {
+   "dysarthria": 8,
+   "healthy": 7
+  },
+  "tested": {
+   "full": {
+    "recordings": 16552,
+    "hours": 13.7,
+    "dysarthria/sentence": 1321,
+    "dysarthria/word": 4253,
+    "healthy/sentence": 2841,
+    "healthy/word": 8137
+   },
+   "round_a": {
+    "dysarthria/sentence": 296,
+    "dysarthria/word": 120,
+    "healthy/sentence": 174,
+    "healthy/word": 105
+   },
+   "variance": {
+    "dysarthria/sentence": 28,
+    "dysarthria/word": 4,
+    "healthy/sentence": 20,
+    "healthy/word": 8
+   },
+   "suggestions": {
+    "dysarthria/sentence": 296,
+    "dysarthria/word": 0,
+    "healthy/sentence": 0,
+    "healthy/word": 0
+   },
+   "pilot_stt": {
+    "dysarthria/sentence": 682,
+    "dysarthria/word": 1318,
+    "healthy/sentence": 0,
+    "healthy/word": 0
+   },
+   "pilot_suggestions": {
+    "dysarthria/sentence": 681,
+    "dysarthria/word": 0,
+    "healthy/sentence": 0,
+    "healthy/word": 0
+   }
+  }
+ },
+ "round_a": {
+  "attempted": 695,
+  "failed": 0,
+  "groups": {
+   "dysarthria/sentence": {
+    "utterances": 296,
+    "wer": 0.3981,
+    "exact": 0.4257
+   },
+   "dysarthria/word": {
+    "utterances": 120,
+    "wer": 0.8333,
+    "exact": 0.325
+   },
+   "healthy/sentence": {
+    "utterances": 174,
+    "wer": 0.0207,
+    "exact": 0.9138
+   },
+   "healthy/word": {
+    "utterances": 105,
+    "wer": 0.2095,
+    "exact": 0.7905
+   },
+   "dysarthria": {
+    "utterances": 416,
+    "wer": 0.4211,
+    "exact": 0.3966
+   },
+   "healthy": {
+    "utterances": 279,
+    "wer": 0.0352,
+    "exact": 0.8674
+   }
+  },
+  "speakers": [
+   {
+    "speaker": "F01",
+    "wer": 0.6429,
+    "utterances": 31,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "F03",
+    "wer": 0.1038,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "F04",
+    "wer": 0.0432,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "FC01",
+    "wer": 0.0227,
+    "utterances": 39,
+    "status": "healthy"
+   },
+   {
+    "speaker": "FC02",
+    "wer": 0.0155,
+    "utterances": 40,
+    "status": "healthy"
+   },
+   {
+    "speaker": "FC03",
+    "wer": 0.0211,
+    "utterances": 40,
+    "status": "healthy"
+   },
+   {
+    "speaker": "M01",
+    "wer": 0.8428,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "M02",
+    "wer": 0.6047,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "M03",
+    "wer": 0.0136,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "M04",
+    "wer": 0.7931,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "M05",
+    "wer": 0.3556,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "MC01",
+    "wer": 0.038,
+    "utterances": 40,
+    "status": "healthy"
+   },
+   {
+    "speaker": "MC02",
+    "wer": 0.0938,
+    "utterances": 40,
+    "status": "healthy"
+   },
+   {
+    "speaker": "MC03",
+    "wer": 0.0508,
+    "utterances": 40,
+    "status": "healthy"
+   },
+   {
+    "speaker": "MC04",
+    "wer": 0.0053,
+    "utterances": 40,
+    "status": "healthy"
+   }
+  ]
+ },
+ "variance": [
+  {
+   "label": "Repeat 1",
+   "dysarthria": 0.4605,
+   "healthy": 0.0141,
+   "utterances": 60
+  },
+  {
+   "label": "Repeat 2",
+   "dysarthria": 0.4279,
+   "healthy": 0.0141,
+   "utterances": 60
+  },
+  {
+   "label": "Repeat 3",
+   "dysarthria": 0.4372,
+   "healthy": 0.0141,
+   "utterances": 60
+  }
+ ],
+ "round_b": {
+  "attempted": 695,
+  "failed": 0,
+  "groups": {
+   "dysarthria/sentence": {
+    "utterances": 296,
+    "wer": 0.3995,
+    "exact": 0.4088
+   },
+   "dysarthria/word": {
+    "utterances": 120,
+    "wer": 0.8,
+    "exact": 0.3417
+   },
+   "healthy/sentence": {
+    "utterances": 174,
+    "wer": 0.0207,
+    "exact": 0.9138
+   },
+   "healthy/word": {
+    "utterances": 105,
+    "wer": 0.2,
+    "exact": 0.8
+   },
+   "dysarthria": {
+    "utterances": 416,
+    "wer": 0.4207,
+    "exact": 0.3894
+   },
+   "healthy": {
+    "utterances": 279,
+    "wer": 0.0345,
+    "exact": 0.871
+   }
+  },
+  "speakers": [
+   {
+    "speaker": "F01",
+    "wer": 0.5952,
+    "utterances": 31,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "F03",
+    "wer": 0.1101,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "F04",
+    "wer": 0.0396,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "FC01",
+    "wer": 0.0273,
+    "utterances": 39,
+    "status": "healthy"
+   },
+   {
+    "speaker": "FC02",
+    "wer": 0.0104,
+    "utterances": 40,
+    "status": "healthy"
+   },
+   {
+    "speaker": "FC03",
+    "wer": 0.0316,
+    "utterances": 40,
+    "status": "healthy"
+   },
+   {
+    "speaker": "M01",
+    "wer": 0.8333,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "M02",
+    "wer": 0.5541,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "M03",
+    "wer": 0.017,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "M04",
+    "wer": 0.8652,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "M05",
+    "wer": 0.3556,
+    "utterances": 55,
+    "status": "dysarthria"
+   },
+   {
+    "speaker": "MC01",
+    "wer": 0.0326,
+    "utterances": 40,
+    "status": "healthy"
+   },
+   {
+    "speaker": "MC02",
+    "wer": 0.0833,
+    "utterances": 40,
+    "status": "healthy"
+   },
+   {
+    "speaker": "MC03",
+    "wer": 0.0508,
+    "utterances": 40,
+    "status": "healthy"
+   },
+   {
+    "speaker": "MC04",
+    "wer": 0.0053,
+    "utterances": 40,
+    "status": "healthy"
+   }
+  ]
+ },
+ "round_c0": [
+  {
+   "model": "gemini-3.7-flash",
+   "sentences": 296,
+   "wer_raw": 0.3981,
+   "wer_suggestion": 0.394,
+   "wer_best_choice": 0.3499,
+   "exact_raw": 126,
+   "exact_suggestion": 129,
+   "exact_best_choice": 144,
+   "close_raw": 152,
+   "close_best_choice": 167,
+   "improved": 38,
+   "worsened": 40,
+   "latency_ms": {
+    "p50": 2607,
+    "p90": 5636,
+    "max": 18574
+   },
+   "retries": 12
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "sentences": 296,
+   "wer_raw": 0.3981,
+   "wer_suggestion": 0.3995,
+   "wer_best_choice": 0.3531,
+   "exact_raw": 126,
+   "exact_suggestion": 130,
+   "exact_best_choice": 143,
+   "close_raw": 152,
+   "close_best_choice": 165,
+   "improved": 40,
+   "worsened": 45,
+   "latency_ms": {
+    "p50": 2264,
+    "p90": 8358,
+    "max": 112346
+   },
+   "retries": 11
+  }
+ ],
+ "pilot": {
+  "text": {
+   "model": "gemini-3.7-flash",
+   "sentences": 681,
+   "wer_raw": 0.3169,
+   "wer_suggestion": 0.3372,
+   "wer_best_choice": 0.2819,
+   "exact_raw": 324,
+   "exact_suggestion": 314,
+   "exact_best_choice": 354,
+   "close_raw": 396,
+   "close_best_choice": 420,
+   "improved": 58,
+   "worsened": 117,
+   "latency_ms": {
+    "p50": 2951,
+    "p90": 11777,
+    "max": 79355
+   },
+   "retries": 64
+  },
+  "audio": {
+   "model": "gemini-3.7-flash",
+   "sentences": 681,
+   "wer_raw": 0.3169,
+   "wer_suggestion": 0.2643,
+   "wer_best_choice": 0.2309,
+   "exact_raw": 324,
+   "exact_suggestion": 364,
+   "exact_best_choice": 395,
+   "close_raw": 396,
+   "close_best_choice": 460,
+   "improved": 147,
+   "worsened": 53,
+   "latency_ms": {
+    "p50": 3803,
+    "p90": 8422,
+    "max": 68496
+   },
+   "retries": 46
+  },
+  "audio_history": {
+   "model": "gemini-3.7-flash",
+   "sentences": 681,
+   "wer_raw": 0.3169,
+   "wer_suggestion": 0.2309,
+   "wer_best_choice": 0.1977,
+   "exact_raw": 324,
+   "exact_suggestion": 388,
+   "exact_best_choice": 418,
+   "close_raw": 396,
+   "close_best_choice": 484,
+   "improved": 176,
+   "worsened": 55,
+   "latency_ms": {
+    "p50": 4392,
+    "p90": 23127,
+    "max": 284550
+   },
+   "retries": 94
+  }
+ }
+}
