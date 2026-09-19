@@ -67,7 +67,7 @@ be reported per condition once they are measured, not before.
 ## How to test
 
 1. Run it locally (see below) and open `http://localhost:3310`.
-2. Press **Start** and allow the microphone. The ring shows it is hearing you.
+2. Press **Start with Microphone** and allow the microphone, or **Start with TORGO Example** to hear a real dysarthric recording go through the app, or **Start with Your Audio File** to use your own recording (up to 60 s). Files are streamed at real time, exactly like the microphone.
 3. Speak an English sentence. Pause in the middle if you like, then press **End sentence** or wait.
 4. The sentence card shows what was heard (ear icon) at once, then suggestions a few seconds later.
 5. Pick the closest option, tap a single wrong word to swap it, or press **Edit**. If nothing is close, press **Say it again** and repeat the sentence. Then **Confirm and speak**.
@@ -270,7 +270,7 @@ gave WER 0.400 on the same sentences: no change.
 
 ## Credits and licenses
 
-- **TORGO database**, used for evaluation only, under its academic, non-profit terms. No TORGO audio is in this repository.
+- **TORGO database**, under its academic, non-profit terms. Used for evaluation; nine short sentence recordings are included as the app's examples (`codes/frontrouter/public/examples/torgo`), with this citation shown beside them.
   Rudzicz, F., Namasivayam, A.K., Wolff, T. (2012). The TORGO database of acoustic and articulatory speech from speakers with dysarthria. *Language Resources and Evaluation*, 46(4), 523 to 541.
   Via [abnerh/TORGO-database](https://huggingface.co/datasets/abnerh/TORGO-database); original at the [University of Toronto](https://www.cs.toronto.edu/~complingweb/data/TORGO/torgo.html).
 - **AssemblyAI** Universal-3.5 Pro streaming speech-to-text.

@@ -22,6 +22,8 @@ scripts/**/data/
 scripts/**/out/
 *.safetensors
 *.wav
+# Nine short TORGO clips for the demo's examples, used under TORGO's academic, non-profit terms.
+!codes/frontrouter/public/examples/torgo/*.wav
 
 # Python
 __pycache__/

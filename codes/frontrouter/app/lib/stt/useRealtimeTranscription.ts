@@ -14,17 +14,26 @@ export type Turn = {
 
 type TokenResponse = { token: string; ws_url: string; sample_rate: number };
 
+// Where the audio comes from. A file is streamed at real time, exactly like a microphone,
+// and played aloud at the same time so the listener hears what is being recognised.
+export type AudioSource = { kind: "microphone" } | { kind: "file"; name: string; samples: Int16Array };
+export type FileProgress = { name: string; sentMs: number; totalMs: number };
+
 type Session = {
   ws: WebSocket;
   // Audio sent since Begin, kept only for contributors (see keepAudio).
   chunks: Int16Array[];
   // Samples dropped from the front of `chunks` to cap memory.
   droppedSamples: number;
-  stream: MediaStream;
+  stream: MediaStream | null;
   audio: AudioContext;
+  // File source only: the timer that feeds 100 ms chunks, and the playback node.
+  feeder?: ReturnType<typeof setInterval>;
+  player?: AudioBufferSourceNode;
   startedAt: number;
   began: boolean;
   id?: number;
+  onBegin?: () => void;
   stopTimer?: ReturnType<typeof setTimeout>;
 };
 
@@ -82,6 +91,7 @@ export function useRealtimeTranscription({ keepAudio = false }: { keepAudio?: bo
   // Live analyser for visualisation. Set once per session, read per animation frame.
   const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [fileProgress, setFileProgress] = useState<FileProgress | null>(null);
   const session = useRef<Session | null>(null);
   const turnAudio = useRef(new Map<string, Int16Array>());
   const sessionCounter = useRef(0);
@@ -93,12 +103,19 @@ export function useRealtimeTranscription({ keepAudio = false }: { keepAudio?: bo
     if (!current) return;
     session.current = null;
     clearTimeout(current.stopTimer);
-    current.stream.getTracks().forEach((track) => track.stop());
+    clearInterval(current.feeder);
+    try {
+      current.player?.stop();
+    } catch {
+      // already stopped
+    }
+    current.stream?.getTracks().forEach((track) => track.stop());
     current.audio.close().catch((cause) => console.warn("[stt] audio close failed", cause));
     if (current.ws.readyState === WebSocket.OPEN || current.ws.readyState === WebSocket.CONNECTING) {
       current.ws.close();
     }
     setAnalyser(null);
+    setFileProgress(null);
   }, []);
 
   const fail = useCallback(
@@ -111,36 +128,27 @@ export function useRealtimeTranscription({ keepAudio = false }: { keepAudio?: bo
     [release],
   );
 
-  const start = useCallback(async () => {
+  const start = useCallback(async (source: AudioSource = { kind: "microphone" }) => {
     if (session.current) return;
     setError(null);
     setStatus("connecting");
 
-    let stream: MediaStream | undefined;
+    let stream: MediaStream | null = null;
     try {
       const [mic, token] = await Promise.all([
-        navigator.mediaDevices.getUserMedia({
-          audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
-        }),
+        source.kind === "microphone"
+          ? navigator.mediaDevices.getUserMedia({
+              audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+            })
+          : Promise.resolve(null),
         fetchToken(),
       ]);
       stream = mic;
 
       const audio = new AudioContext();
-      await audio.audioWorklet.addModule("/worklets/pcm16-capture.js");
-      const source = audio.createMediaStreamSource(stream);
-      const capture = new AudioWorkletNode(audio, "pcm16-capture", {
-        processorOptions: { targetRate: token.sample_rate },
-      });
-      // Some browsers only pull audio through nodes that reach the destination.
-      const mute = audio.createGain();
-      mute.gain.value = 0;
-      source.connect(capture).connect(mute).connect(audio.destination);
-
       const spectrum = audio.createAnalyser();
       spectrum.fftSize = 1024;
       spectrum.smoothingTimeConstant = 0.78;
-      source.connect(spectrum).connect(mute);
 
       const ws = new WebSocket(`${token.ws_url}&token=${encodeURIComponent(token.token)}`);
       ws.binaryType = "arraybuffer";
@@ -148,10 +156,10 @@ export function useRealtimeTranscription({ keepAudio = false }: { keepAudio?: bo
       session.current = current;
       setAnalyser(spectrum);
 
-      capture.port.onmessage = (event: MessageEvent<{ pcm: ArrayBuffer }>) => {
+      const send = (pcm: ArrayBuffer) => {
         if (!current.began || ws.readyState !== WebSocket.OPEN) return;
         if (keepAudioRef.current) {
-          current.chunks.push(new Int16Array(event.data.pcm.slice(0)));
+          current.chunks.push(new Int16Array(pcm.slice(0)));
           let kept = current.chunks.reduce((n, c) => n + c.length, 0);
           while (kept > KEEP_SECONDS * SAMPLE_RATE && current.chunks.length > 1) {
             const dropped = current.chunks.shift()!;
@@ -159,8 +167,52 @@ export function useRealtimeTranscription({ keepAudio = false }: { keepAudio?: bo
             kept -= dropped.length;
           }
         }
-        ws.send(event.data.pcm);
+        ws.send(pcm);
       };
+
+      if (stream) {
+        await audio.audioWorklet.addModule("/worklets/pcm16-capture.js");
+        const input = audio.createMediaStreamSource(stream);
+        const capture = new AudioWorkletNode(audio, "pcm16-capture", {
+          processorOptions: { targetRate: token.sample_rate },
+        });
+        // Some browsers only pull audio through nodes that reach the destination.
+        const mute = audio.createGain();
+        mute.gain.value = 0;
+        input.connect(capture).connect(mute).connect(audio.destination);
+        input.connect(spectrum).connect(mute);
+        capture.port.onmessage = (event: MessageEvent<{ pcm: ArrayBuffer }>) => send(event.data.pcm);
+      } else if (source.kind === "file") {
+        // Played aloud through the analyser, and fed to recognition in 100 ms chunks at real
+        // time once the session begins, the way the benchmark streams TORGO.
+        const buffer = audio.createBuffer(1, source.samples.length, SAMPLE_RATE);
+        const channel = buffer.getChannelData(0);
+        for (let i = 0; i < source.samples.length; i++) channel[i] = source.samples[i] / 0x8000;
+        const player = audio.createBufferSource();
+        player.buffer = buffer;
+        player.connect(spectrum).connect(audio.destination);
+        current.player = player;
+        const totalMs = Math.round((source.samples.length / SAMPLE_RATE) * 1000);
+        setFileProgress({ name: source.name, sentMs: 0, totalMs });
+        current.onBegin = () => {
+          player.start();
+          const chunk = SAMPLE_RATE / 10;
+          let offset = 0;
+          current.feeder = setInterval(() => {
+            if (offset >= source.samples.length) {
+              clearInterval(current.feeder);
+              // The recording is over: close its sentence now, then end the session.
+              if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ type: "ForceEndpoint" }));
+              current.stopTimer = setTimeout(() => stopRef.current(), 2500);
+              return;
+            }
+            const piece = source.samples.slice(offset, offset + chunk);
+            offset += chunk;
+            send(piece.buffer);
+            setFileProgress({ name: source.name, sentMs: Math.min(totalMs, Math.round((offset / SAMPLE_RATE) * 1000)), totalMs });
+          }, 100);
+        };
+      }
 
       ws.onmessage = (event) => {
         const message = JSON.parse(event.data as string);
@@ -170,6 +222,7 @@ export function useRealtimeTranscription({ keepAudio = false }: { keepAudio?: bo
           current.id = ++sessionCounter.current;
           setSessionId(current.id);
           setStatus("listening");
+          current.onBegin?.();
         } else if (message.type === "Turn") {
           const turn: Turn = {
             order: message.turn_order,
@@ -215,11 +268,20 @@ export function useRealtimeTranscription({ keepAudio = false }: { keepAudio?: bo
     }
   }, [fail, release]);
 
+  // Lets the file feeder end the session without depending on `stop` directly.
+  const stopRef = useRef<() => void>(() => undefined);
+
   const stop = useCallback(() => {
     const current = session.current;
     if (!current) return;
     setStatus("stopping");
-    current.stream.getTracks().forEach((track) => track.stop());
+    clearInterval(current.feeder);
+    try {
+      current.player?.stop();
+    } catch {
+      // already stopped
+    }
+    current.stream?.getTracks().forEach((track) => track.stop());
     if (current.ws.readyState === WebSocket.OPEN) {
       current.ws.send(JSON.stringify({ type: "Terminate" }));
       // If Termination never arrives, do not leave the Speaker stuck in "stopping".
@@ -233,6 +295,8 @@ export function useRealtimeTranscription({ keepAudio = false }: { keepAudio?: bo
       setStatus("idle");
     }
   }, [release]);
+
+  stopRef.current = stop;
 
   const endTurn = useCallback(() => {
     const ws = session.current?.ws;
@@ -248,5 +312,5 @@ export function useRealtimeTranscription({ keepAudio = false }: { keepAudio?: bo
     else turnAudio.current.clear();
   }, []);
 
-  return { status, turns, sessionId, analyser, error, start, stop, endTurn, getTurnAudio, forgetTurnAudio };
+  return { status, turns, sessionId, analyser, error, fileProgress, start, stop, endTurn, getTurnAudio, forgetTurnAudio };
 }

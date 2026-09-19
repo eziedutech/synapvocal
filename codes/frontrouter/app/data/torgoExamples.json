@@ -1,0 +1,92 @@
+[
+ {
+  "id": "M01_3_headMic_0042.wav",
+  "file": "/examples/torgo/M01_3_headMic_0042.wav",
+  "speaker": "M01",
+  "severity": "severe",
+  "reference": "The islands are sparsely populated",
+  "benchmark_heard": "The islands are farthest from the mainland.",
+  "benchmark_suggestion": "The islands are sparsely populated.",
+  "seconds": 8.7
+ },
+ {
+  "id": "M01_3_headMic_0117.wav",
+  "file": "/examples/torgo/M01_3_headMic_0117.wav",
+  "speaker": "M01",
+  "severity": "severe",
+  "reference": "Bright sunshine shimmers on the ocean",
+  "benchmark_heard": "Braid in line. Simmer at the origin.",
+  "benchmark_suggestion": "Bright sunshine shimmers on the ocean.",
+  "seconds": 6.8
+ },
+ {
+  "id": "M01_3_headMic_0188.wav",
+  "file": "/examples/torgo/M01_3_headMic_0188.wav",
+  "speaker": "M01",
+  "severity": "severe",
+  "reference": "Aluminum silverware can often be flimsy",
+  "benchmark_heard": "Aluminum everywhere. Can I be the new B? Fear me.",
+  "benchmark_suggestion": "Aluminum silverware can often be flimsy.",
+  "seconds": 9.8
+ },
+ {
+  "id": "M02_2_headMic_0111.wav",
+  "file": "/examples/torgo/M02_2_headMic_0111.wav",
+  "speaker": "M02",
+  "severity": "moderate",
+  "reference": "Both injuries were to the same leg",
+  "benchmark_heard": "Bob's egg was, uh, there. Two tough, same leg.",
+  "benchmark_suggestion": "Both injuries were to the same leg.",
+  "seconds": 10.0
+ },
+ {
+  "id": "M05_2_headMic_0002.wav",
+  "file": "/examples/torgo/M05_2_headMic_0002.wav",
+  "speaker": "M05",
+  "severity": "moderate",
+  "reference": "Where were you while we were away",
+  "benchmark_heard": "Woo-wee!",
+  "benchmark_suggestion": "Where were you while we were away?",
+  "seconds": 7.6
+ },
+ {
+  "id": "M05_2_headMic_0282.wav",
+  "file": "/examples/torgo/M05_2_headMic_0282.wav",
+  "speaker": "M05",
+  "severity": "moderate",
+  "reference": "Those musicians harmonize marvelously",
+  "benchmark_heard": "Those musicians. How many nights, motherlessly?",
+  "benchmark_suggestion": "Those musicians harmonize marvelously.",
+  "seconds": 11.4
+ },
+ {
+  "id": "F03_2_headMic_0055.wav",
+  "file": "/examples/torgo/F03_2_headMic_0055.wav",
+  "speaker": "F03",
+  "severity": "mild",
+  "reference": "Mother sews yellow gingham aprons",
+  "benchmark_heard": "Mother shows yellow skin harm. A prints.",
+  "benchmark_suggestion": "Mother sews yellow gingham aprons.",
+  "seconds": 5.8
+ },
+ {
+  "id": "F03_2_headMic_0101.wav",
+  "file": "/examples/torgo/F03_2_headMic_0101.wav",
+  "speaker": "F03",
+  "severity": "mild",
+  "reference": "Alimony harms a divorced man's wealth",
+  "benchmark_heard": "Alimony. Harms a divorce. Means wealth.",
+  "benchmark_suggestion": "Alimony harms a divorced man's wealth.",
+  "seconds": 10.2
+ },
+ {
+  "id": "F03_3_headMic_0137.wav",
+  "file": "/examples/torgo/F03_3_headMic_0137.wav",
+  "speaker": "F03",
+  "severity": "mild",
+  "reference": "Critical equipment needs proper maintenance",
+  "benchmark_heard": "Clinical equipment need proper maintenance.",
+  "benchmark_suggestion": "Critical equipment needs proper maintenance.",
+  "seconds": 3.4
+ }
+]

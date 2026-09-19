@@ -419,3 +419,12 @@ body {
   outline: 2px solid var(--accent-8);
   outline-offset: 1px;
 }
+
+.sv-sources {
+  flex-basis: 100%;
+}
+
+.sv-example {
+  padding: var(--space-3);
+  background: var(--gray-a2);
+}

@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
+import { FileIcon, HeartIcon, PlayIcon } from "@radix-ui/react-icons";
 import { AlertDialog, Badge, Button, Card, Flex, Grid, Heading, Skeleton, Text } from "@radix-ui/themes";
 
 import { ContributePanel } from "~/components/ContributePanel";
 import { InfoTip } from "~/components/InfoTip";
 import { Notice } from "~/components/Notice";
 import { SentenceCard } from "~/components/SentenceCard";
+import { type TorgoExample, TorgoExamples } from "~/components/TorgoExamples";
 import { VoiceOrb } from "~/components/VoiceOrb";
 import { useSentences } from "~/lib/bridge/useSentences";
 import { useSpeech } from "~/lib/bridge/useSpeech";
+import { decodeToPcm16 } from "~/lib/stt/audioFile";
 import { useMicPermission } from "~/lib/stt/useMicPermission";
-import { type SttStatus, useRealtimeTranscription } from "~/lib/stt/useRealtimeTranscription";
+import { type AudioSource, type SttStatus, useRealtimeTranscription } from "~/lib/stt/useRealtimeTranscription";
 import { cleanForDisplay } from "~/lib/text";
 
 // The Bridge and a contribution session share this workspace. Both send each sentence's
@@ -33,7 +36,7 @@ const INTRO: Record<BridgeMode, Intro> = {
     heading: ["Speak in your own way.", "SynapVocal helps others understand."],
     lead: "A real-time voice bridge for people whose speech is hard for others to understand: people with dysarthria, and people speaking with Parkinson's disease, ALS, cerebral palsy, Down syndrome or after a stroke.",
     steps: [
-      { title: "Speak", text: "Press Start, allow the microphone and say one sentence." },
+      { title: "Speak", text: "Start with the microphone and say one sentence, or try a TORGO example." },
       { title: "Choose", text: "Pick what was heard or a suggestion, and edit it if needed." },
       { title: "Confirm and speak", text: "Your sentence is said out loud in a clear voice." },
     ],
@@ -54,7 +57,7 @@ const INTRO: Record<BridgeMode, Intro> = {
 export function BridgeView({ mode }: { mode: BridgeMode }) {
   const contributing = mode === "contribute";
   const intro = INTRO[mode];
-  const { status, turns, sessionId, analyser, error, start, stop, endTurn, getTurnAudio, forgetTurnAudio } =
+  const { status, turns, sessionId, analyser, error, fileProgress, start, stop, endTurn, getTurnAudio, forgetTurnAudio } =
     useRealtimeTranscription({ keepAudio: true });
   const { sentences, confirm, retry, clear, sayAgain, awaitingRetake } = useSentences(turns, sessionId, getTurnAudio);
   const speech = useSpeech();
@@ -65,10 +68,34 @@ export function BridgeView({ mode }: { mode: BridgeMode }) {
   const mic = useMicPermission();
   // The introduction is for someone arriving; it goes for good once they start listening.
   const [started, setStarted] = useState(false);
-  const beginListening = () => {
+  const [sourceError, setSourceError] = useState<string | null>(null);
+  const [preparing, setPreparing] = useState(false);
+  const fileInput = useRef<HTMLInputElement>(null);
+  const begin = (source?: AudioSource) => {
+    setSourceError(null);
     setStarted(true);
-    start();
+    start(source);
   };
+  // A recording, from TORGO or the visitor's own file, becomes the audio source.
+  const beginWithRecording = async (name: string, load: () => Promise<ArrayBuffer>) => {
+    setSourceError(null);
+    setPreparing(true);
+    try {
+      const samples = await decodeToPcm16(await load());
+      begin({ kind: "file", name, samples });
+    } catch (cause) {
+      setSourceError(cause instanceof Error ? cause.message : String(cause));
+    } finally {
+      setPreparing(false);
+    }
+  };
+  const pickExample = (example: TorgoExample) =>
+    beginWithRecording(`TORGO ${example.speaker}: "${example.reference}"`, async () => {
+      const response = await fetch(example.file);
+      if (!response.ok) throw new Error("The example recording could not be loaded.");
+      return response.arrayBuffer();
+    });
+  const canStart = !active && !busy && !preparing;
 
   return (
     // No gap here: collapsed intro parts would still leave gaps behind. Spacing sits on the parts that stay.
@@ -136,14 +163,8 @@ export function BridgeView({ mode }: { mode: BridgeMode }) {
               Stop
             </Button>
           ) : (
-            <Button size="4" onClick={beginListening} aria-label={started ? "Start listening again" : "Start listening"}>
-              {started ? "Start again" : "Start"}
-            </Button>
-          )}
-          {/* Hidden while listening: leaving the page would end the session mid-sentence. */}
-          {!active && !busy && (
-            <Button size="4" variant="outline" asChild>
-              <Link to="/contribute">{contributing ? "My contributions" : "Contribute"}</Link>
+            <Button size="4" onClick={() => begin()} loading={preparing} aria-label="Start with the microphone">
+              {started ? "Start again" : "Start with Microphone"}
             </Button>
           )}
           {started && (
@@ -158,6 +179,51 @@ export function BridgeView({ mode }: { mode: BridgeMode }) {
             </Flex>
           )}
         </Flex>
+        {canStart && (
+          <Flex gap="2" wrap="wrap" align="center" justify="center" className="sv-sources">
+            {!contributing && (
+              <>
+                <TorgoExamples
+                  onPick={pickExample}
+                  trigger={
+                    <Button size="3" variant="outline">
+                      <PlayIcon /> Start with TORGO Example
+                    </Button>
+                  }
+                />
+                <Button size="3" variant="outline" onClick={() => fileInput.current?.click()}>
+                  <FileIcon /> Start with Your Audio File
+                </Button>
+                <input
+                  ref={fileInput}
+                  type="file"
+                  accept="audio/*"
+                  hidden
+                  onChange={(event) => {
+                    const file = event.target.files?.[0];
+                    event.target.value = "";
+                    if (file) beginWithRecording(file.name, () => file.arrayBuffer());
+                  }}
+                />
+              </>
+            )}
+            <Button size="3" variant="outline" asChild>
+              <Link to="/contribute">
+                <HeartIcon /> {contributing ? "My Contributions" : "Contribute Your Voice"}
+              </Link>
+            </Button>
+          </Flex>
+        )}
+        {fileProgress && (
+          <Text size="2" color="gray" align="center" className="sv-console-hint" role="status">
+            Playing {fileProgress.name} · {(fileProgress.sentMs / 1000).toFixed(0)} s of {(fileProgress.totalMs / 1000).toFixed(0)} s
+          </Text>
+        )}
+        {sourceError && (
+          <Text size="2" color="tomato" align="center" className="sv-console-hint" role="alert">
+            {sourceError}
+          </Text>
+        )}
         {mic === "denied" ? (
           <Text size="2" color="tomato" align="center" className="sv-console-hint" role="status">
             The microphone is blocked for this site. Allow it from the icon at the left of the address bar, then press

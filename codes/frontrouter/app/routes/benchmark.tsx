@@ -367,8 +367,8 @@ export default function Benchmark() {
 
       <Text size="2" color="gray">
         Speech recognition: AssemblyAI Universal-3.5 Pro streaming. Suggestions: Gemini 3.7 Flash. Data: Rudzicz, F., Namasivayam, A.K., Wolff, T. (2012). The TORGO database of acoustic and articulatory speech
-        from speakers with dysarthria. Language Resources and Evaluation, 46(4), 523 to 541. Used for evaluation only;
-        no audio is hosted here.{" "}
+        from speakers with dysarthria. Language Resources and Evaluation, 46(4), 523 to 541. Used for evaluation, and nine
+        short recordings serve as the Bridge's examples.{" "}
         <Link href="https://github.com/eziedutech/synapvocal/tree/main/scripts/benchmark" target="_blank" rel="noreferrer">
           Scripts and raw results
         </Link>
