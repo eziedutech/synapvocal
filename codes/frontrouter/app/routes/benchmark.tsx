@@ -35,7 +35,6 @@ export default function Benchmark() {
   const a = data.round_a;
   const b = data.round_b;
   const flash = data.round_c0.find((r) => r.model === "gemini-3.7-flash")!;
-  const flash38 = data.round_c0.find((r) => r.model === "gemini-3.8-flash")!;
   const variance = data.variance;
   const dysarthriaSpread = Math.max(...variance.map((v) => v.dysarthria)) - Math.min(...variance.map((v) => v.dysarthria));
 
@@ -107,12 +106,6 @@ export default function Benchmark() {
     { label: `${v.label}, Speaker picks best`, axisLabel: "", value: retake[v.key].wer_best, series: "choice", group: v.key },
   ]);
 
-  const latencyRows: BarRow[] = [
-    { label: "3.7 Flash, typical (p50)", value: flash.latency_ms.p50, series: "g37", group: "p50" },
-    { label: "3.8 Flash, typical (p50)", value: flash38.latency_ms.p50, series: "g38", group: "p50" },
-    { label: "3.7 Flash, slow (p90)", value: flash.latency_ms.p90, series: "g37", group: "p90" },
-    { label: "3.8 Flash, slow (p90)", value: flash38.latency_ms.p90, series: "g38", group: "p90" },
-  ];
 
   return (
     <Flex direction="column" gap="5">
@@ -303,30 +296,6 @@ export default function Benchmark() {
           />
         }
         table={<DataTable columns={["Text used", "WER", "Note"]} rows={pathRows.map((r) => [r.label, wer(r.value), r.detail ?? ""])} />}
-      />
-
-      <ChartCard
-        title="Suggestion speed"
-        about="Time from a finished sentence to Gemini's suggestions, 296 calls per model, including waits after rate limiting."
-        caption={`Quality was the same for both models (best-choice WER ${wer(flash.wer_best_choice)} and ${wer(flash38.wer_best_choice)}). 3.7 Flash is used because its slow calls are much less slow.`}
-        chart={
-          <BarChart
-            rows={latencyRows}
-            series={[
-              { key: "g37", label: "Gemini 3.7 Flash (used)", color: TEAL },
-              { key: "g38", label: "Gemini 3.8 Flash", color: ORANGE },
-            ]}
-            max={10000}
-            ticks={[0, 2500, 5000, 7500, 10000]}
-            format={seconds}
-          />
-        }
-        table={
-          <DataTable
-            columns={["Model", "Typical (p50)", "Slow (p90)", "Slowest", "Retries after 429"]}
-            rows={[flash, flash38].map((m) => [m.model, seconds(m.latency_ms.p50), seconds(m.latency_ms.p90), seconds(m.latency_ms.max), m.retries])}
-          />
-        }
       />
 
       <ChartCard
