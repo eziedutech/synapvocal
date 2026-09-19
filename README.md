@@ -203,6 +203,23 @@ AssemblyAI alone: WER **0.317**, 324 exactly right.
 - **Severe speech stays hard.** For the speakers with the most errors (M04, M01, F01) most sentences are still not exactly right. The ear-marked option and editing matter most for them.
 - The slow tail (p90 23 s) is Gemini's shared capacity being busy; the heard text is usable meanwhile.
 
+### AssemblyAI model and prompt, hardest speakers (round E, exploratory)
+
+The 165 pilot sentences of M04, M01 and F01, streamed in real time, same sentences in
+every setting:
+
+| Setting | WER | Exactly right | Split at a pause |
+|---|---|---|---|
+| Universal-3.5 Pro, no prompt (the app) | 0.744 | 14 | 64 |
+| 3.5 Pro + prompt describing dysarthric speech | 0.756 | 11 | 59 |
+| **Universal-3.6 Pro, no prompt** | **0.724** | 11 | 53 |
+| 3.6 Pro + the same prompt | 0.766 | 7 | 51 |
+
+AssemblyAI's newest model heard all three speakers a little better and cut sentences at
+a pause less often. The prompt made both models worse. The model difference is within
+run-to-run variation and comes from one group, so the app keeps 3.5 Pro until a full
+run confirms it.
+
 ### Saying it again (round D)
 
 TORGO has 51 dysarthric sentences that a speaker really recorded twice (21 from M04,

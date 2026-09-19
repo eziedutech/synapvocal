@@ -480,5 +480,51 @@
    "exact_best": 196,
    "close_best": 235
   }
+ },
+ "round_e": {
+  "u35": {
+   "n": 165,
+   "wer": 0.744,
+   "exact": 14,
+   "split_into_turns": 64,
+   "by_speaker": {
+    "F01": 0.582,
+    "M01": 0.742,
+    "M04": 0.8
+   }
+  },
+  "u35_prompt": {
+   "n": 165,
+   "wer": 0.756,
+   "exact": 11,
+   "split_into_turns": 59,
+   "by_speaker": {
+    "F01": 0.562,
+    "M01": 0.73,
+    "M04": 0.853
+   }
+  },
+  "u36": {
+   "n": 165,
+   "wer": 0.724,
+   "exact": 11,
+   "split_into_turns": 53,
+   "by_speaker": {
+    "F01": 0.542,
+    "M01": 0.706,
+    "M04": 0.808
+   }
+  },
+  "u36_prompt": {
+   "n": 165,
+   "wer": 0.766,
+   "exact": 7,
+   "split_into_turns": 51,
+   "by_speaker": {
+    "F01": 0.542,
+    "M01": 0.727,
+    "M04": 0.889
+   }
+  }
  }
 }

@@ -57,6 +57,15 @@ USD_PER_HOUR = 0.45  # Universal-3.5 Pro realtime base rate, billed on session d
 PROMPT_USD_PER_HOUR = 0.05  # added when a prompt is sent
 SESSION_OVERHEAD_S = 2.0  # connect and flush time per session, observed in round A
 
+# Round E (19 Sep 2026): asks for a faithful transcript and describes the speech, after
+# Zia's playground test where it kept one sentence in one turn and invented nothing.
+ROUND_E_PROMPT = (
+    "Transcribe English speech from a speaker with dysarthria. Their speech is slow and may be slurred or strained, "
+    "with long pauses, stretched sounds and weak consonants inside a sentence. They may repeat a word or restart a phrase. "
+    "Transcribe exactly the words they say, in the order they say them. Keep short words such as a, the, our, and, with "
+    "when they are spoken. Do not add words that were not spoken, and do not replace an unclear word with a more common phrase."
+)
+
 ROUND_B_PROMPT = (
     "A person with dysarthria, a motor speech disorder, is speaking English to another person. "
     "Their speech may be slow, slurred or strained, with long pauses inside a sentence. "
@@ -239,6 +248,8 @@ async def main() -> None:
     parser.add_argument("--sessions-per-minute", type=float, default=4.0)
     parser.add_argument("--resume", action="store_true", help="continue an interrupted run in the same file")
     parser.add_argument("--manifest", default="subset-v1", help="manifest name in manifest/, without .json")
+    parser.add_argument("--speech-model", help="override the product's speech model, e.g. universal-3-6-pro")
+    parser.add_argument("--prompt", choices=["none", "B", "E"], help="override the round's prompt")
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -253,8 +264,20 @@ async def main() -> None:
     ws_url, params = load_stream_config()
     if args.round == "B":
         params["prompt"] = ROUND_B_PROMPT
+    if args.prompt == "B":
+        params["prompt"] = ROUND_B_PROMPT
+    elif args.prompt == "E":
+        params["prompt"] = ROUND_E_PROMPT
+    elif args.prompt == "none":
+        params.pop("prompt", None)
+    if args.speech_model:
+        params["speech_model"] = args.speech_model
     url = f"{ws_url}?{urlencode(params)}"
     suffix = ("-variance" if args.variance_only else "") + (f"-smoke{args.limit}" if args.limit else "")
+    if args.speech_model:
+        suffix = f"-{args.speech_model}" + suffix
+    if args.prompt:
+        suffix = f"-prompt{args.prompt}" + suffix
     tag = "" if args.manifest == "subset-v1" else f"-{args.manifest.removeprefix('subset-')}"
     out_path = ROOT / "results" / f"round-{args.round.lower()}{tag}-run{args.run}{suffix}.jsonl"
     out_path.parent.mkdir(exist_ok=True)

@@ -39,6 +39,13 @@ RETAKE = {
 }
 # Prompt v2 (word confidences, three alternatives), tune half only: it lost, so it is shown as tried.
 PROMPT_V2_TUNE = RESULTS / "round-c2-gemini-3.7-flash-audio-h5-low-v2-words-tune-run1.jsonl"
+# Round E, 19 Sep 2026: AssemblyAI model and prompt on the three hardest speakers (exploratory).
+ROUND_E = {
+    "u35": RESULTS / "round-a-pilot2000-run1.jsonl",
+    "u35_prompt": RESULTS / "round-a-severe-run1-promptE.jsonl",
+    "u36": RESULTS / "round-a-severe-run1-promptnone-universal-3-6-pro.jsonl",
+    "u36_prompt": RESULTS / "round-a-severe-run1-promptE-universal-3-6-pro.jsonl",
+}
 C0 = {"gemini-3.7-flash": RESULTS / "round-c0-gemini-3.7-flash-low-run3.jsonl", "gemini-3.8-flash": RESULTS / "round-c0-gemini-3.8-flash-low-run2.jsonl"}
 
 
@@ -167,6 +174,14 @@ def retake() -> dict:
     return shared_summary(RETAKE)
 
 
+def round_e() -> dict:
+    from compare_stt import rows as keyed, summarise
+
+    runs = {name: keyed(path) for name, path in ROUND_E.items()}
+    ids = sorted(set.intersection(*(set(r) for r in runs.values())))
+    return {name: summarise([run[i] for i in ids]) for name, run in runs.items()}
+
+
 def prompt_v2() -> dict:
     return shared_summary({"v1": PILOT["audio_history"], "v2": PROMPT_V2_TUNE})
 
@@ -188,6 +203,7 @@ def main() -> None:
         "pilot": {variant: interpretation("gemini-3.7-flash", path) for variant, path in PILOT.items()},
         "retake": retake(),
         "prompt_v2": prompt_v2(),
+        "round_e": round_e(),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, indent=1), encoding="utf-8")

@@ -95,6 +95,20 @@ export default function Benchmark() {
   ];
   const used = pilot.audio_history;
 
+  const roundE = data.round_e;
+  const E_VARIANTS = [
+    { key: "u35", label: "Universal-3.5 Pro (used)" },
+    { key: "u35_prompt", label: "3.5 Pro + prompt" },
+    { key: "u36", label: "Universal-3.6 Pro" },
+    { key: "u36_prompt", label: "3.6 Pro + prompt" },
+  ] as const;
+  const roundERows: BarRow[] = E_VARIANTS.map((v) => ({
+    label: v.label,
+    value: roundE[v.key].wer,
+    series: v.key === "u36" ? "best" : "other",
+    detail: `${roundE[v.key].split_into_turns} split into more than one turn`,
+  }));
+
   const retake = data.retake;
   const RETAKE_VARIANTS = [
     { key: "one", label: "One try (the app today)" },
@@ -273,6 +287,38 @@ export default function Benchmark() {
               wer(retake[v.key].wer_best),
               `${retake[v.key].exact_best} of ${retake[v.key].n}`,
               retake[v.key].close_best,
+            ])}
+          />
+        }
+      />
+
+      <ChartCard
+        title="AssemblyAI's newest model on the hardest speakers"
+        about={`Exploratory: word error rate on the ${roundE.u35.n} sentences of the three speakers AssemblyAI found hardest (M04, M01, F01), streamed in real time. Four settings compared on the same sentences.`}
+        caption={`Universal-3.6 Pro, AssemblyAI's newest streaming model, heard these speakers best and split fewer sentences at a pause (${roundE.u36.split_into_turns} against ${roundE.u35.split_into_turns}). A prompt describing dysarthric speech made both models worse. The difference between the models is small and was measured on one group only, so the app keeps 3.5 Pro until a full run confirms it.`}
+        chart={
+          <BarChart
+            rows={roundERows}
+            series={[
+              { key: "other", label: "Other settings", color: GRAY },
+              { key: "best", label: "Lowest error", color: TEAL },
+            ]}
+            max={1}
+            ticks={[0, 0.25, 0.5, 0.75, 1]}
+            format={wer}
+          />
+        }
+        table={
+          <DataTable
+            columns={["Setting", "WER", "Exactly right", "Split at a pause", "M04", "M01", "F01"]}
+            rows={E_VARIANTS.map((v) => [
+              v.label,
+              wer(roundE[v.key].wer),
+              roundE[v.key].exact,
+              roundE[v.key].split_into_turns,
+              wer(roundE[v.key].by_speaker.M04),
+              wer(roundE[v.key].by_speaker.M01),
+              wer(roundE[v.key].by_speaker.F01),
             ])}
           />
         }

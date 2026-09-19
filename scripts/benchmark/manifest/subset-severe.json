@@ -1,0 +1,1495 @@
+{
+ "dataset": "abnerh/TORGO-database (Hugging Face), dysarthric speakers only",
+ "rules": {
+  "speakers": "M04, M01, F01: the three with the most errors in the pilot",
+  "source": "subset-pilot2000 sentences"
+ },
+ "variance_ids": [],
+ "utterances": [
+  {
+   "id": "F01_1_headMic_0008.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.844,
+   "reference": "Except in the winter when the ooze or snow or ice prevents"
+  },
+  {
+   "id": "F01_1_headMic_0014.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.562,
+   "reference": "he slowly takes a short walk in the open air each day"
+  },
+  {
+   "id": "F01_1_headMic_0020.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.874,
+   "reference": "Usually minus several buttons"
+  },
+  {
+   "id": "F01_1_headMic_0022.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.99,
+   "reference": "You wished to know all about my grandfather"
+  },
+  {
+   "id": "F01_1_headMic_0027.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.262,
+   "reference": "but he always answers Banana oil"
+  },
+  {
+   "id": "F01_1_headMic_0031.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.611,
+   "reference": "The quick brown fox jumps over the lazy dog"
+  },
+  {
+   "id": "F01_1_headMic_0032.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.567,
+   "reference": "She had your dark suit in greasy wash water all year"
+  },
+  {
+   "id": "F01_1_headMic_0035.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.422,
+   "reference": "giving those who observe him a pronounced feeling of the utmost respect"
+  },
+  {
+   "id": "F01_1_headMic_0036.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.319,
+   "reference": "We have often urged him to walk more and smoke less"
+  },
+  {
+   "id": "F01_1_headMic_0093.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.151,
+   "reference": "A long flowing beard clings to his chin"
+  },
+  {
+   "id": "F01_1_headMic_0106.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.696,
+   "reference": "yet he still thinks as swiftly as ever"
+  },
+  {
+   "id": "F01_1_headMic_0114.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.102,
+   "reference": "Well he is nearly ninety three years old"
+  },
+  {
+   "id": "F01_1_headMic_0116.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.807,
+   "reference": "Twice each day he plays skillfully and with zest upon our small organ"
+  },
+  {
+   "id": "F01_1_headMic_0126.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.241,
+   "reference": "he dresses himself in an ancient black frock coat"
+  },
+  {
+   "id": "F01_1_headMic_0130.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.746,
+   "reference": "Grandfather likes to be modern in his language"
+  },
+  {
+   "id": "F01_1_headMic_0132.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.163,
+   "reference": "When he speaks his voice is just a bit cracked and quivers a trifle"
+  },
+  {
+   "id": "M01_1_headMic_0005.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.075,
+   "reference": "When he speaks his voice is just a bit cracked and quivers a trifle"
+  },
+  {
+   "id": "M01_1_headMic_0009.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.54,
+   "reference": "Grandfather likes to be modern in his language"
+  },
+  {
+   "id": "M01_1_headMic_0011.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.46,
+   "reference": "Except in the winter when the ooze or snow or ice prevents"
+  },
+  {
+   "id": "M01_1_headMic_0012.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.225,
+   "reference": "A long flowing beard clings to his chin"
+  },
+  {
+   "id": "M01_1_headMic_0018.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.085,
+   "reference": "Well he is nearly ninetythree years old"
+  },
+  {
+   "id": "M01_1_headMic_0019.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.39,
+   "reference": "he dresses himself in an ancient black frock coat"
+  },
+  {
+   "id": "M01_1_headMic_0023.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.295,
+   "reference": "I will lead you"
+  },
+  {
+   "id": "M01_1_headMic_0026.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.44,
+   "reference": "yet he still thinks as swiftly as ever"
+  },
+  {
+   "id": "M01_1_headMic_0040.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.605,
+   "reference": "but he always answers Banana oil"
+  },
+  {
+   "id": "M01_1_headMic_0044.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.055,
+   "reference": "Don't ask me to carry an oily rag like that"
+  },
+  {
+   "id": "M01_1_headMic_0053.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.87,
+   "reference": "You wished to know all about my grandfather"
+  },
+  {
+   "id": "M01_1_headMic_0056.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.435,
+   "reference": "giving those who observe him a pronounced feeling of the utmost respect"
+  },
+  {
+   "id": "M01_1_headMic_0058.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.29,
+   "reference": "I can read"
+  },
+  {
+   "id": "M01_1_headMic_0066.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.865,
+   "reference": "usually minus several buttons"
+  },
+  {
+   "id": "M01_1_headMic_0072.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.285,
+   "reference": "She had your dark suit in greasy wash water all year"
+  },
+  {
+   "id": "M01_1_headMic_0077.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.135,
+   "reference": "he slowly takes a short walk in the open air each day"
+  },
+  {
+   "id": "M01_1_headMic_0084.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 15.03,
+   "reference": "Twice each day he plays skillfully and with zest upon our small organ"
+  },
+  {
+   "id": "M01_1_headMic_0092.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.195,
+   "reference": "We have often urged him to walk more and smoke less"
+  },
+  {
+   "id": "M01_3_headMic_0013.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.863,
+   "reference": "The quick brown fox jumps over the lazy dog"
+  },
+  {
+   "id": "M01_3_headMic_0029.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.951,
+   "reference": "I was conscious all the time"
+  },
+  {
+   "id": "M01_3_headMic_0033.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.955,
+   "reference": "We gathered shells on the beach"
+  },
+  {
+   "id": "M01_3_headMic_0035.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.951,
+   "reference": "Where were you while we were away"
+  },
+  {
+   "id": "M01_3_headMic_0042.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.734,
+   "reference": "The islands are sparsely populated"
+  },
+  {
+   "id": "M01_3_headMic_0043.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.496,
+   "reference": "Both figures would go higher in later years"
+  },
+  {
+   "id": "M01_3_headMic_0045.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.421,
+   "reference": "One validated acts of school districts"
+  },
+  {
+   "id": "M01_3_headMic_0056.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.004,
+   "reference": "Are your grades higher or lower than Nancy's"
+  },
+  {
+   "id": "M01_3_headMic_0061.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.475,
+   "reference": "I feel I can play this weekend"
+  },
+  {
+   "id": "M01_3_headMic_0066.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 11.749,
+   "reference": "Two other cases also were under advisement"
+  },
+  {
+   "id": "M01_3_headMic_0069.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.848,
+   "reference": "I tried to tell people in the community"
+  },
+  {
+   "id": "M01_3_headMic_0076.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.474,
+   "reference": "The humidity is overwhelming there"
+  },
+  {
+   "id": "M01_3_headMic_0078.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 3.481,
+   "reference": "She is thinner than I am"
+  },
+  {
+   "id": "M01_3_headMic_0084.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.452,
+   "reference": "Jane may earn more money by working hard"
+  },
+  {
+   "id": "M01_3_headMic_0086.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.477,
+   "reference": "Just one side got wet"
+  },
+  {
+   "id": "M01_3_headMic_0088.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.418,
+   "reference": "Mother sews yellow gingham aprons"
+  },
+  {
+   "id": "M01_3_headMic_0094.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.933,
+   "reference": "I looked up and noticed two old men"
+  },
+  {
+   "id": "M01_3_headMic_0095.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.535,
+   "reference": "I scrubbed the floors thoroughly"
+  },
+  {
+   "id": "M01_3_headMic_0096.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.482,
+   "reference": "I just try to do my best"
+  },
+  {
+   "id": "M01_3_headMic_0103.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.84,
+   "reference": "Their house is grey and white"
+  },
+  {
+   "id": "M01_3_headMic_0105.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 3.352,
+   "reference": "This was easy for us"
+  },
+  {
+   "id": "M01_3_headMic_0109.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.042,
+   "reference": "You'd be better off taking a cold shower"
+  },
+  {
+   "id": "M01_3_headMic_0111.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 16.084,
+   "reference": "If you destroy confidence in banks you do something to the economy he said"
+  },
+  {
+   "id": "M01_3_headMic_0113.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.684,
+   "reference": "Nothing is as offensive as innocence"
+  },
+  {
+   "id": "M01_3_headMic_0115.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.349,
+   "reference": "Will Robin wear a yellow lily"
+  },
+  {
+   "id": "M01_3_headMic_0117.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.818,
+   "reference": "Bright sunshine shimmers on the ocean"
+  },
+  {
+   "id": "M01_3_headMic_0121.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.667,
+   "reference": "All the big baseball players get traded"
+  },
+  {
+   "id": "M01_3_headMic_0125.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.029,
+   "reference": "My sister made the flowered curtains"
+  },
+  {
+   "id": "M01_3_headMic_0127.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.265,
+   "reference": "Why yell or worry over silly items"
+  },
+  {
+   "id": "M01_3_headMic_0129.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.861,
+   "reference": "The train approached the depot slowly"
+  },
+  {
+   "id": "M01_3_headMic_0132.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.152,
+   "reference": "They carried me off on the stretcher"
+  },
+  {
+   "id": "M01_3_headMic_0145.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.98,
+   "reference": "You're used to being on the field"
+  },
+  {
+   "id": "M01_3_headMic_0146.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.813,
+   "reference": "Everything went real smooth the sheriff said"
+  },
+  {
+   "id": "M01_3_headMic_0152.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.311,
+   "reference": "He will allow a rare lie"
+  },
+  {
+   "id": "M01_3_headMic_0159.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.081,
+   "reference": "This is not a program of socialized medicine"
+  },
+  {
+   "id": "M01_3_headMic_0165.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 15.708,
+   "reference": "It also provides for funds to clear slums and help colleges build dormitories"
+  },
+  {
+   "id": "M01_3_headMic_0166.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.973,
+   "reference": "The little schoolhouse stood empty"
+  },
+  {
+   "id": "M01_3_headMic_0167.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.235,
+   "reference": "Alimony harms a divorced man's wealth"
+  },
+  {
+   "id": "M01_3_headMic_0173.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.174,
+   "reference": "We rode horseback to the farm"
+  },
+  {
+   "id": "M01_3_headMic_0174.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.603,
+   "reference": "The dolphins swam around our boat"
+  },
+  {
+   "id": "M01_3_headMic_0177.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.592,
+   "reference": "Day after day some new episode is reported"
+  },
+  {
+   "id": "M01_3_headMic_0179.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.632,
+   "reference": "It eventually became a rather proud claim"
+  },
+  {
+   "id": "M01_3_headMic_0181.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 13.515,
+   "reference": "He further proposed grants of an unspecified sum for experimental hospitals"
+  },
+  {
+   "id": "M01_3_headMic_0185.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.105,
+   "reference": "The misguided souls have lost their way"
+  },
+  {
+   "id": "M01_3_headMic_0187.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.864,
+   "reference": "There is a treehouse up above"
+  },
+  {
+   "id": "M01_3_headMic_0188.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.843,
+   "reference": "Aluminum silverware can often be flimsy"
+  },
+  {
+   "id": "M01_3_headMic_0191.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.895,
+   "reference": "Nothing has been done yet to take advantage of the enabling legislation"
+  },
+  {
+   "id": "M01_3_headMic_0202.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.296,
+   "reference": "This is a period of transition for me"
+  },
+  {
+   "id": "M01_3_headMic_0205.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.525,
+   "reference": "If you are losing water replace it immediately"
+  },
+  {
+   "id": "M01_3_headMic_0206.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.663,
+   "reference": "When all else fails use force"
+  },
+  {
+   "id": "M01_3_headMic_0208.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.795,
+   "reference": "She wore warm fleecy woolen overalls"
+  },
+  {
+   "id": "M01_3_headMic_0209.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.068,
+   "reference": "Night after night they received annoying phone calls"
+  },
+  {
+   "id": "M01_3_headMic_0222.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.597,
+   "reference": "I expect we'll bounce back this week"
+  },
+  {
+   "id": "M01_3_headMic_0227.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.394,
+   "reference": "The box contained three sweaters"
+  },
+  {
+   "id": "M01_3_headMic_0232.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.103,
+   "reference": "Before Thursday's exam review every formula"
+  },
+  {
+   "id": "M01_3_headMic_0235.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.259,
+   "reference": "The museum hires musicians every evening"
+  },
+  {
+   "id": "M01_3_headMic_0239.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.418,
+   "reference": "Alfalfa is healthy for you"
+  },
+  {
+   "id": "M01_3_headMic_0240.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.354,
+   "reference": "The job provides many benefits"
+  },
+  {
+   "id": "M01_3_headMic_0242.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.083,
+   "reference": "I have had my bell rung"
+  },
+  {
+   "id": "M01_3_headMic_0249.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 3.855,
+   "reference": "The books are very expensive"
+  },
+  {
+   "id": "M01_3_headMic_0254.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.469,
+   "reference": "Students watched as he got out"
+  },
+  {
+   "id": "M01_3_headMic_0255.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.03,
+   "reference": "A roll of wire lay near the wall"
+  },
+  {
+   "id": "M01_3_headMic_0262.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 4.922,
+   "reference": "Carl lives in a lively home"
+  },
+  {
+   "id": "M01_3_headMic_0268.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.301,
+   "reference": "It was a good win for us"
+  },
+  {
+   "id": "M01_3_headMic_0271.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.04,
+   "reference": "He wrapped the package hastily"
+  },
+  {
+   "id": "M01_3_headMic_0275.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.703,
+   "reference": "Swing your arm as high as you can"
+  },
+  {
+   "id": "M01_3_headMic_0278.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.508,
+   "reference": "Both injuries were to the same leg"
+  },
+  {
+   "id": "M04_1_arrayMic_0054.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "arrayMic",
+   "duration": 4.5,
+   "reference": "I can read"
+  },
+  {
+   "id": "M04_1_arrayMic_0093.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "arrayMic",
+   "duration": 2.25,
+   "reference": "When when"
+  },
+  {
+   "id": "M04_1_arrayMic_0105.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "arrayMic",
+   "duration": 4.35,
+   "reference": "usually min min"
+  },
+  {
+   "id": "M04_2_headMic_0007.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.44,
+   "reference": "Grandfather likes to be modern in his language"
+  },
+  {
+   "id": "M04_2_headMic_0014.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.82,
+   "reference": "She had your dark suit in greasy wash water all year"
+  },
+  {
+   "id": "M04_2_headMic_0024.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 17.37,
+   "reference": "giving those who observe him a pronounced feeling of the utmost respect"
+  },
+  {
+   "id": "M04_2_headMic_0029.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 19.545,
+   "reference": "When he speaks his voice is just a bit cracked and quivers a trifle"
+  },
+  {
+   "id": "M04_2_headMic_0032.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.34,
+   "reference": "Don't ask me to carry an oily rag like that"
+  },
+  {
+   "id": "M04_2_headMic_0033.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 17.255,
+   "reference": "Except in the winter when the ooze or snow or ice prevents"
+  },
+  {
+   "id": "M04_2_headMic_0038.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.57,
+   "reference": "The quick brown fox jumps over the lazy dog"
+  },
+  {
+   "id": "M04_2_headMic_0039.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.875,
+   "reference": "I can"
+  },
+  {
+   "id": "M04_2_headMic_0044.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.145,
+   "reference": "yet he still thinks as swiftly as ever"
+  },
+  {
+   "id": "M04_2_headMic_0046.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 11.145,
+   "reference": "We have often urged him to walk more and smoke less"
+  },
+  {
+   "id": "M04_2_headMic_0048.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 14.085,
+   "reference": "A long flowing beard clings to his chin"
+  },
+  {
+   "id": "M04_2_headMic_0052.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.835,
+   "reference": "usually minus several buttons"
+  },
+  {
+   "id": "M04_2_headMic_0060.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 13.6,
+   "reference": "he slowly takes a short walk in the open air each day"
+  },
+  {
+   "id": "M04_2_headMic_0064.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.25,
+   "reference": "tear up that paper"
+  },
+  {
+   "id": "M04_2_headMic_0077.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 11.88,
+   "reference": "You wished to know all about my grandfather"
+  },
+  {
+   "id": "M04_2_headMic_0083.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 14.525,
+   "reference": "he dresses himself in an ancient black frock coat"
+  },
+  {
+   "id": "M04_2_headMic_0093.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.315,
+   "reference": "but he always answers Banana oil"
+  },
+  {
+   "id": "M04_2_headMic_0098.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.355,
+   "reference": "Well he is nearly ninetythree years old"
+  },
+  {
+   "id": "M04_2_headMic_0100.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 18.445,
+   "reference": "Twice each day he plays skillfully and with zest upon our small organ"
+  },
+  {
+   "id": "M04_2_headMic_0133.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.3,
+   "reference": "They carried me off on the stretcher"
+  },
+  {
+   "id": "M04_2_headMic_0147.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.075,
+   "reference": "Two other cases also were under advisement"
+  },
+  {
+   "id": "M04_2_headMic_0153.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 11.975,
+   "reference": "One validated acts of school districts"
+  },
+  {
+   "id": "M04_2_headMic_0155.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.105,
+   "reference": "I was conscious all the time"
+  },
+  {
+   "id": "M04_2_headMic_0157.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.835,
+   "reference": "She is thinner than I am"
+  },
+  {
+   "id": "M04_2_headMic_0158.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.83,
+   "reference": "I just try to do my best"
+  },
+  {
+   "id": "M04_2_headMic_0160.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 11.43,
+   "reference": "Are your grades higher or lower than Nancy's"
+  },
+  {
+   "id": "M04_2_headMic_0168.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 11.685,
+   "reference": "I tried to tell people in the community"
+  },
+  {
+   "id": "M04_2_headMic_0172.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.62,
+   "reference": "My sister made the flowered curtains"
+  },
+  {
+   "id": "M04_2_headMic_0174.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.44,
+   "reference": "We gathered shells on the beach"
+  },
+  {
+   "id": "M04_2_headMic_0182.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.51,
+   "reference": "He will allow a rare lie"
+  },
+  {
+   "id": "M04_2_headMic_0186.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.565,
+   "reference": "Just one side got wet"
+  },
+  {
+   "id": "M04_2_headMic_0187.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.86,
+   "reference": "Why yell or worry over silly items"
+  },
+  {
+   "id": "M04_2_headMic_0189.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.915,
+   "reference": "Bright sunshine shimmers on the ocean"
+  },
+  {
+   "id": "M04_2_headMic_0190.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.275,
+   "reference": "Where were you while we were away"
+  },
+  {
+   "id": "M04_2_headMic_0191.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.615,
+   "reference": "Will Robin wear a yellow lily"
+  },
+  {
+   "id": "M04_2_headMic_0194.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 16.19,
+   "reference": "If you destroy confidence in banks you do something to the economy he said"
+  },
+  {
+   "id": "M04_2_headMic_0202.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.94,
+   "reference": "Everything went real smooth the sheriff said"
+  },
+  {
+   "id": "M04_2_headMic_0206.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.165,
+   "reference": "I scrubbed the floors thoroughly"
+  },
+  {
+   "id": "M04_2_headMic_0208.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.055,
+   "reference": "All the big baseball players get traded"
+  },
+  {
+   "id": "M04_2_headMic_0216.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.41,
+   "reference": "Mother sews yellow gingham aprons"
+  },
+  {
+   "id": "M04_2_headMic_0217.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.29,
+   "reference": "I feel I can play this weekend"
+  },
+  {
+   "id": "M04_2_headMic_0219.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 11.775,
+   "reference": "Both figures would go higher in later years"
+  },
+  {
+   "id": "M04_2_headMic_0220.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.82,
+   "reference": "Jane may earn more money by working hard"
+  },
+  {
+   "id": "M04_2_headMic_0226.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 13.54,
+   "reference": "You'd be better off taking a cold shower"
+  },
+  {
+   "id": "M04_2_headMic_0231.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.34,
+   "reference": "The train approached the depot slowly"
+  },
+  {
+   "id": "M04_2_headMic_0236.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.37,
+   "reference": "Their house is grey and white"
+  },
+  {
+   "id": "M04_2_headMic_0242.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.22,
+   "reference": "I looked up and noticed two old men"
+  },
+  {
+   "id": "M04_2_headMic_0246.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.465,
+   "reference": "Nothing is as offensive as innocence"
+  },
+  {
+   "id": "M04_2_headMic_0253.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.1,
+   "reference": "This was easy for us"
+  },
+  {
+   "id": "M04_2_headMic_0255.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.39,
+   "reference": "You're used to being on the field"
+  },
+  {
+   "id": "M04_2_headMic_0264.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.595,
+   "reference": "The humidity is overwhelming there"
+  },
+  {
+   "id": "M04_2_headMic_0274.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.205,
+   "reference": "The islands are sparsely populated"
+  },
+  {
+   "id": "M04_2_headMic_0281.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.38,
+   "reference": "Aluminum silverware can often be flimsy"
+  },
+  {
+   "id": "M04_2_headMic_0282.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 23.175,
+   "reference": "It also provides for funds to clear slums and help colleges build dormitories"
+  },
+  {
+   "id": "M04_2_headMic_0283.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.525,
+   "reference": "It was a good win for us"
+  },
+  {
+   "id": "M04_2_headMic_0285.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 15.32,
+   "reference": "I expect we'll bounce back this week"
+  },
+  {
+   "id": "M04_2_headMic_0286.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.195,
+   "reference": "She wore warm fleecy woolen overalls"
+  },
+  {
+   "id": "M04_2_headMic_0288.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 13.27,
+   "reference": "This is not a program of socialized medicine"
+  },
+  {
+   "id": "M04_2_headMic_0291.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 17.41,
+   "reference": "Nothing has been done yet to take advantage of the enabling legislation"
+  },
+  {
+   "id": "M04_2_headMic_0295.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.235,
+   "reference": "There is a treehouse up above"
+  },
+  {
+   "id": "M04_2_headMic_0298.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.045,
+   "reference": "Both injuries were to the same leg"
+  }
+ ]
+}
