@@ -3,7 +3,7 @@
 > A realtime voice bridge for people whose speech is hard to understand, including dysarthria and the speech of people with Parkinson's disease, ALS, cerebral palsy, Down syndrome or stroke: it hears what they say, offers what they may have meant, and speaks the sentence they confirm.
 
 ![Python 3.14](https://img.shields.io/badge/Python-3.14-3776AB)
-![AssemblyAI Universal-3.5 Pro](https://img.shields.io/badge/AssemblyAI-Universal--3.5%20Pro-36b0aa)
+![AssemblyAI Universal-3.6 Pro](https://img.shields.io/badge/AssemblyAI-Universal--3.6%20Pro-36b0aa)
 ![Gemini 3.7 Flash](https://img.shields.io/badge/Gemini-3.7%20Flash-4285F4)
 ![Deepgram Aura-2](https://img.shields.io/badge/Deepgram-Aura--2-13EF93)
 ![React Router 8.4](https://img.shields.io/badge/React%20Router-8.4-CA4245)
@@ -35,13 +35,13 @@ happens other people struggle to understand, and so does speech recognition.
 
 SynapVocal sits between the Speaker and the Listener:
 
-1. **Hear.** The browser streams the microphone to AssemblyAI Universal-3.5 Pro in real time.
+1. **Hear.** The browser streams the microphone to AssemblyAI Universal-3.6 Pro in real time.
 2. **Offer.** When a sentence ends, Gemini listens to that sentence's audio, reads the transcript and the Speaker's earlier sentences, and proposes what they most likely meant, plus two other readings. What was heard is always offered too.
 3. **Confirm.** The Speaker picks one, or edits it. **Nothing is said aloud before they confirm.**
 4. **Speak.** Deepgram Aura-2 says the confirmed sentence clearly to the Listener.
 
 The confirmation step is the design, not a safety net. On every unique dysarthric
-sentence in TORGO, the Speaker's best option was exactly right for 418 of 681
+sentence in TORGO, the Speaker's best option was exactly right for 426 of 680
 sentences, against 324 for speech recognition alone, and even the best suggestion
 is still a guess.
 
@@ -190,13 +190,14 @@ case and punctuation. The same numbers, as charts, are on the `/benchmark` page.
 ### Larger pilot: every unique dysarthric sentence
 
 681 sentences, one per speaker and text (head microphone), with Gemini 3.7 Flash.
-AssemblyAI alone: WER **0.317**, 324 exactly right.
+AssemblyAI Universal-3.5 Pro alone: WER **0.317**, 324 exactly right (Universal-3.6 Pro: 0.301, 324).
 
 | What Gemini receives | First suggestion WER | Speaker picks best | Exactly right (best) | Wait p50 / p90 |
 |---|---|---|---|---|
 | Transcript only | 0.337 | 0.282 | 354 | 3.0 s / 11.8 s |
 | Transcript + audio | 0.264 | 0.231 | 395 | 3.8 s / 8.4 s |
-| Transcript + audio + 5 earlier sentences (**the app**) | **0.231** | **0.198** | **418** (61%) | 4.4 s / 23.1 s |
+| Transcript + audio + 5 earlier sentences | 0.231 | 0.198 | 418 (61%) | 4.4 s / 23.1 s |
+| Same, on Universal-3.6 Pro transcripts (**the app**) | **0.219** | **0.185** | **426** (63%) | 3.8 s / 17.9 s |
 
 - **From text alone, the first suggestion is slightly worse than AssemblyAI.** Hearing the audio is what makes it better, and the same person's earlier sentences help again.
 - **The app uses the last setup:** each sentence's audio goes to Gemini with the transcript and the Speaker's earlier sentences in this session.
@@ -210,15 +211,31 @@ every setting:
 
 | Setting | WER | Exactly right | Split at a pause |
 |---|---|---|---|
-| Universal-3.5 Pro, no prompt (the app) | 0.744 | 14 | 64 |
+| Universal-3.5 Pro, no prompt | 0.744 | 14 | 64 |
 | 3.5 Pro + prompt describing dysarthric speech | 0.756 | 11 | 59 |
-| **Universal-3.6 Pro, no prompt** | **0.724** | 11 | 53 |
+| **Universal-3.6 Pro, no prompt (now the app)** | **0.724** | 11 | 53 |
 | 3.6 Pro + the same prompt | 0.766 | 7 | 51 |
 
-AssemblyAI's newest model heard all three speakers a little better and cut sentences at
-a pause less often. The prompt made both models worse. The model difference is within
-run-to-run variation and comes from one group, so the app keeps 3.5 Pro until a full
-run confirms it.
+AssemblyAI's newest model heard these speakers a little better and cut sentences at a
+pause less often. The prompt made both models worse. A full run then confirmed the model
+on every pilot sentence (below), and the app moved to 3.6 Pro.
+
+### AssemblyAI Universal-3.6 Pro, full pilot
+
+All 682 unique dysarthric sentences again, same streaming settings, only the model changed:
+
+| | Universal-3.5 Pro | **Universal-3.6 Pro (the app)** |
+|---|---|---|
+| AssemblyAI alone, WER | 0.317 | **0.301** |
+| Sentences split at a pause | 128 | **119** |
+| With Gemini (audio + history), first suggestion WER | 0.230 | **0.219** |
+| Speaker picks best, WER | 0.196 | **0.185** |
+| Exactly right, first suggestion | 388 | **401** |
+| Exactly right, best choice | 418 | **426** (63%) |
+| Close, best choice | 484 | **502** (74%) |
+
+Compared on the 679 sentences with a transcript in both runs. Better recognition carries
+through to the end: every step improves.
 
 ### Saying it again (round D)
 
@@ -290,7 +307,7 @@ gave WER 0.400 on the same sentences: no change.
 - **TORGO database**, under its academic, non-profit terms. Used for evaluation; nine short sentence recordings are included as the app's examples (`codes/frontrouter/public/examples/torgo`), with this citation shown beside them.
   Rudzicz, F., Namasivayam, A.K., Wolff, T. (2012). The TORGO database of acoustic and articulatory speech from speakers with dysarthria. *Language Resources and Evaluation*, 46(4), 523 to 541.
   Via [abnerh/TORGO-database](https://huggingface.co/datasets/abnerh/TORGO-database); original at the [University of Toronto](https://www.cs.toronto.edu/~complingweb/data/TORGO/torgo.html).
-- **AssemblyAI** Universal-3.5 Pro streaming speech-to-text.
+- **AssemblyAI** Universal-3.6 Pro streaming speech-to-text (Universal-3.5 Pro in rounds A to D).
 - **Google Gemini** 3.7 Flash and 3.5 Flash-Lite on Vertex AI, through `google-genai`.
 - **Firebase Authentication** for Google sign-in (contributors only).
 - **Deepgram** Aura-2 text-to-speech.

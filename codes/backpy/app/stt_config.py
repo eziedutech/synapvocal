@@ -12,7 +12,10 @@ WS_URL = "wss://streaming.assemblyai.com/v3/ws"
 # Speaker can also end a turn explicitly (ForceEndpoint), so a long silence
 # window costs waiting time, not correctness.
 STREAM_PARAMS = {
-    "speech_model": "universal-3-5-pro",
+    # 20 Sep 2026: 3.6 Pro replaced 3.5 Pro after a full pilot run. On all 682 unique
+    # dysarthric sentences it lowered WER from 0.317 to 0.301, split fewer sentences at a
+    # pause (119 against 128), and with Gemini on top raised exact best choices 418 to 426.
+    "speech_model": "universal-3-6-pro",
     # The product is English only. Without this the model auto-detects language and
     # read one unclear dysarthric utterance as Mandarin. It biases strongly toward
     # English but does not guarantee it, per AssemblyAI's docs.

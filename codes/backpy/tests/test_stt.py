@@ -44,7 +44,7 @@ def test_token_returned_with_ws_url_and_key_not_leaked(monkeypatch):
     body = response.json()
     assert body["token"] == "temp-token"
     assert body["ws_url"].startswith("wss://streaming.assemblyai.com/v3/ws?")
-    assert "speech_model=universal-3-5-pro" in body["ws_url"]
+    assert "speech_model=universal-3-6-pro" in body["ws_url"]
     assert "token=" not in body["ws_url"]
     assert "perm-key" not in response.text
     assert seen["auth"] == "perm-key"

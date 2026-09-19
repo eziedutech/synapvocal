@@ -84,7 +84,8 @@ export default function Benchmark() {
   const PILOT_VARIANTS = [
     { key: "text", label: "Text", long: "Transcript only" },
     { key: "audio", label: "Text + audio", long: "Transcript + audio" },
-    { key: "audio_history", label: "Text + audio + history", long: "Transcript + audio + earlier sentences (the app)" },
+    { key: "audio_history", label: "Text + audio + history", long: "Transcript + audio + earlier sentences" },
+    { key: "app", label: "Same, on Universal-3.6 Pro", long: "Transcript + audio + earlier sentences, AssemblyAI Universal-3.6 Pro (the app)" },
   ] as const;
   const pilotRows: BarRow[] = [
     { label: "AssemblyAI only", value: pilot.text.wer_raw, series: "raw", group: "raw" },
@@ -93,13 +94,13 @@ export default function Benchmark() {
       { label: `${v.long}, Speaker picks best`, axisLabel: "", value: pilot[v.key].wer_best_choice, series: "choice", group: v.key },
     ]),
   ];
-  const used = pilot.audio_history;
+  const used = pilot.app;
 
   const roundE = data.round_e;
   const E_VARIANTS = [
-    { key: "u35", label: "Universal-3.5 Pro (used)" },
+    { key: "u35", label: "Universal-3.5 Pro" },
     { key: "u35_prompt", label: "3.5 Pro + prompt" },
-    { key: "u36", label: "Universal-3.6 Pro" },
+    { key: "u36", label: "Universal-3.6 Pro (used)" },
     { key: "u36_prompt", label: "3.6 Pro + prompt" },
   ] as const;
   const roundERows: BarRow[] = E_VARIANTS.map((v) => ({
@@ -126,7 +127,7 @@ export default function Benchmark() {
       <Flex direction="column" gap="2">
         <Heading size="7">Benchmark</Heading>
         <Text size="3" color="gray">
-          How well <strong>AssemblyAI Universal-3.5 Pro</strong> streaming speech recognition hears dysarthric speech,
+          How well <strong>AssemblyAI Universal-3.6 Pro</strong> streaming speech recognition hears dysarthric speech,
           and what SynapVocal adds on top. SynapVocal is designed for dysarthria and for the speech of people with
           Parkinson's disease, ALS, cerebral palsy, Down syndrome or stroke; so far it is measured on dysarthria from
           cerebral palsy or ALS. Measured on the TORGO database ({data.dataset.speakers.dysarthria} speakers with dysarthria,{" "}
@@ -157,7 +158,7 @@ export default function Benchmark() {
           label="AssemblyAI, dysarthric sentences"
           value={wer(used.wer_raw)}
           context={`WER on ${used.sentences} sentences`}
-          about="Share of words AssemblyAI Universal-3.5 Pro streaming got wrong on every unique dysarthric sentence in TORGO. Lower is better."
+          about="Share of words AssemblyAI Universal-3.6 Pro streaming got wrong on every unique dysarthric sentence in TORGO. Lower is better."
         />
         <StatTile
           label="When the Speaker chooses"
@@ -182,7 +183,7 @@ export default function Benchmark() {
       <ChartCard
         title="What helps the suggestions"
         about={`Word error rate on ${used.sentences} dysarthric sentences (every unique one in TORGO), Gemini 3.7 Flash with different inputs.`}
-        caption="From the transcript alone, Gemini's first suggestion is slightly worse than AssemblyAI. Hearing the audio makes it better, and earlier sentences from the same person help again. The app uses text + audio + history: the transcript, the sentence audio and earlier sentences from the same person. Letting the Speaker choose lowers the error further."
+        caption="From the transcript alone, Gemini's first suggestion is slightly worse than AssemblyAI. Hearing the audio makes it better, and earlier sentences from the same person help again. The first three use Universal-3.5 Pro transcripts; the last is the same setup on Universal-3.6 Pro, which is what the app runs. Letting the Speaker choose lowers the error further."
         chart={
           <BarChart
             rows={pilotRows}
@@ -295,7 +296,7 @@ export default function Benchmark() {
       <ChartCard
         title="AssemblyAI's newest model on the hardest speakers"
         about={`Exploratory: word error rate on the ${roundE.u35.n} sentences of the three speakers AssemblyAI found hardest (M04, M01, F01), streamed in real time. Four settings compared on the same sentences.`}
-        caption={`Universal-3.6 Pro, AssemblyAI's newest streaming model, heard these speakers best and split fewer sentences at a pause (${roundE.u36.split_into_turns} against ${roundE.u35.split_into_turns}). A prompt describing dysarthric speech made both models worse. The difference between the models is small and was measured on one group only, so the app keeps 3.5 Pro until a full run confirms it.`}
+        caption={`Universal-3.6 Pro, AssemblyAI's newest streaming model, heard these speakers best and split fewer sentences at a pause (${roundE.u36.split_into_turns} against ${roundE.u35.split_into_turns}). A prompt describing dysarthric speech made both models worse. A full run on all 682 pilot sentences confirmed the gain (WER 0.317 to 0.301), so the app now uses 3.6 Pro.`}
         chart={
           <BarChart
             rows={roundERows}
@@ -381,7 +382,7 @@ export default function Benchmark() {
       </Callout.Root>
 
       <Text size="2" color="gray">
-        Speech recognition: AssemblyAI Universal-3.5 Pro streaming. Suggestions: Gemini 3.7 Flash. Data: Rudzicz, F., Namasivayam, A.K., Wolff, T. (2012). The TORGO database of acoustic and articulatory speech
+        Speech recognition: AssemblyAI Universal-3.6 Pro streaming (rounds A to D: 3.5 Pro). Suggestions: Gemini 3.7 Flash. Data: Rudzicz, F., Namasivayam, A.K., Wolff, T. (2012). The TORGO database of acoustic and articulatory speech
         from speakers with dysarthria. Language Resources and Evaluation, 46(4), 523 to 541. Used for evaluation, and nine
         short recordings serve as the Bridge's examples.{" "}
         <Link href="https://github.com/eziedutech/synapvocal/tree/main/scripts/benchmark" target="_blank" rel="noreferrer">

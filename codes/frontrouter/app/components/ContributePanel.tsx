@@ -42,7 +42,7 @@ export function ContributePanel({
       confirmed_text: sentence.confirmed,
       label_source: sentence.confirmedSource,
       exact,
-      stt_model: "universal-3-5-pro",
+      stt_model: "universal-3-6-pro",
       interpret_model: ready?.model ?? "",
     };
     const form = new FormData();

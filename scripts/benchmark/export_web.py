@@ -30,6 +30,8 @@ PILOT = {
     "text": RESULTS / "round-c0-gemini-3.7-flash-low-run4.jsonl",
     "audio": RESULTS / "round-c1-gemini-3.7-flash-low-run3.jsonl",
     "audio_history": RESULTS / "round-c2-gemini-3.7-flash-audio-h5-low-run2.jsonl",
+    # 20 Sep 2026: the same, on AssemblyAI Universal-3.6 Pro transcripts. What the app runs.
+    "app": RESULTS / "round-c2-gemini-3.7-flash-audio-h5-low-run3.jsonl",
 }
 # Round D, 18 Sep 2026: the 51 dysarthric sentences a speaker really recorded twice.
 RETAKE = {

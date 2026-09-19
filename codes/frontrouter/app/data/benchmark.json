@@ -425,6 +425,26 @@
     "max": 284550
    },
    "retries": 94
+  },
+  "app": {
+   "model": "gemini-3.7-flash",
+   "sentences": 680,
+   "wer_raw": 0.2986,
+   "wer_suggestion": 0.2197,
+   "wer_best_choice": 0.1853,
+   "exact_raw": 324,
+   "exact_suggestion": 401,
+   "exact_best_choice": 426,
+   "close_raw": 403,
+   "close_best_choice": 502,
+   "improved": 181,
+   "worsened": 64,
+   "latency_ms": {
+    "p50": 3846,
+    "p90": 17892,
+    "max": 130510
+   },
+   "retries": 33
   }
  },
  "retake": {
