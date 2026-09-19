@@ -40,7 +40,7 @@ const INTRO: Record<BridgeMode, Intro> = {
       { title: "Choose", text: "Pick what was heard or a suggestion, and edit it if needed." },
       { title: "Confirm and speak", text: "Your sentence is said out loud in a clear voice." },
     ],
-    note: "Nothing is spoken until you confirm. Audio is not stored. English only for now.",
+    note: "Nothing is spoken until you confirm. English only for now.",
   },
   contribute: {
     heading: ["Contribution session.", "Help speech recognition hear voices like yours."],
