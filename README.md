@@ -11,6 +11,7 @@
 Built for the **AssemblyAI Voice Agent Hackathon** (lablab.ai, September 2026), Realtime Speech-to-Text path.
 
 Live demo: [synap.eziedutech.dev](https://synap.eziedutech.dev). Local setup is below.
+Full write-up, including the method, the negative results and the limits: [WHITEPAPER.md](docs/WHITEPAPER.md).
 
 ## Table of Contents
 
@@ -23,6 +24,7 @@ Live demo: [synap.eziedutech.dev](https://synap.eziedutech.dev). Local setup is 
 - [Contributing recordings](#contributing-recordings)
 - [Results](#results)
 - [What it does not claim](#what-it-does-not-claim)
+- [Roadmap](#roadmap)
 - [Credits and licenses](#credits-and-licenses)
 - [How this was built](#how-this-was-built)
 - [License](#license)
@@ -108,7 +110,7 @@ codes/
   frontrouter/     React Router app: Bridge, contribution session, benchmark, status
 scripts/
   benchmark/       TORGO subsets, STT and interpretation runs, scoring
-  finetune/        TORGO split and Whisper LoRA training on SageMaker (in progress)
+  finetune/        TORGO split and Whisper LoRA training on SageMaker (not part of the app)
 docker-compose.yml local mirror of production: only the frontend is published
 ```
 
@@ -263,7 +265,7 @@ A fixed subset of 695 head-microphone utterances (seed 20260917).
 
 | Group | Utterances | WER | Exactly right |
 |---|---|---|---|
-| Dysarthric, sentences | 296 | **0.400** | 42% |
+| Dysarthric, sentences | 296 | **0.398** | 43% |
 | Dysarthric, single words | 120 | 0.833 | 33% |
 | Control, sentences | 174 | 0.021 | 91% |
 | Control, single words | 105 | 0.209 | 79% |
@@ -272,7 +274,7 @@ Per dysarthric speaker, sentence and word WER combined, the spread is wide:
 M01 0.84, M04 0.80, F01 0.64, M02 0.61, M05 0.36, F03 0.11, F04 0.04, M03 0.01.
 
 **Stability.** The same 60 utterances were run three times. Dysarthric WER came
-back 0.465, 0.433 and 0.442, so differences under about 0.03 are noise and are not
+back 0.461, 0.428 and 0.437, so differences under about 0.03 are noise and are not
 reported as improvements.
 
 **Round B.** A context prompt for AssemblyAI ("the speaker may have dysarthria")
@@ -282,9 +284,9 @@ gave WER 0.400 on the same sentences: no change.
 
 | | Gemini 3.7 Flash | Gemini 3.8 Flash |
 |---|---|---|
-| WER of the suggestion alone (raw was 0.400) | 0.396 | 0.401 |
-| WER if the Speaker picks the best option | **0.352** | 0.355 |
-| Sentences exactly right, best option (raw: 124) | **141** | 140 |
+| WER of the suggestion alone (raw was 0.398) | 0.394 | 0.400 |
+| WER if the Speaker picks the best option | **0.350** | 0.353 |
+| Sentences exactly right, best option (raw: 126) | **144** | 143 |
 | Latency p50 / p90 | 2.6 s / 5.6 s | 2.3 s / 8.4 s |
 
 - **Automatic correction does not help.** With 3.7 Flash, 38 sentences got better and 40 got worse.
@@ -297,10 +299,20 @@ gave WER 0.400 on the same sentences: no change.
 - It does not diagnose anything and is not a medical device.
 - Suggestions are guesses and can be wrong, which is why the Speaker confirms every sentence.
 - Results are measured on dysarthria (TORGO) only. Parkinson's disease, Down syndrome and stroke are not measured yet, and no claim is made for them until they are.
-- The app does not use a model trained on anyone's voice. A Whisper fine-tune on TORGO is in progress and will be reported only once measured on speakers it has never heard.
+- The app does not use a model trained on anyone's voice. It runs off-the-shelf models, with prompting, sentence audio and in-session context. A Whisper fine-tune on TORGO is prepared but not trained, and nothing about it is claimed here (see [Roadmap](#roadmap)).
 - English only.
 - The "best option" numbers assume the Speaker recognises their own sentence. They are an upper bound, not a measured user result.
 - TORGO sentences are read aloud and many are well known ("The quick brown fox..."). Free conversation will be harder.
+
+## Roadmap
+
+Measured and deployed is one thing; planned is another, and this section is the
+second. Nothing here is a result.
+
+- **A recogniser fine-tuned on dysarthric speech.** Whisper large-v3 with LoRA on TORGO. The data, a leakage-safe split (texts disjoint by hash, three speakers held out entirely) and the training job are written and ready in [`scripts/finetune`](scripts/finetune); training waits on GPU capacity. It would be combined with the streaming recogniser rather than replace it, and reported only once measured on speakers it has never heard.
+- **Results per condition.** The same pipeline, run on the Speech Accessibility Project corpus once access is granted, reported per etiology instead of pooled.
+- **Low-confidence words marked in the interface.** AssemblyAI returns per-word confidence. Giving it to the model did not help, but showing the Speaker which words are shaky is a different use of the same signal, and points **Fix a word** at where it is needed.
+- **A study with people who have dysarthria.** Every "Speaker picks best" figure is an upper bound until real speakers use this and we measure what they choose, how long it takes, and whether they are understood.
 
 ## Credits and licenses
 

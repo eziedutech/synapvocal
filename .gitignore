@@ -11,8 +11,10 @@ id_ed25519*
 # Internal working notes, plans and owner material: kept on disk, never published.
 # Only code and hackathon material go to the public repository.
 agents/
-docs/
+docs/*
 resources/
+# The whitepaper is a hackathon deliverable and is published with the code.
+!docs/WHITEPAPER.md
 read_folder.md
 project-global-rule.md
 CLAUDE.md
