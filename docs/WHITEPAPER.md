@@ -148,22 +148,7 @@ other candidates proposed in that position.
 
 ### 3.3 Architecture
 
-```
-Browser
-  microphone -> AudioWorklet (16 kHz PCM) -> AssemblyAI streaming (one-time token)
-  every other call goes to the frontend only
-        |
-frontrouter   React Router 8 + Radix Themes, the only publicly reachable service
-        |     per-visitor rate limits, Firebase sign-in check, signed session cookie
-        |     server-side calls over the internal network
-backpy        FastAPI on Python 3.14, no public domain
-  POST /api/stt/token         one-time AssemblyAI token; the key stays on the server
-  POST /api/bridge/interpret  Gemini 3.7 Flash with sentence audio, JSON schema,
-                              logged backoff, falls back to Gemini 3.5 Flash-Lite
-  POST /api/tts/speak         Deepgram Aura-2, streamed through
-  /api/users, /api/me, /api/contributions    voluntary contributions
-  GET  /api/health            versions and which keys are configured, never their values
-```
+![SynapVocal architecture: the browser streams 16 kHz PCM straight to AssemblyAI with a one-time token, while every other call goes through frontrouter, the only service with a domain, to backpy, which holds every key and calls Gemini, Deepgram and the contribution store.](../assets/architecture.svg)
 
 Four properties are worth stating explicitly, because each was a deliberate
 decision rather than a default.

@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" width="960" height="660" role="img" aria-labelledby="title desc">
+  <title id="title">SynapVocal architecture</title>
+  <desc id="desc">The browser streams microphone audio straight to AssemblyAI over a WebSocket using a one-time token. Every other call goes to frontrouter, the only service reachable from the internet, which calls backpy over an internal network. backpy holds every key and calls AssemblyAI to mint tokens, Gemini on Vertex AI to interpret a sentence, Deepgram to speak it, and PostgreSQL with object storage for voluntary contributions.</desc>
+
+  <defs>
+    <style>
+      .b   { font-family: Inter, "Segoe UI", system-ui, sans-serif; font-size: 11.5px; fill: #2c3a39; }
+      .h   { font-family: Inter, "Segoe UI", system-ui, sans-serif; font-size: 14.5px; font-weight: 650; fill: #12312f; }
+      .s   { font-family: Inter, "Segoe UI", system-ui, sans-serif; font-size: 10px; fill: #61736f; }
+      .lbl { font-family: Inter, "Segoe UI", system-ui, sans-serif; font-size: 10.5px; fill: #3f524f; }
+      .lblk{ font-family: Inter, "Segoe UI", system-ui, sans-serif; font-size: 10.5px; font-weight: 650; fill: #0b6f68; }
+      .m   { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 10px; fill: #12312f; }
+      .on-dark      { fill: #ffffff; }
+      .on-dark-soft { fill: #b8dedb; }
+      .box { fill: #ffffff; stroke: #cfe0de; stroke-width: 1.2; }
+      .arr { stroke: #7f918e; stroke-width: 1.4; fill: none; }
+      .arrk{ stroke: #0b8f86; stroke-width: 2.6; fill: none; }
+    </style>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7f918e"/>
+    </marker>
+    <marker id="ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0b8f86"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="660" fill="#f2f8f7"/>
+
+  <!-- our infrastructure boundary -->
+  <rect x="318" y="64" width="324" height="496" rx="10" fill="#e8f2f1" stroke="#9cc4c0" stroke-width="1.2" stroke-dasharray="6 5"/>
+  <text class="s" x="330" y="82">Our servers. Every other call arrives here.</text>
+
+  <!-- the one path that skips our servers -->
+  <path class="arrk" marker-end="url(#ak)" d="M 156 92 L 156 40 L 810 40 L 810 68"/>
+  <text class="lblk" x="360" y="30">16 kHz PCM over a WebSocket, with a one-time token</text>
+  <text class="s" x="360" y="52">One hop fewer, and the permanent key never reaches the browser.</text>
+
+  <!-- Browser -->
+  <rect class="box" x="40" y="92" width="232" height="336" rx="9"/>
+  <rect x="40" y="92" width="232" height="30" rx="9" fill="#36b0aa"/>
+  <rect x="40" y="112" width="232" height="10" fill="#36b0aa"/>
+  <text class="h on-dark" x="56" y="113">Browser</text>
+
+  <text class="b" x="56" y="148">Microphone, a TORGO example,</text>
+  <text class="b" x="56" y="164">or an audio file</text>
+  <text class="s" x="56" y="182">streamed at real time either way</text>
+
+  <line x1="56" y1="198" x2="256" y2="198" stroke="#e4eeed" stroke-width="1"/>
+  <text class="b" x="56" y="220">AudioWorklet, 16 kHz PCM</text>
+  <line x1="56" y1="236" x2="256" y2="236" stroke="#e4eeed" stroke-width="1"/>
+
+  <text class="b" x="56" y="258">Sentence cards</text>
+  <text class="s" x="56" y="275">heard text at once, suggestions</text>
+  <text class="s" x="56" y="289">after, then the Speaker confirms</text>
+
+  <line x1="56" y1="305" x2="256" y2="305" stroke="#e4eeed" stroke-width="1"/>
+  <text class="b" x="56" y="327">Sentence audio, in memory</text>
+  <text class="s" x="56" y="344">sent to be interpreted, then</text>
+  <text class="s" x="56" y="358">dropped. The Bridge stores</text>
+  <text class="s" x="56" y="372">nothing.</text>
+
+  <text class="s" x="56" y="404">Turns that arrive together become</text>
+  <text class="s" x="56" y="418">one sentence, as the benchmark does.</text>
+
+  <!-- Browser to frontrouter -->
+  <path class="arr" marker-end="url(#a)" d="M 272 176 L 338 176"/>
+  <text class="lbl" x="276" y="168">HTTPS</text>
+
+  <!-- frontrouter -->
+  <rect class="box" x="338" y="100" width="284" height="132" rx="9"/>
+  <rect x="338" y="100" width="284" height="30" rx="9" fill="#1f7a75"/>
+  <rect x="338" y="120" width="284" height="10" fill="#1f7a75"/>
+  <text class="h on-dark" x="354" y="121">frontrouter</text>
+  <text class="s on-dark-soft" x="536" y="121">public</text>
+
+  <text class="b" x="354" y="152">React Router 8, Radix Themes</text>
+  <text class="s" x="354" y="172">rate limits per visitor on every</text>
+  <text class="s" x="354" y="186">route that spends paid credit</text>
+  <text class="s" x="354" y="204">Firebase sign-in check,</text>
+  <text class="s" x="354" y="218">signed session cookie</text>
+
+  <!-- frontrouter to backpy -->
+  <path class="arr" marker-end="url(#a)" d="M 480 232 L 480 288"/>
+  <text class="lbl" x="492" y="256">server side only,</text>
+  <text class="lbl" x="492" y="270">internal network</text>
+
+  <!-- backpy -->
+  <rect class="box" x="338" y="290" width="284" height="250" rx="9"/>
+  <rect x="338" y="290" width="284" height="30" rx="9" fill="#12312f"/>
+  <rect x="338" y="310" width="284" height="10" fill="#12312f"/>
+  <text class="h on-dark" x="354" y="311">backpy</text>
+  <text class="s on-dark-soft" x="516" y="311">no domain</text>
+
+  <text class="s" x="354" y="340">FastAPI, Python 3.14. Every key lives here.</text>
+
+  <text class="m" x="354" y="366">POST /api/stt/token</text>
+  <text class="s" x="366" y="380">one-time token, the key stays</text>
+
+  <text class="m" x="354" y="404">POST /api/bridge/interpret</text>
+  <text class="s" x="366" y="418">transcript, sentence audio, 5 earlier</text>
+  <text class="s" x="366" y="432">sentences, answer under a JSON schema</text>
+
+  <text class="m" x="354" y="456">POST /api/tts/speak</text>
+
+  <text class="m" x="354" y="482">/api/users  /api/me  /api/contributions</text>
+
+  <text class="m" x="354" y="508">GET  /api/health</text>
+  <text class="s" x="366" y="522">which keys are set, never their values</text>
+
+  <!-- AssemblyAI -->
+  <rect class="box" x="700" y="68" width="222" height="86" rx="9"/>
+  <rect x="700" y="68" width="222" height="5" rx="2.5" fill="#0b8f86"/>
+  <text class="h" x="716" y="96">AssemblyAI</text>
+  <text class="b" x="716" y="117">Universal-3.6 Pro</text>
+  <text class="s" x="716" y="136">streaming speech to text</text>
+
+  <!-- Gemini -->
+  <rect class="box" x="700" y="238" width="222" height="96" rx="9"/>
+  <rect x="700" y="238" width="222" height="5" rx="2.5" fill="#eb6834"/>
+  <text class="h" x="716" y="266">Gemini 3.7 Flash</text>
+  <text class="s" x="716" y="287">Vertex AI, global endpoint</text>
+  <text class="s" x="716" y="303">logged backoff on 429 and 504</text>
+  <text class="s" x="716" y="319">falls back to 3.5 Flash-Lite</text>
+
+  <!-- Deepgram -->
+  <rect class="box" x="700" y="372" width="222" height="72" rx="9"/>
+  <rect x="700" y="372" width="222" height="5" rx="2.5" fill="#0b8f86"/>
+  <text class="h" x="716" y="400">Deepgram Aura-2</text>
+  <text class="s" x="716" y="421">says the confirmed sentence</text>
+
+  <!-- storage -->
+  <rect class="box" x="700" y="482" width="222" height="86" rx="9"/>
+  <rect x="700" y="482" width="222" height="5" rx="2.5" fill="#b4c0bf"/>
+  <text class="h" x="716" y="510">PostgreSQL</text>
+  <text class="b" x="716" y="530">and object storage</text>
+  <text class="s" x="716" y="549">voluntary contributions only</text>
+
+  <!-- backpy to the services -->
+  <path class="arr" marker-end="url(#a)" d="M 622 352 C 664 352, 672 140, 698 122"/>
+  <text class="lbl" x="650" y="190">mint a token</text>
+
+  <path class="arr" marker-end="url(#a)" d="M 622 400 C 656 400, 664 300, 698 288"/>
+
+  <path class="arr" marker-end="url(#a)" d="M 622 452 C 654 452, 668 410, 698 408"/>
+
+  <path class="arr" marker-end="url(#a)" d="M 622 496 C 654 496, 668 520, 698 524"/>
+
+  <!-- caption -->
+  <line x1="40" y1="592" x2="920" y2="592" stroke="#d7e6e4" stroke-width="1"/>
+  <text class="b" x="40" y="614">Audio for recognition goes from the browser straight to AssemblyAI. Everything else goes through frontrouter, the only</text>
+  <text class="b" x="40" y="632">service reachable from the internet, to backpy, which has no domain and holds every key.</text>
+</svg>
