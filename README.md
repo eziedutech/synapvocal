@@ -79,22 +79,7 @@ Optional: **Contribute** lets a signed-in person who agrees to it save recording
 
 ## Architecture
 
-```
-Browser
-  microphone -> AudioWorklet (16 kHz PCM) -> AssemblyAI streaming (one-time token)
-  every other call goes to the frontend only
-        |
-frontrouter  React Router 8 + Radix Themes, the only public service
-        |  per-visitor rate limits, Firebase sign-in check, session cookie
-        |  server-side calls over the internal network
-backpy  FastAPI, no public domain
-  POST /api/stt/token         one-time AssemblyAI token, key stays on the server
-  POST /api/bridge/interpret  Gemini 3.7 Flash with the sentence audio, JSON schema,
-                              logged backoff, falls back to 3.5 Flash-Lite
-  POST /api/tts/speak         Deepgram Aura-2, audio streamed through
-  /api/users, /api/me, /api/contributions   voluntary contributions (Postgres + S3)
-  GET  /api/health            versions and which keys are configured
-```
+![SynapVocal architecture: the browser streams 16 kHz PCM straight to AssemblyAI with a one-time token, while every other call goes through frontrouter, the only service with a domain, to backpy, which holds every key and calls Gemini, Deepgram and the contribution store.](assets/architecture.svg)
 
 Choices worth knowing:
 
