@@ -426,7 +426,7 @@
    },
    "retries": 94
   },
-  "app": {
+  "u36": {
    "model": "gemini-3.7-flash",
    "sentences": 680,
    "wer_raw": 0.2986,
@@ -445,6 +445,26 @@
     "max": 130510
    },
    "retries": 33
+  },
+  "app": {
+   "model": "gemini-3.7-flash",
+   "sentences": 680,
+   "wer_raw": 0.2838,
+   "wer_suggestion": 0.2081,
+   "wer_best_choice": 0.1786,
+   "exact_raw": 333,
+   "exact_suggestion": 407,
+   "exact_best_choice": 431,
+   "close_raw": 418,
+   "close_best_choice": 510,
+   "improved": 170,
+   "worsened": 50,
+   "latency_ms": {
+    "p50": 5424,
+    "p90": 23165,
+    "max": 210994
+   },
+   "retries": 116
   }
  },
  "retake": {
@@ -578,6 +598,40 @@
     "M03": 0.009,
     "M04": 0.81,
     "M05": 0.304
+   }
+  }
+ },
+ "turn_silence": {
+  "ms400": {
+   "n": 682,
+   "wer": 0.301,
+   "exact": 324,
+   "split_into_turns": 119,
+   "by_speaker": {
+    "F01": 0.542,
+    "F03": 0.078,
+    "F04": 0.022,
+    "M01": 0.706,
+    "M02": 0.4,
+    "M03": 0.009,
+    "M04": 0.81,
+    "M05": 0.304
+   }
+  },
+  "ms2000": {
+   "n": 682,
+   "wer": 0.287,
+   "exact": 333,
+   "split_into_turns": 1,
+   "by_speaker": {
+    "F01": 0.556,
+    "F03": 0.075,
+    "F04": 0.024,
+    "M01": 0.687,
+    "M02": 0.383,
+    "M03": 0.009,
+    "M04": 0.8,
+    "M05": 0.247
    }
   }
  }

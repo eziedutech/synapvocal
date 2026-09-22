@@ -85,7 +85,8 @@ export default function Benchmark() {
     { key: "text", label: "Text", long: "Transcript only" },
     { key: "audio", label: "Text + audio", long: "Transcript + audio" },
     { key: "audio_history", label: "Text + audio + history", long: "Transcript + audio + earlier sentences" },
-    { key: "app", label: "Same, on Universal-3.6 Pro", long: "Transcript + audio + earlier sentences, AssemblyAI Universal-3.6 Pro (the app)" },
+    { key: "u36", label: "Same, on Universal-3.6 Pro", long: "Transcript + audio + earlier sentences, AssemblyAI Universal-3.6 Pro" },
+    { key: "app", label: "Same, sentences kept whole", long: "The same, with the recogniser waiting 2 s before ending a turn (the app)" },
   ] as const;
   const pilotRows: BarRow[] = [
     { label: "AssemblyAI only", value: pilot.text.wer_raw, series: "raw", group: "raw" },
@@ -100,6 +101,7 @@ export default function Benchmark() {
   // The same pilot sentences on both AssemblyAI models, from the results files rather
   // than typed here: three decimals, because the gain is smaller than a hundredth.
   const sttModels = data.stt_models;
+  const silence = data.turn_silence;
   const wer3 = (value: number) => value.toFixed(3);
   const E_VARIANTS = [
     { key: "u35", label: "Universal-3.5 Pro" },
@@ -187,7 +189,7 @@ export default function Benchmark() {
       <ChartCard
         title="What helps the suggestions"
         about={`Word error rate on ${used.sentences} dysarthric sentences (every unique one in TORGO), Gemini 3.7 Flash with different inputs.`}
-        caption="From the transcript alone, Gemini's first suggestion is slightly worse than AssemblyAI. Hearing the audio makes it better, and earlier sentences from the same person help again. The first three use Universal-3.5 Pro transcripts; the last is the same setup on Universal-3.6 Pro, which is what the app runs. Letting the Speaker choose lowers the error further."
+        caption="From the transcript alone, Gemini's first suggestion is slightly worse than AssemblyAI. Hearing the audio makes it better, and earlier sentences from the same person help again. The first three use Universal-3.5 Pro transcripts, then the same setup on Universal-3.6 Pro, then the app as it runs today, where the recogniser waits two seconds before ending a turn so a sentence that pauses stays whole. Letting the Speaker choose lowers the error further."
         chart={
           <BarChart
             rows={pilotRows}
@@ -325,6 +327,36 @@ export default function Benchmark() {
               wer(roundE[v.key].by_speaker.M01),
               wer(roundE[v.key].by_speaker.F01),
             ])}
+          />
+        }
+      />
+
+      <ChartCard
+        title="How long a pause is allowed to be"
+        about={`Word error rate and sentences split at a pause on all ${silence.ms2000.n} pilot sentences, with the recogniser ending a turn after 400 ms of silence and after 2000 ms. Nothing else changed.`}
+        caption={`Speech that pauses inside a sentence was being cut there: ${silence.ms400.split_into_turns} of ${silence.ms400.n} sentences arrived in pieces, and each piece was interpreted on its own, which invites an answer about nothing that was said. Measured from the recordings, the silences inside these sentences reach 1.7 s, so 400 ms was never going to hold them. At 2000 ms ${silence.ms2000.split_into_turns} sentence is split. Accuracy moved from ${wer(silence.ms400.wer)} to ${wer(silence.ms2000.wer)}, which is inside this benchmark's run-to-run variation and is not claimed as an improvement. The cost is waiting: the Speaker holds a sentence open for up to two seconds, or ends it with a button.`}
+        chart={
+          <BarChart
+            rows={[
+              { label: "Ends a turn after 400 ms", value: silence.ms400.wer, series: "other", detail: `${silence.ms400.split_into_turns} sentences split at a pause` },
+              { label: "Ends a turn after 2000 ms", value: silence.ms2000.wer, series: "best", detail: `${silence.ms2000.split_into_turns} sentence split at a pause` },
+            ]}
+            series={[
+              { key: "other", label: "Before", color: GRAY },
+              { key: "best", label: "The app today", color: TEAL },
+            ]}
+            max={0.4}
+            ticks={[0, 0.1, 0.2, 0.3, 0.4]}
+            format={wer}
+          />
+        }
+        table={
+          <DataTable
+            columns={["Silence that ends a turn", "WER", "Exactly right", "Split at a pause"]}
+            rows={[
+              ["400 ms", wer(silence.ms400.wer), `${silence.ms400.exact} of ${silence.ms400.n}`, silence.ms400.split_into_turns],
+              ["2000 ms, the app", wer(silence.ms2000.wer), `${silence.ms2000.exact} of ${silence.ms2000.n}`, silence.ms2000.split_into_turns],
+            ]}
           />
         }
       />

@@ -18,3 +18,14 @@ Round C2 gemini-3.7-flash LOW audio + history 5 run1 smoke on pilot (15:12): 3 o
 Round C2 gemini-3.7-flash LOW audio + history 5 run1 on pilot (15:13 to 15:14): aborted at item 6 by an httpx ReadError (dropped connection), which the backoff loop did not yet treat as transient. Fixed in interpret.py; rerun as run2. Never quote run1.
 Prompt v2 smoke (3 items, 18 Sep): checks the runner only. Never quote.
 Round E smoke (2 items, 19 Sep): checks universal-3-6-pro is accepted. Never quote.
+
+round-a-pilot-sentences-run2-silence2000-two-writers.jsonl (22 Sep 2026)
+  Two run_stt.py processes wrote to this path at once and it must never be quoted.
+  The first run was launched detached; its progress log only prints every 25
+  utterances, so its silence was read as death, and a second run was started with
+  --resume on top of it. Both were alive, both were transcribing the same manifest,
+  and both were appending: 139 valid records, 3 lines torn in half, two meta lines,
+  and AssemblyAI billed for both. Stopped by hand at 139 of 682.
+  The lesson is in the tool, not the runner: a run that writes to a results file
+  should take a lock on it, or at least refuse to start when another process holds
+  the same output path. --resume trusts the file and cannot see a live writer.

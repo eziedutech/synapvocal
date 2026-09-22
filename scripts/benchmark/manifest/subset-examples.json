@@ -1,0 +1,89 @@
+{
+ "dataset": "abnerh/TORGO-database (Hugging Face), dysarthric speakers only",
+ "seed": 20260917,
+ "rules": "The nine recordings the app offers as examples. Used on 22 Sep 2026 to measure how min_turn_silence changes how often a sentence is split at a pause.",
+ "variance_ids": [],
+ "utterances": [
+  {
+   "id": "F03_3_headMic_0137.wav",
+   "speaker": "F03",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 3.445,
+   "reference": "Critical equipment needs proper maintenance"
+  },
+  {
+   "id": "F03_2_headMic_0055.wav",
+   "speaker": "F03",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 5.8,
+   "reference": "Mother sews yellow gingham aprons"
+  },
+  {
+   "id": "F03_2_headMic_0101.wav",
+   "speaker": "F03",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.225,
+   "reference": "Alimony harms a divorced man's wealth"
+  },
+  {
+   "id": "M05_2_headMic_0002.wav",
+   "speaker": "M05",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 7.635,
+   "reference": "Where were you while we were away"
+  },
+  {
+   "id": "M02_2_headMic_0111.wav",
+   "speaker": "M02",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.95,
+   "reference": "Both injuries were to the same leg"
+  },
+  {
+   "id": "M05_2_headMic_0282.wav",
+   "speaker": "M05",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 11.42,
+   "reference": "Those musicians harmonize marvelously"
+  },
+  {
+   "id": "M01_3_headMic_0117.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 6.818,
+   "reference": "Bright sunshine shimmers on the ocean"
+  },
+  {
+   "id": "M01_3_headMic_0042.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 8.734,
+   "reference": "The islands are sparsely populated"
+  },
+  {
+   "id": "M01_3_headMic_0188.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 9.843,
+   "reference": "Aluminum silverware can often be flimsy"
+  }
+ ]
+}

@@ -43,8 +43,8 @@ SynapVocal sits between the Speaker and the Listener:
 4. **Speak.** Deepgram Aura-2 says the confirmed sentence clearly to the Listener.
 
 The confirmation step is the design, not a safety net. On every unique dysarthric
-sentence in TORGO, the Speaker's best option was exactly right for 426 of 680
-sentences, against 324 for speech recognition alone, and even the best suggestion
+sentence in TORGO, the Speaker's best option was exactly right for 431 of 680
+sentences, against 333 for speech recognition alone, and even the best suggestion
 is still a guess.
 
 ## Who it is for
@@ -185,12 +185,13 @@ AssemblyAI Universal-3.5 Pro alone: WER **0.317**, 324 exactly right (Universal-
 | Transcript only | 0.337 | 0.282 | 354 | 3.0 s / 11.8 s |
 | Transcript + audio | 0.264 | 0.231 | 395 | 3.8 s / 8.4 s |
 | Transcript + audio + 5 earlier sentences | 0.231 | 0.198 | 418 (61%) | 4.4 s / 23.1 s |
-| Same, on Universal-3.6 Pro transcripts (**the app**) | **0.219** | **0.185** | **426** (63%) | 3.8 s / 17.9 s |
+| Same, on Universal-3.6 Pro transcripts | 0.219 | 0.185 | 426 (63%) | 3.8 s / 17.9 s |
+| Same, sentences kept whole through a pause (**the app**) | **0.208** | **0.179** | **431** (63%) | 5.4 s / 23.2 s |
 
 - **From text alone, the first suggestion is slightly worse than AssemblyAI.** Hearing the audio is what makes it better, and the same person's earlier sentences help again.
-- **The app uses the last setup:** each sentence's audio goes to Gemini with the transcript and the Speaker's earlier sentences in this session.
+- **The app uses the last setup:** each sentence's audio goes to Gemini with the transcript and the Speaker's earlier sentences in this session, and the recogniser waits two seconds before ending a turn, so a sentence that pauses stays one sentence.
 - **Severe speech stays hard.** For the speakers with the most errors (M04, M01, F01) most sentences are still not exactly right. The ear-marked option and editing matter most for them.
-- The slow tail (p90 23 s) is Gemini's shared capacity being busy; the heard text is usable meanwhile.
+- The slow tail (p90 23 s) is mostly Gemini's shared capacity being busy: excluding the calls that had to be retried, p90 is 13.7 s. The heard text is usable meanwhile.
 
 ### AssemblyAI model and prompt, hardest speakers (round E, exploratory)
 
@@ -224,6 +225,22 @@ All 682 unique dysarthric sentences again, same streaming settings, only the mod
 
 Compared on the 679 sentences with a transcript in both runs. Better recognition carries
 through to the end: every step improves.
+
+### How long a pause is allowed to be
+
+A speaker with dysarthria pauses inside a sentence. Measured from the recordings, those
+silences reach 1.7 s, and the recogniser was ending a turn after 400 ms, so sentences
+arrived in pieces and each piece was interpreted on its own. All 682 pilot sentences
+again, nothing changed but that number:
+
+| Silence that ends a turn | WER | Exactly right | Split at a pause |
+|---|---|---|---|
+| 400 ms | 0.301 | 324 | 119 of 682 |
+| **2000 ms (the app)** | **0.287** | **333** | **1 of 682** |
+
+Splitting is what this fixes, and the accuracy difference is inside run-to-run variation,
+so it is not reported as an improvement. The cost is waiting: a sentence stays open for
+up to two seconds of silence, and **End sentence** closes it at once.
 
 ### Saying it again (round D)
 

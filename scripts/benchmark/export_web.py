@@ -30,8 +30,17 @@ PILOT = {
     "text": RESULTS / "round-c0-gemini-3.7-flash-low-run4.jsonl",
     "audio": RESULTS / "round-c1-gemini-3.7-flash-low-run3.jsonl",
     "audio_history": RESULTS / "round-c2-gemini-3.7-flash-audio-h5-low-run2.jsonl",
-    # 20 Sep 2026: the same, on AssemblyAI Universal-3.6 Pro transcripts. What the app runs.
-    "app": RESULTS / "round-c2-gemini-3.7-flash-audio-h5-low-run3.jsonl",
+    # 20 Sep 2026: the same, on AssemblyAI Universal-3.6 Pro transcripts.
+    "u36": RESULTS / "round-c2-gemini-3.7-flash-audio-h5-low-run3.jsonl",
+    # 23 Sep 2026: and with min_turn_silence at 2000 ms, so a sentence that pauses stays
+    # one sentence. What the app runs.
+    "app": RESULTS / "round-c2-gemini-3.7-flash-audio-h5-low-run4.jsonl",
+}
+# 23 Sep 2026: how long a silence has to be before the recogniser ends the turn. The same
+# pilot, the same model, only that number changed.
+TURN_SILENCE = {
+    "ms400": RESULTS / "round-a-pilot-sentences-run1-universal-3-6-pro.jsonl",
+    "ms2000": RESULTS / "round-a-pilot-sentences-run3-silence2000.jsonl",
 }
 # Round D, 18 Sep 2026: the 51 dysarthric sentences a speaker really recorded twice.
 RETAKE = {
@@ -214,6 +223,7 @@ def main() -> None:
         "prompt_v2": prompt_v2(),
         "round_e": stt_compare(ROUND_E),
         "stt_models": stt_compare(PILOT_STT_MODELS),
+        "turn_silence": stt_compare(TURN_SILENCE),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, indent=1), encoding="utf-8")

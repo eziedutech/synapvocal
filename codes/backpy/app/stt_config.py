@@ -8,9 +8,8 @@ WS_URL = "wss://streaming.assemblyai.com/v3/ws"
 
 # Dysarthric speech has longer pauses inside a sentence than typical speech, so
 # turn detection starts from the "patient" end of AssemblyAI's presets and goes
-# further. These numbers are a starting assumption, not a measured optimum. The
-# Speaker can also end a turn explicitly (ForceEndpoint), so a long silence
-# window costs waiting time, not correctness.
+# further. The Speaker can also end a turn explicitly (ForceEndpoint), so a long
+# silence window costs waiting time, not correctness.
 STREAM_PARAMS = {
     # 20 Sep 2026: 3.6 Pro replaced 3.5 Pro after a full pilot run. On all 682 unique
     # dysarthric sentences it lowered WER from 0.317 to 0.301, split fewer sentences at a
@@ -22,7 +21,16 @@ STREAM_PARAMS = {
     "language_codes": "en",
     "sample_rate": 16000,
     "encoding": "pcm_s16le",
-    "min_turn_silence": 400,
+    # 22 Sep 2026, and this one is measured rather than assumed. At 400 ms a sentence
+    # was cut in half wherever the Speaker paused, which happened on 119 of the 682
+    # pilot sentences: the app then treated each fragment as its own sentence and asked
+    # a model to interpret "Means wealth." on its own. The silences inside those
+    # sentences run to 1740 ms, measured from the recordings themselves, so 400 ms was
+    # never going to hold them. At 2000 ms the same pilot splits 1 sentence, not 119.
+    # WER moved 0.301 to 0.287, which is inside this project's noise band and is not
+    # claimed as an improvement anywhere. The cost is real: the Speaker waits up to two
+    # seconds of silence before the sentence closes, or presses End sentence.
+    "min_turn_silence": 2000,
     "max_turn_silence": 3000,
     "inactivity_timeout": 120,
     # 22 Sep 2026. Imprecise articulation lands on profanity that nobody said: park and

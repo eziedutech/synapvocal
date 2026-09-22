@@ -36,9 +36,11 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import contextlib
 import importlib.util
 import json
 import logging
+import os
 import time
 from pathlib import Path
 from urllib.parse import urlencode
@@ -99,7 +101,13 @@ def spent_usd() -> float:
     seconds = 0.0
     for path in (ROOT / "results").rglob("round-*.jsonl"):
         for line in path.read_text(encoding="utf-8").splitlines():
-            row = json.loads(line)
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError:
+                # A run that was interrupted mid-write leaves a torn line. It was still
+                # billed, but it cannot be counted, and it must not stop the next run.
+                log.warning("skipping a torn line in %s when adding up what has been spent", path.name)
+                continue
             if "meta" in row:
                 rate = USD_PER_HOUR + (PROMPT_USD_PER_HOUR if row["meta"].get("params", {}).get("prompt") else 0)
                 continue
@@ -238,7 +246,37 @@ async def worker(queue, url, key, pcm, out, counter, pacer, abort: asyncio.Event
             queue.task_done()
 
 
+@contextlib.contextmanager
+def only_writer(out_path: Path):
+    """Refuse to start when another run already owns this results file.
+
+    Two processes appending to one file tore records in half and billed twice for the
+    same audio (22 Sep 2026, see results/invalid). --resume reads the file and cannot
+    tell a finished run from a live one, so the file says who owns it.
+    """
+    lock = out_path.with_suffix(out_path.suffix + ".lock")
+    try:
+        fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        raise SystemExit(
+            f"{lock.name} exists: another run is writing {out_path.name}, or one was killed. "
+            "Look for a running run_stt.py first. If there is none, delete the lock and resume."
+        ) from None
+    try:
+        os.write(fd, (str(os.getpid()) + " " + time.strftime("%Y-%m-%dT%H:%M:%S%z")).encode())
+        os.close(fd)
+        yield
+    finally:
+        lock.unlink(missing_ok=True)
+
+
 async def main() -> None:
+    # One writer per results file, released however this run ends.
+    with contextlib.ExitStack() as stack:
+        await run(stack)
+
+
+async def run(stack: contextlib.ExitStack) -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--round", required=True, choices=["A", "B"])
     parser.add_argument("--run", required=True, type=int)
@@ -250,6 +288,11 @@ async def main() -> None:
     parser.add_argument("--manifest", default="subset-v1", help="manifest name in manifest/, without .json")
     parser.add_argument("--speech-model", help="override the product's speech model, e.g. universal-3-6-pro")
     parser.add_argument("--prompt", choices=["none", "B", "E"], help="override the round's prompt")
+    parser.add_argument(
+        "--min-turn-silence",
+        type=int,
+        help="override min_turn_silence in ms, to see how often a sentence is split at a pause",
+    )
     parser.add_argument(
         "--filter-profanity",
         action="store_true",
@@ -277,6 +320,8 @@ async def main() -> None:
         params.pop("prompt", None)
     if args.speech_model:
         params["speech_model"] = args.speech_model
+    if args.min_turn_silence:
+        params["min_turn_silence"] = args.min_turn_silence
     if args.filter_profanity:
         params["filter_profanity"] = "true"
     url = f"{ws_url}?{urlencode(params)}"
@@ -285,11 +330,14 @@ async def main() -> None:
         suffix = f"-{args.speech_model}" + suffix
     if args.prompt:
         suffix = f"-prompt{args.prompt}" + suffix
+    if args.min_turn_silence:
+        suffix = f"-silence{args.min_turn_silence}" + suffix
     if args.filter_profanity:
         suffix = "-filterprofanity" + suffix
     tag = "" if args.manifest == "subset-v1" else f"-{args.manifest.removeprefix('subset-')}"
     out_path = ROOT / "results" / f"round-{args.round.lower()}{tag}-run{args.run}{suffix}.jsonl"
     out_path.parent.mkdir(exist_ok=True)
+    stack.enter_context(only_writer(out_path))
     kept_lines: list[str] = []
     if args.resume:
         # Keep every successful record, retry the rest, and refuse if the settings changed.

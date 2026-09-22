@@ -32,11 +32,11 @@ best answer was an alternative the model ranked second or third.
 
 On every unique dysarthric sentence in TORGO (680 sentences, 8 speakers), streamed
 in real time through the settings the deployed app uses: AssemblyAI Universal-3.6
-Pro alone reaches word error rate 0.299 with 324 sentences exactly right. With
-SynapVocal's suggestions the first suggestion reaches 0.220, and when the speaker
-picks the best of the four options offered, 0.185 with 426 sentences exactly right,
-a 38% relative reduction in word error rate and 102 more sentences recovered word
-for word. Median wait for a suggestion is 3.8 s.
+Pro alone reaches word error rate 0.284 with 333 sentences exactly right. With
+SynapVocal's suggestions the first suggestion reaches 0.208, and when the speaker
+picks the best of the four options offered, 0.179 with 431 sentences exactly right,
+a 37% relative reduction in word error rate and 98 more sentences recovered word
+for word. Median wait for a suggestion is 5.4 s.
 
 The system is deployed and public. This paper describes what it does, how it was
 measured, what was tried and discarded, and what it does not claim.
@@ -271,7 +271,8 @@ in what Gemini receives:
 | Transcript only | 0.337 | 0.282 | 354 | 420 | 3.0 s | 11.8 s |
 | Transcript + audio | 0.264 | 0.231 | 395 | 460 | 3.8 s | 8.4 s |
 | Transcript + audio + 5 earlier sentences | 0.231 | 0.198 | 418 | 484 | 4.4 s | 23.1 s |
-| **Same, on Universal-3.6 Pro transcripts (the app)** | **0.220** | **0.185** | **426 of 680** | **502** | **3.8 s** | **17.9 s** |
+| Same, on Universal-3.6 Pro transcripts | 0.220 | 0.185 | 426 of 680 | 502 | 3.8 s | 17.9 s |
+| **Same, sentences kept whole through a pause (the app)** | **0.208** | **0.179** | **431 of 680** | **510** | **5.4 s** | **23.2 s** |
 
 Three findings, in the order they changed the product.
 
@@ -310,15 +311,40 @@ deployed configuration:
 
 | | AssemblyAI alone | SynapVocal, first suggestion | SynapVocal, speaker picks best |
 |---|---|---|---|
-| Word error rate | 0.299 | 0.220 | **0.185** |
-| Exactly right | 324 (48%) | 401 (59%) | **426 (63%)** |
-| Close | 403 (59%) | | **502 (74%)** |
+| Word error rate | 0.284 | 0.208 | **0.179** |
+| Exactly right | 333 (49%) | 407 (60%) | **431 (63%)** |
+| Close | 418 (61%) | | **510 (75%)** |
 
-**Relative reduction in word error rate: 26% for the first suggestion, 38% for the
-speaker's best choice. 102 more sentences are recovered word for word.** Median
-wait for suggestions is 3.8 s, p90 17.9 s, with the heard text usable throughout.
+**Relative reduction in word error rate: 27% for the first suggestion, 37% for the
+speaker's best choice. 98 more sentences are recovered word for word.** Median
+wait for suggestions is 5.4 s, p90 23.2 s, with the heard text usable throughout.
 
-### 5.4 Choosing the recogniser, on the speakers who need it
+### 5.4 How long a pause is allowed to be
+
+A speaker with dysarthria pauses inside a sentence. Measured from the example
+recordings themselves, those silences reach 1.7 s, while the recogniser was ending a
+turn after 400 ms. Sentences therefore arrived in pieces, and the product interpreted
+each piece on its own, which invites a confident answer about nothing that was said.
+All 682 pilot sentences again, with nothing changed but that number:
+
+| Silence that ends a turn | WER | Exactly right | Split at a pause |
+|---|---|---|---|
+| 400 ms | 0.301 | 324 | 119 of 682 |
+| **2000 ms, the app** | **0.287** | **333** | **1 of 682** |
+
+**Splitting is what this fixes.** The accuracy difference, 0.014, sits inside the
+run-to-run variation measured in 4.3 and is therefore not reported as an improvement,
+here or in the product. Downstream it is the same story: the speaker's best choice
+moves from 0.185 to 0.179 and from 426 to 431 exactly right, all within the noise.
+
+The cost is real and is not noise. Suggestions now arrive at 5.4 s rather than 3.8 s
+at the median, partly because each call carries a whole sentence rather than a
+fragment. Some of the tail belongs to the provider rather than to this change:
+excluding calls that had to be retried, p90 is 13.7 s against 12.6 s. On top of all
+of it, the sentence stays open for up to two seconds of silence before any of it
+begins. **End sentence** closes it at once, which is why the button exists.
+
+### 5.5 Choosing the recogniser, on the speakers who need it
 
 Before moving the product to AssemblyAI's newest streaming model, we compared four
 settings on the 165 pilot sentences of the three hardest speakers (M04, M01, F01),
