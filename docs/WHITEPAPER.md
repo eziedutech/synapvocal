@@ -452,37 +452,22 @@ whether or not anyone is signed in.
 
 ## 9. What comes next
 
-The deployed system is complete and measured. These are the directions the
-measurements point to, none of them claimed as results.
+The deployed system is complete and measured. These are directions, not results.
 
-**A recogniser fine-tuned on dysarthric speech.** Whisper large-v3 with LoRA
-adapters on TORGO. Data preparation, a leakage-safe split and the training job are
-implemented and ready: sentence texts are disjoint between train and test by hash,
-and three speakers are held out entirely so the held-out evaluation measures
-generalisation to an unheard voice rather than memorisation of a fixed prompt list.
-Execution waits on GPU capacity approval. It will be reported only once measured on
-speakers it has never heard, combined with rather than replacing the streaming
-recogniser, whose realtime behaviour it does not have.
-
-**Measurement per condition.** Once the Speech Accessibility Project corpus is
-available, the same pipeline runs per etiology, and results are reported per
-condition rather than pooled.
+**A model trained for this kind of speech, on more data.** Recognition tuned for
+dysarthric speech, and larger corpora such as the Speech Accessibility Project, so
+results can be reported per condition instead of for dysarthria alone.
 
 **Low-confidence words surfaced in the interface.** The recogniser already returns
 per-word confidence. It did not help the model (6.3), but showing the speaker which
-words are shaky is a different use of the same signal, and directs Fix a word to
-where it is needed.
+words are shaky directs Fix a word to where it is needed.
 
-**The pause that ends a sentence.** Turns are joined into one sentence when nothing
-further arrives within a fixed window. That window is a chosen value, not a measured
-one: turn timings are not kept in the results files, so the distribution of pauses
-inside a dysarthric sentence, against the pauses between two sentences, has never
-been measured. Measuring it would replace a guess in the interaction with a number,
-and it costs one short instrumented run.
+**The pause that ends a sentence.** Turns are joined into one sentence after a fixed
+window, and its length is a chosen value rather than a measured one.
 
-**A study with actual speakers.** Every accuracy figure that involves choosing is
-an upper bound until people with dysarthria use this and we measure what they
-actually pick, how long it takes them, and whether they are understood.
+**A study with actual speakers.** Every accuracy figure that involves choosing is an
+upper bound until people with dysarthria use this and we measure what they actually
+pick, how long it takes them, and whether they are understood.
 
 ---
 

@@ -292,14 +292,12 @@ gave WER 0.400 on the same sentences: no change.
 
 ## Roadmap
 
-Measured and deployed is one thing; planned is another, and this section is the
-second. Nothing here is a result.
+Measured and deployed is one thing; planned is another. Nothing here is a result.
 
-- **A recogniser fine-tuned on dysarthric speech.** Whisper large-v3 with LoRA on TORGO. The data, a leakage-safe split (texts disjoint by hash, three speakers held out entirely) and the training job are written and ready in [`scripts/finetune`](scripts/finetune); training waits on GPU capacity. It would be combined with the streaming recogniser rather than replace it, and reported only once measured on speakers it has never heard.
-- **Results per condition.** The same pipeline, run on the Speech Accessibility Project corpus once access is granted, reported per etiology instead of pooled.
-- **Low-confidence words marked in the interface.** AssemblyAI returns per-word confidence. Giving it to the model did not help, but showing the Speaker which words are shaky is a different use of the same signal, and points **Fix a word** at where it is needed.
-- **The pause that ends a sentence, measured.** A speaker who pauses mid-sentence gets one card, not two: turns are joined until nothing further arrives within a fixed window. That window is a chosen value, not a measured one, because turn timings are not kept in the results files. One short instrumented run would replace the guess with a number.
-- **A study with people who have dysarthria.** Every "Speaker picks best" figure is an upper bound until real speakers use this and we measure what they choose, how long it takes, and whether they are understood.
+- **A model trained for this kind of speech, on more data.** Recognition tuned for dysarthric speech, and larger corpora such as the Speech Accessibility Project, so results can be reported per condition instead of for dysarthria alone. The training work is prepared in [`scripts/finetune`](scripts/finetune).
+- **Low-confidence words marked in the interface**, so **Fix a word** points at the words that need it.
+- **The pause that ends a sentence, measured.** Its length is a chosen value today, not a measured one.
+- **A study with people who have dysarthria.** Every "Speaker picks best" figure is an upper bound until real speakers use this.
 
 ## Credits and licenses
 
