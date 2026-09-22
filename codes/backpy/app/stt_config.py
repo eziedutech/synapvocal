@@ -25,4 +25,13 @@ STREAM_PARAMS = {
     "min_turn_silence": 400,
     "max_turn_silence": 3000,
     "inactivity_timeout": 120,
+    # 22 Sep 2026. Imprecise articulation lands on profanity that nobody said: park and
+    # spark come back as "Fuck", sheet and sit and seed as "Shit", "frock coat" as "Fuck
+    # you". TORGO's own transcripts contain none, so every one of these is invented by
+    # recognition, and the product would offer to say it aloud in the Speaker's name.
+    # Measured on the 14 utterances known to trigger it: all 8 profanities are masked as
+    # F*** or S***, the other 6 transcripts come back byte for byte identical, and WER is
+    # unchanged at 0.721, because a masked error is still one wrong word. No published
+    # number moves. Someone who does mean to swear still can, through Edit.
+    "filter_profanity": "true",
 }

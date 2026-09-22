@@ -1,0 +1,134 @@
+{
+ "dataset": "abnerh/TORGO-database (Hugging Face), dysarthric speakers only",
+ "seed": 20260917,
+ "rules": "The utterances AssemblyAI has been heard to turn into profanity. TORGO's own transcripts contain none, so every hit is invented by recognition. Built by hand on 22 Sep 2026 to test filter_profanity.",
+ "variance_ids": [],
+ "utterances": [
+  {
+   "id": "F01_1_headMic_0121.wav",
+   "speaker": "F01",
+   "status": "dysarthria",
+   "kind": "word",
+   "mic": "headMic",
+   "duration": 1.833,
+   "reference": "park"
+  },
+  {
+   "id": "M01_1_headMic_0088.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "word",
+   "mic": "headMic",
+   "duration": 3.46,
+   "reference": "spark"
+  },
+  {
+   "id": "M01_3_headMic_0250.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "word",
+   "mic": "headMic",
+   "duration": 1.377,
+   "reference": "side"
+  },
+  {
+   "id": "M01_3_headMic_0282.wav",
+   "speaker": "M01",
+   "status": "dysarthria",
+   "kind": "word",
+   "mic": "headMic",
+   "duration": 1.846,
+   "reference": "seed"
+  },
+  {
+   "id": "M02_2_headMic_0149.wav",
+   "speaker": "M02",
+   "status": "dysarthria",
+   "kind": "word",
+   "mic": "headMic",
+   "duration": 4.575,
+   "reference": "foxtrot"
+  },
+  {
+   "id": "M04_2_headMic_0019.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "word",
+   "mic": "headMic",
+   "duration": 3.1,
+   "reference": "sheet"
+  },
+  {
+   "id": "M04_2_headMic_0030.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "word",
+   "mic": "headMic",
+   "duration": 2.95,
+   "reference": "park"
+  },
+  {
+   "id": "M04_2_headMic_0083.wav",
+   "speaker": "M04",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 14.525,
+   "reference": "he dresses himself in an ancient black frock coat"
+  },
+  {
+   "id": "M05_1_headMic_0056.wav",
+   "speaker": "M05",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 12.335,
+   "reference": "The quick brown fox jumps over the lazy dog"
+  },
+  {
+   "id": "M05_1_headMic_0089.wav",
+   "speaker": "M05",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 14.355,
+   "reference": "he dresses himself in an ancient black frock coat"
+  },
+  {
+   "id": "M05_2_headMic_0040.wav",
+   "speaker": "M05",
+   "status": "dysarthria",
+   "kind": "word",
+   "mic": "headMic",
+   "duration": 3.01,
+   "reference": "sprinkle"
+  },
+  {
+   "id": "M05_2_headMic_0066.wav",
+   "speaker": "M05",
+   "status": "dysarthria",
+   "kind": "sentence",
+   "mic": "headMic",
+   "duration": 10.005,
+   "reference": "Bright sunshine shimmers on the ocean"
+  },
+  {
+   "id": "M05_2_headMic_0166.wav",
+   "speaker": "M05",
+   "status": "dysarthria",
+   "kind": "word",
+   "mic": "headMic",
+   "duration": 5.27,
+   "reference": "foxtrot"
+  },
+  {
+   "id": "M05_2_headMic_0310.wav",
+   "speaker": "M05",
+   "status": "dysarthria",
+   "kind": "word",
+   "mic": "headMic",
+   "duration": 1.99,
+   "reference": "sit"
+  }
+ ]
+}

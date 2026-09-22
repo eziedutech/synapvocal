@@ -286,6 +286,7 @@ gave WER 0.400 on the same sentences: no change.
 - Suggestions are guesses and can be wrong, which is why the Speaker confirms every sentence.
 - Results are measured on dysarthria (TORGO) only. Parkinson's disease, Down syndrome and stroke are not measured yet, and no claim is made for them until they are.
 - The app does not use a model trained on anyone's voice. It runs off-the-shelf models, with prompting, sentence audio and in-session context. A Whisper fine-tune on TORGO is prepared but not trained, and nothing about it is claimed here (see [Roadmap](#roadmap)).
+- **Recognition sometimes hears ordinary words as swearing.** On TORGO, "park" and "spark" come back as "Fuck", "sheet" and "sit" and "seed" as "Shit", "frock coat" as "Fuck you". TORGO's own transcripts contain none of it, so every one is invented by recognition, on 15 of 2000 utterances and most often on single words, where there is no context to lean on. AssemblyAI's profanity filter is on, which masks them, but a masked word is still visible and the Speaker still has to reject it. Suggestions usually repair it, because Gemini hears the audio.
 - English only.
 - The "best option" numbers assume the Speaker recognises their own sentence. They are an upper bound, not a measured user result.
 - How long a pause may be before a sentence is treated as finished is a chosen value, not a measured one. Press **End sentence** to finish without waiting for it.

@@ -404,6 +404,19 @@ degraded option first and doubled the model quota per sentence. It was not built
   recognises their own sentence among the options. A user study has not been run.
 - **How long a pause may be before a sentence is treated as finished is a chosen
   value**, not a measured one. The speaker can end a sentence without waiting for it.
+- **Recognition invents profanity.** Imprecise articulation lands on words nobody
+  said: on TORGO, "park" and "spark" come back as "Fuck", "sheet", "sit" and "seed"
+  as "Shit", and "an ancient black frock coat" as "ancient black. Fuck you". TORGO's
+  transcripts contain none, so every instance is the recogniser's, on 15 of 2000
+  utterances and mostly on single words, where there is no context to correct it.
+  This matters more here than in an ordinary transcript, because the product's last
+  step offers to say the sentence aloud in the speaker's name. AssemblyAI's profanity
+  filter is enabled, which masks them without changing anything else: measured on the
+  14 utterances that trigger it, every profanity was masked, every other transcript
+  came back byte for byte identical, and WER did not move (0.721 either way), since a
+  masked error is still one wrong word. A masked word is still legible, so the
+  speaker still has to reject it; the suggestion, which hears the audio, usually
+  restores the real sentence. Someone who does mean to swear can still write it.
 - **English only.**
 - **No model is trained on anyone's voice.** The deployed system uses off-the-shelf
   models with prompting, audio conditioning and in-session context.

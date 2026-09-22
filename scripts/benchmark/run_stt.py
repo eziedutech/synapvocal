@@ -250,6 +250,11 @@ async def main() -> None:
     parser.add_argument("--manifest", default="subset-v1", help="manifest name in manifest/, without .json")
     parser.add_argument("--speech-model", help="override the product's speech model, e.g. universal-3-6-pro")
     parser.add_argument("--prompt", choices=["none", "B", "E"], help="override the round's prompt")
+    parser.add_argument(
+        "--filter-profanity",
+        action="store_true",
+        help="ask AssemblyAI to filter profanity, to see what it returns for the words it mishears as swearing",
+    )
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -272,12 +277,16 @@ async def main() -> None:
         params.pop("prompt", None)
     if args.speech_model:
         params["speech_model"] = args.speech_model
+    if args.filter_profanity:
+        params["filter_profanity"] = "true"
     url = f"{ws_url}?{urlencode(params)}"
     suffix = ("-variance" if args.variance_only else "") + (f"-smoke{args.limit}" if args.limit else "")
     if args.speech_model:
         suffix = f"-{args.speech_model}" + suffix
     if args.prompt:
         suffix = f"-prompt{args.prompt}" + suffix
+    if args.filter_profanity:
+        suffix = "-filterprofanity" + suffix
     tag = "" if args.manifest == "subset-v1" else f"-{args.manifest.removeprefix('subset-')}"
     out_path = ROOT / "results" / f"round-{args.round.lower()}{tag}-run{args.run}{suffix}.jsonl"
     out_path.parent.mkdir(exist_ok=True)
