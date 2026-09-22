@@ -11,10 +11,12 @@ const SEVERITY: Record<string, { label: string; color: "tomato" | "amber" | "jad
   mild: { label: "Mild", color: "jade" },
 };
 
-// Nine TORGO sentences from speakers with dysarthria, chosen from the benchmark where the
-// app's first suggestion was exactly right. Each shows what happened in the benchmark;
-// a live run can differ, and the benchmark page gives the rate over all 681 sentences.
+// TORGO sentences from speakers with dysarthria. What each card says the benchmark heard
+// and suggested is written by scripts/benchmark/export_examples.py from the same runs the
+// Benchmark page uses, so it describes the model the app is running rather than an older
+// one. A live run can still differ, and the benchmark page gives the rate over every sentence.
 export function TorgoExamples({ trigger, onPick }: { trigger: React.ReactNode; onPick: (example: TorgoExample) => void }) {
+  const exact = examples.filter((e) => e.benchmark_exact).length;
   return (
     <Dialog.Root>
       <Dialog.Trigger>{trigger}</Dialog.Trigger>
@@ -22,8 +24,9 @@ export function TorgoExamples({ trigger, onPick }: { trigger: React.ReactNode; o
         <Dialog.Title>TORGO examples</Dialog.Title>
         <Dialog.Description size="2" color="gray">
           Real recordings of speakers with dysarthria. Each plays aloud and goes through the same steps as your
-          microphone. These are sentences the benchmark got right; across all 681 sentences the rate is lower, see
-          Benchmark.
+          microphone. In the benchmark the first suggestion was exactly right for {exact} of {examples.length} of
+          them; a live run can differ. Severity is how badly speech recognition does on that speaker, not a
+          judgement about the person. See Benchmark for the rate over every sentence.
         </Dialog.Description>
         <Flex direction="column" gap="3" mt="4">
           {examples.map((example) => {
