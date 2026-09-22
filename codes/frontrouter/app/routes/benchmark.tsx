@@ -97,6 +97,10 @@ export default function Benchmark() {
   const used = pilot.app;
 
   const roundE = data.round_e;
+  // The same pilot sentences on both AssemblyAI models, from the results files rather
+  // than typed here: three decimals, because the gain is smaller than a hundredth.
+  const sttModels = data.stt_models;
+  const wer3 = (value: number) => value.toFixed(3);
   const E_VARIANTS = [
     { key: "u35", label: "Universal-3.5 Pro" },
     { key: "u35_prompt", label: "3.5 Pro + prompt" },
@@ -296,7 +300,7 @@ export default function Benchmark() {
       <ChartCard
         title="AssemblyAI's newest model on the hardest speakers"
         about={`Exploratory: word error rate on the ${roundE.u35.n} sentences of the three speakers AssemblyAI found hardest (M04, M01, F01), streamed in real time. Four settings compared on the same sentences.`}
-        caption={`Universal-3.6 Pro, AssemblyAI's newest streaming model, heard these speakers best and split fewer sentences at a pause (${roundE.u36.split_into_turns} against ${roundE.u35.split_into_turns}). A prompt describing dysarthric speech made both models worse. A full run on all 682 pilot sentences confirmed the gain (WER 0.317 to 0.301), so the app now uses 3.6 Pro.`}
+        caption={`Universal-3.6 Pro, AssemblyAI's newest streaming model, heard these speakers best and split fewer sentences at a pause (${roundE.u36.split_into_turns} against ${roundE.u35.split_into_turns}). A prompt describing dysarthric speech made both models worse. A full run on all ${sttModels.u36.n} pilot sentences confirmed the gain (WER ${wer3(sttModels.u35.wer)} to ${wer3(sttModels.u36.wer)}, and ${sttModels.u35.split_into_turns} sentences split at a pause down to ${sttModels.u36.split_into_turns}), so the app now uses 3.6 Pro.`}
         chart={
           <BarChart
             rows={roundERows}

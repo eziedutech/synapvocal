@@ -49,6 +49,12 @@ ROUND_E = {
     "u36_prompt": RESULTS / "round-a-severe-run1-promptE-universal-3-6-pro.jsonl",
 }
 C0 = {"gemini-3.7-flash": RESULTS / "round-c0-gemini-3.7-flash-low-run3.jsonl", "gemini-3.8-flash": RESULTS / "round-c0-gemini-3.8-flash-low-run2.jsonl"}
+# 20 Sep 2026: the whole pilot on both AssemblyAI streaming models, same sentences,
+# only the model changed. This is what moved the app to Universal-3.6 Pro.
+PILOT_STT_MODELS = {
+    "u35": RESULTS / "round-a-pilot2000-run1.jsonl",
+    "u36": RESULTS / "round-a-pilot-sentences-run1-universal-3-6-pro.jsonl",
+}
 
 
 def rows(path: Path) -> list[dict]:
@@ -176,10 +182,11 @@ def retake() -> dict:
     return shared_summary(RETAKE)
 
 
-def round_e() -> dict:
+def stt_compare(paths: dict[str, Path]) -> dict:
+    """Speech recognition runs scored on the utterances every run has in common."""
     from compare_stt import rows as keyed, summarise
 
-    runs = {name: keyed(path) for name, path in ROUND_E.items()}
+    runs = {name: keyed(path) for name, path in paths.items()}
     ids = sorted(set.intersection(*(set(r) for r in runs.values())))
     return {name: summarise([run[i] for i in ids]) for name, run in runs.items()}
 
@@ -205,7 +212,8 @@ def main() -> None:
         "pilot": {variant: interpretation("gemini-3.7-flash", path) for variant, path in PILOT.items()},
         "retake": retake(),
         "prompt_v2": prompt_v2(),
-        "round_e": round_e(),
+        "round_e": stt_compare(ROUND_E),
+        "stt_models": stt_compare(PILOT_STT_MODELS),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, indent=1), encoding="utf-8")
