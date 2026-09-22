@@ -87,6 +87,7 @@ Choices worth knowing:
 - **One source of STT settings** ([`stt_config.py`](codes/backpy/app/stt_config.py)), loaded by both the product and the benchmark, so measurements describe what users get.
 - **The Bridge stores nothing.** Sentence audio is held in the page's memory, sent to Gemini to interpret it, and dropped. Only a signed-in contributor, in a contribution session, can choose to save a recording.
 - **Gemini on the `global` endpoint.** Gemini 3 models are not served from `us-central1` for this project (404). 429 and 504 there are transient shared capacity: one logged retry, then Gemini 3.5 Flash-Lite, which has its own capacity.
+- **The voice output retries a busy provider.** Deepgram answers 503 when it is not ready, and that lands on the last step, after the Speaker has confirmed. Two short logged retries, and no retry at all for an answer that will not change, such as a rejected key.
 - **Rate limits per visitor** on every route that spends paid credit, so the demo cannot be drained by a script.
 
 ```

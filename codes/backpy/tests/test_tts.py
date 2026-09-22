@@ -58,3 +58,53 @@ def test_upstream_refusal_is_502(monkeypatch):
     response = _client("secret").post("/api/tts/speak", json={"text": "Hi."})
     assert response.status_code == 502
     assert "401" in response.json()["detail"]
+
+
+def test_transient_refusal_is_retried(monkeypatch):
+    """Deepgram answers 503 on a busy moment; the Speaker has already confirmed."""
+    attempts = []
+
+    def handler(request: httpx.Request):
+        attempts.append(request)
+        if len(attempts) < 3:
+            return httpx.Response(503, json={"err_msg": "Please try again later"})
+        return httpx.Response(200, content=b"ID3fake-mp3", headers={"content-type": "audio/mpeg"})
+
+    _mock_upstream(monkeypatch, handler)
+    monkeypatch.setattr(tts, "RETRY_DELAYS", (0.0, 0.0))
+    response = _client("secret").post("/api/tts/speak", json={"text": "Hi."})
+
+    assert response.status_code == 200
+    assert response.content == b"ID3fake-mp3"
+    assert len(attempts) == 3
+
+
+def test_retries_are_bounded(monkeypatch):
+    attempts = []
+
+    def handler(request: httpx.Request):
+        attempts.append(request)
+        return httpx.Response(503, json={"err_msg": "Please try again later"})
+
+    _mock_upstream(monkeypatch, handler)
+    monkeypatch.setattr(tts, "RETRY_DELAYS", (0.0, 0.0))
+    response = _client("secret").post("/api/tts/speak", json={"text": "Hi."})
+
+    assert response.status_code == 502
+    assert "503" in response.json()["detail"]
+    assert len(attempts) == len(tts.RETRY_DELAYS) + 1
+
+
+def test_a_refusal_that_will_not_pass_is_not_retried(monkeypatch):
+    """401 is an answer, not a hiccup: repeating it only repeats it."""
+    attempts = []
+
+    def handler(request: httpx.Request):
+        attempts.append(request)
+        return httpx.Response(401, json={"err_msg": "bad key"})
+
+    _mock_upstream(monkeypatch, handler)
+    response = _client("secret").post("/api/tts/speak", json={"text": "Hi."})
+
+    assert response.status_code == 502
+    assert len(attempts) == 1
