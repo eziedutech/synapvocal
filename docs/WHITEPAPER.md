@@ -113,8 +113,15 @@ unmeasured is stated as unmeasured.
    and streams raw PCM directly to AssemblyAI Universal-3.6 Pro over a WebSocket,
    using a one-time token minted server-side. The permanent API key never reaches
    the browser, and the audio takes one network hop fewer than it would through our
-   own backend. Partial transcripts appear as the person speaks; a turn closes on a
-   pause or on an explicit **End sentence**.
+   own backend. Partial transcripts appear as the person speaks.
+
+   The recogniser ends a turn after 400 ms of silence, and dysarthric speech pauses
+   where fluent speech does not: on the TORGO pilot, 119 of 682 sentences came back
+   as more than one turn. A turn therefore extends the sentence already open rather
+   than starting a new one, and the sentence closes when nothing further has arrived
+   or when the speaker presses **End sentence**. This matches how the benchmark
+   scores a recording, where every turn of one utterance is one sentence. Interpreting
+   a fragment on its own invites a confident answer about nothing that was said.
 
 2. **Offer.** When a sentence closes, the backend sends Gemini 3.7 Flash three
    things: the audio of that sentence, the transcript AssemblyAI produced, and the
@@ -395,6 +402,8 @@ degraded option first and doubled the model quota per sentence. It was not built
   them. Free conversation will be harder.
 - **The "speaker picks best" figures are an upper bound.** They assume the speaker
   recognises their own sentence among the options. A user study has not been run.
+- **How long a pause may be before a sentence is treated as finished is a chosen
+  value**, not a measured one. The speaker can end a sentence without waiting for it.
 - **English only.**
 - **No model is trained on anyone's voice.** The deployed system uses off-the-shelf
   models with prompting, audio conditioning and in-session context.
@@ -463,6 +472,13 @@ condition rather than pooled.
 per-word confidence. It did not help the model (6.3), but showing the speaker which
 words are shaky is a different use of the same signal, and directs Fix a word to
 where it is needed.
+
+**The pause that ends a sentence.** Turns are joined into one sentence when nothing
+further arrives within a fixed window. That window is a chosen value, not a measured
+one: turn timings are not kept in the results files, so the distribution of pauses
+inside a dysarthric sentence, against the pauses between two sentences, has never
+been measured. Measuring it would replace a guess in the interaction with a number,
+and it costs one short instrumented run.
 
 **A study with actual speakers.** Every accuracy figure that involves choosing is
 an upper bound until people with dysarthria use this and we measure what they
