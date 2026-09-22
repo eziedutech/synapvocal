@@ -73,7 +73,7 @@ be reported per condition once they are measured, not before.
 3. Speak an English sentence. Pause in the middle if you like, then press **End sentence** or wait.
 4. The sentence card shows what was heard (ear icon) at once, then suggestions a few seconds later.
 5. Pick the closest option, tap a single wrong word to swap it, or press **Edit**. If nothing is close, press **Say it again** and repeat the sentence. Then **Confirm and speak**.
-6. `/benchmark` shows the measured results; `/status` shows both service versions and which keys are configured, without revealing any.
+6. `/benchmark` shows the measured results.
 
 Optional: **Contribute** lets a signed-in person who agrees to it save recordings of sentences they choose, in a separate contribution session. The Bridge itself stores nothing.
 
@@ -92,7 +92,7 @@ Choices worth knowing:
 ```
 codes/
   backpy/          FastAPI: stt, interpret, tts, contributions, health, migrations, tests
-  frontrouter/     React Router app: Bridge, contribution session, benchmark, status
+  frontrouter/     React Router app: Bridge, contribution session, benchmark
 scripts/
   benchmark/       TORGO subsets, STT and interpretation runs, scoring
   finetune/        TORGO split and Whisper LoRA training on SageMaker (not part of the app)
@@ -148,7 +148,7 @@ cd codes/frontrouter && npm run typecheck
 | `SESSION_SECRET` | frontrouter | signs the contributor session cookie |
 | `FIREBASE_API_KEY`, `FIREBASE_AUTH_DOMAIN`, `FIREBASE_PROJECT_ID`, `FIREBASE_APP_ID` | frontrouter | Google sign-in through Firebase (public values) |
 | `BACKPY_INTERNAL_URL` | frontrouter | internal address of backpy, read server-side only |
-| `GIT_SHA` | both | build version, shown on `/status` to prove what is deployed |
+| `GIT_SHA` | both | build version, returned by `/health` to prove what is deployed |
 
 Everything for contributions is optional: without it those routes answer 503 and the Bridge is unchanged.
 

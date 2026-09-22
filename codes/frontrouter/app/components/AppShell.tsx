@@ -7,7 +7,6 @@ const NAV = [
   { to: "/", label: "Bridge" },
   { to: "/contribute", label: "Contribute" },
   { to: "/benchmark", label: "Benchmark" },
-  { to: "/status", label: "Status" },
 ];
 
 export function AppShell({ children, user = null }: { children: React.ReactNode; user?: ShellUser | null }) {

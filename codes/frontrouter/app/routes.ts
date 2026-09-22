@@ -8,7 +8,6 @@ export default [
   route("contribute/upload", "routes/contribute.upload.ts"),
   route("contribute/audio/:id", "routes/contribute.audio.ts"),
   route("auth/session", "routes/auth.session.ts"),
-  route("status", "routes/status.tsx"),
   route("health", "routes/health.ts"),
   route("stt/token", "routes/stt.token.ts"),
   route("bridge/interpret", "routes/bridge.interpret.ts"),
