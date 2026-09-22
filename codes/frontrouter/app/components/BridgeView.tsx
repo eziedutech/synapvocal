@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Link } from "react-router";
 import { FileIcon, HeartIcon, PlayIcon } from "@radix-ui/react-icons";
 import { AlertDialog, Badge, Button, Card, Flex, Grid, Heading, Skeleton, Text } from "@radix-ui/themes";
@@ -59,7 +59,17 @@ export function BridgeView({ mode }: { mode: BridgeMode }) {
   const intro = INTRO[mode];
   const { status, turns, sessionId, analyser, error, fileProgress, start, stop, endTurn, getTurnAudio, forgetTurnAudio } =
     useRealtimeTranscription({ keepAudio: true });
-  const { sentences, confirm, retry, clear, sayAgain, awaitingRetake } = useSentences(turns, sessionId, getTurnAudio);
+  const { sentences, confirm, retry, clear, sayAgain, awaitingRetake, endSentence, sentenceAudio } = useSentences(
+    turns,
+    sessionId,
+    getTurnAudio,
+  );
+  // End sentence forces the recogniser to finish its turn, and tells the sentence list to
+  // take that turn and close rather than wait out the merge window.
+  const finishSentence = useCallback(() => {
+    endTurn();
+    endSentence();
+  }, [endTurn, endSentence]);
   const speech = useSpeech();
   const active = status === "listening";
   const busy = status === "connecting" || status === "stopping";
@@ -169,7 +179,7 @@ export function BridgeView({ mode }: { mode: BridgeMode }) {
           )}
           {started && (
             <Flex align="center" gap="2">
-              <Button size="4" variant="outline" onClick={endTurn} disabled={!active}>
+              <Button size="4" variant="outline" onClick={finishSentence} disabled={!active}>
                 End sentence
               </Button>
               <InfoTip label="End sentence">
@@ -347,8 +357,8 @@ export function BridgeView({ mode }: { mode: BridgeMode }) {
                           contributing && (
                             <ContributePanel
                               sentence={sentence}
-                              audio={getTurnAudio(sentence.key)}
-                              onDone={() => forgetTurnAudio(sentence.key)}
+                              audio={sentenceAudio(sentence)}
+                              onDone={() => sentence.turnKeys.forEach((k) => forgetTurnAudio(k))}
                             />
                           )
                         }
