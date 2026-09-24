@@ -22,10 +22,19 @@ echo "== repository =="
 cd "$WORK"
 
 echo "== python packages =="
-# These images normally ship a CUDA build of torch. If this prints cuda False, stop and
-# install the CUDA build for this box: letting pip pull a CPU one will train for days
-# while looking like it is working.
-python -c "import torch; print('torch', torch.__version__, 'cuda', torch.cuda.is_available())"
+# A CPU build of torch trains for days while looking like it is working, so this stops
+# here rather than letting the run start on one.
+python - <<'CHECK'
+import sys
+try:
+    import torch
+except ModuleNotFoundError:
+    sys.exit("torch is not installed. Pick an image that ships PyTorch with CUDA, or install "
+             "the CUDA build for this box from pytorch.org before running this again.")
+print("torch", torch.__version__, "cuda", torch.cuda.is_available())
+if not torch.cuda.is_available():
+    sys.exit("torch cannot see the GPU. Do not train on this: install the CUDA build.")
+CHECK
 pip install --quiet -r scripts/finetune/requirements.txt huggingface_hub
 
 echo "== TORGO, straight from Hugging Face =="
